@@ -8,6 +8,10 @@ function init(){
 			//new Button('Hit', '#fff', 100, 100, () => player.hit()),
 		],
 
+		_preload: function(){
+
+		},
+
 		_alert: function(msg){
 			/*var alertText = new createjs.Text(msg.msg, '30px Arial', 'orange');
 			alertText.x = msg.x || 745;
@@ -23,23 +27,15 @@ function init(){
 		},
 
 		startScreen: function(){
+			setupManifest();
+			startPreload();
 			console.log('lets go');
 			stage.enableMouseOver(10);
 			createjs.Ticker.addEventListener('tick', tick);
 			createjs.Ticker.setFPS(60);
 
 			var data = new createjs.SpriteSheet({
-			"images": ["img/Player/p1_walk/PNG/p1_walk01.png",
-			"img/Player/p1_walk/PNG/p1_walk02.png",
-			"img/Player/p1_walk/PNG/p1_walk03.png",
-			"img/Player/p1_walk/PNG/p1_walk04.png",
-			"img/Player/p1_walk/PNG/p1_walk05.png",
-			"img/Player/p1_walk/PNG/p1_walk06.png",
-			"img/Player/p1_walk/PNG/p1_walk07.png",
-			"img/Player/p1_walk/PNG/p1_walk08.png",
-			"img/Player/p1_walk/PNG/p1_walk09.png",
-			"img/Player/p1_walk/PNG/p1_walk10.png",
-			"img/Player/p1_walk/PNG/p1_walk11.png"],
+			"images": imgs.player1_walk_sprite,
 			"frames": {"regX": 0, "height": 97, "count": 11, "regY": 0, "width": 72},
 			"animations": {
 				walk: {
