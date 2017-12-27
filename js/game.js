@@ -27,6 +27,31 @@ function init(){
 			stage.enableMouseOver(10);
 			createjs.Ticker.addEventListener('tick', tick);
 			createjs.Ticker.setFPS(60);
+
+			var data = new createjs.SpriteSheet({
+			"images": ["img/Player/p1_walk/PNG/p1_walk01.png",
+			"img/Player/p1_walk/PNG/p1_walk02.png",
+			"img/Player/p1_walk/PNG/p1_walk03.png",
+			"img/Player/p1_walk/PNG/p1_walk04.png",
+			"img/Player/p1_walk/PNG/p1_walk05.png",
+			"img/Player/p1_walk/PNG/p1_walk06.png",
+			"img/Player/p1_walk/PNG/p1_walk07.png",
+			"img/Player/p1_walk/PNG/p1_walk08.png",
+			"img/Player/p1_walk/PNG/p1_walk09.png",
+			"img/Player/p1_walk/PNG/p1_walk10.png",
+			"img/Player/p1_walk/PNG/p1_walk11.png"],
+			"frames": {"regX": 0, "height": 97, "count": 11, "regY": 0, "width": 72},
+			"animations": {
+				walk: {
+		            frames: [0,1,2,3,4,5,6,7,8,9,10],
+		            speed: 0.5,
+		        }
+			}
+			});
+			character = new createjs.Sprite(data, "walk");
+			character.gotoAndPlay('walk');
+			character.x = 5;
+			stage.addChild(character);
 			//createjs.Sound.registerSound('assets/sounds/sfx_lose.ogg', 'lose');
 		},
 
@@ -62,6 +87,7 @@ function init(){
 
 	function tick(){
 		stage.update();
+		character.x += 1;
 	}
 
 	game.startScreen();
