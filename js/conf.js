@@ -61,7 +61,7 @@ function handleFileLoad(event) {
 }
 
 function loadError(evt) {
-    console.log("Error!",evt.text);
+    console.log("Error!", evt.text);
 }
 
 function handleFileProgress(event) {
@@ -76,5 +76,5 @@ function loadComplete(event) {
 function setupManifest() {
     manifest = [];
     for(var i in imgs.player1_walk_sprite)
-        manifest.push({src:imgs.player1_walk_sprite[i], id: "sprite" + i})
+        manifest.push({src: imgs.player1_walk_sprite[i], id: "sprite" + i})
 }
