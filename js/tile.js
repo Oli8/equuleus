@@ -4,7 +4,7 @@ class Tile {
 		return _ => null;
 	}
 
-	constructor(image, over, onPush, onAlign){
+	constructor(image, over, onPush, onAlign, description){
 		this.image = `img/${image}.png`;
 		// What happens when we're over the tile
 		this.over = over || this.constructor.doNothing();
@@ -12,6 +12,7 @@ class Tile {
 		this.onPush = onPush || this.constructor.doNothing();
 		// What happens when we're on the same line or column than the tile
 		this.onAlign = onAlign || this.constructor.doNothing();
+		this.description = description;
 	}	
 
 }
