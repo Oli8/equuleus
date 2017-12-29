@@ -3,15 +3,8 @@ class Level {
 	constructor(title, author, tiles){
 		this.title = title;
 		this.author = author;
+		// array describing the map of the level
 		this.tiles = tiles;
 	}
 
 }
-
-/*
-l = new Level("test", "Oli", []);
-
-function c(v){
-	console.log(v);
-}
-*/
