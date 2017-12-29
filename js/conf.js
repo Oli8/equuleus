@@ -1,3 +1,15 @@
+const keys = {
+	direction: {
+		left: 37,
+		right: 39,
+		up: 38,
+		down: 40
+	},
+	fire: [32, 17],
+	pause: [27, 80],
+	enter: 13
+};
+
 const imgs = {
 	
 	get: function(){

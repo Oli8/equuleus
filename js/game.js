@@ -52,7 +52,8 @@ function init(){
 		},
 
 		start: function(){
-
+			document.onkeydown = handleKeyDown;
+			document.onkeyup = handleKeyUp;
 		},
 
 		addButtons: function(){
@@ -84,6 +85,14 @@ function init(){
 	function tick(){
 		stage.update();
 		character.x += 1;
+	}
+
+	function handleKeyDown(e){
+
+	}
+
+	function handleKeyUp(e){
+
 	}
 
 	game.startScreen();
