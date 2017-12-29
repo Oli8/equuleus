@@ -5,7 +5,7 @@ class Tile {
 	}
 
 	constructor(image, over, onPush, onAlign){
-		this.image = 'img/' + image;
+		this.image = `img/${image}.png`;
 		// What happens when we're over the tile
 		this.over = over || this.constructor.doNothing();
 		// What happens when we push the tile
