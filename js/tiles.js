@@ -17,5 +17,23 @@ const tiles = {
 		},
 		false,
 		"You can push this object, which is a way to create bridge over water. There is no water yet tho :|"
+	),
+	ice: new Tile(
+		'iceBlock',
+		level => {
+			// make player slides
+		},
+		false,
+		false,
+		"Will makes you slide and unable to move when you are on it."
+	),
+	water: new Tile(
+		"water",
+		false,
+		false,
+		level => {
+			// can't move on
+		},
+		"You can not cross over this tile, you may use a box to create a bridge."
 	)
 };

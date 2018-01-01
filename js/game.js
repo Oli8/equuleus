@@ -100,7 +100,7 @@ function init(){
 }
 
 var tile_desc_div = document.getElementById("tile-description");
-for(tile in tiles){
+for(let tile in tiles){
 	let t = tiles[tile];
 	tile_desc_div.insertAdjacentHTML('beforeend',`
 		<img src='${t.image}' alt='${tile}'/>
