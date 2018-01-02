@@ -4,7 +4,7 @@ class Player {
 		
 	}
 
-	move(dir){
+	move(){
 		
 	}
 

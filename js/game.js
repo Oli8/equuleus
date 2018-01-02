@@ -8,7 +8,37 @@ function init(){
 			//new Button('Hit', '#fff', 100, 100, () => player.hit()),
 		],
 
+		setupManifest: function(){
+		    manifest = [];
+		    for(var i in imgs.player1_walk_sprite)
+		        manifest.push({src: imgs.player1_walk_sprite[i], id: "sprite" + i})
+		},
+
 		_preload: function(){
+			console.log('preload');
+			this.setupManifest();
+			preload = new createjs.LoadQueue(true);
+		    preload.installPlugin(createjs.Sound);
+		    preload.on("fileload", this.handleFileLoad);
+		    preload.on("progress", this.handleFileProgress);
+		    preload.on("complete", this.startScreen);
+		    preload.on("error", this.loadError);
+		    preload.loadManifest(manifest);
+		},
+
+		handleFileLoad: function(){
+
+		},
+
+		handleFileProgress: function(){
+
+		},
+
+		loadComplete: function(){
+
+		},
+
+		loadError: function(){
 
 		},
 
@@ -27,8 +57,6 @@ function init(){
 		},
 
 		startScreen: function(){
-			setupManifest();
-			startPreload();
 			console.log('lets go');
 			stage.enableMouseOver(10);
 			createjs.Ticker.addEventListener('tick', tick);
@@ -84,7 +112,6 @@ function init(){
 
 	function tick(){
 		stage.update();
-		character.x += 1;
 	}
 
 	function handleKeyDown(e){
@@ -95,7 +122,7 @@ function init(){
 
 	}
 
-	game.startScreen();
+	game._preload();
 
 }
 

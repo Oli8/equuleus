@@ -36,42 +36,42 @@ const messages = {
 	
 };
 
-function startPreload() {
-    preload = new createjs.LoadQueue(true);
-    preload.installPlugin(createjs.Sound);
-    preload.on("fileload", handleFileLoad);
-    preload.on("progress", handleFileProgress);
-    preload.on("complete", loadComplete);
-    preload.on("error", loadError);
-    preload.loadManifest(manifest);
-}
+// function startPreload() {
+//     preload = new createjs.LoadQueue(true);
+//     preload.installPlugin(createjs.Sound);
+//     preload.on("fileload", handleFileLoad);
+//     preload.on("progress", handleFileProgress);
+//     preload.on("complete", loadComplete);
+//     preload.on("error", loadError);
+//     preload.loadManifest(manifest);
+// }
 
-function handleFileLoad(event) {
-    console.log("A file has loaded of type: " + event.item.type);
-    if(event.item.id == "logo"){
-        console.log("Logo is loaded");
-        //create bitmap here
-    }
-}
+// function handleFileLoad(event) {
+//     console.log("A file has loaded of type: " + event.item.type);
+//     if(event.item.id == "logo"){
+//         console.log("Logo is loaded");
+//         //create bitmap here
+//     }
+// }
 
-function loadError(evt) {
-    console.log("Error!", evt.text);
-}
+// function loadError(evt) {
+//     console.log("Error!", evt.text);
+// }
 
-function handleFileProgress(event) {
-    //progressText.text = (preload.progress*100|0) + " % Loaded";
-    //stage.update();
-}
+// function handleFileProgress(event) {
+//     //progressText.text = (preload.progress*100|0) + " % Loaded";
+//     //stage.update();
+// }
 
-function loadComplete(event) {
-    console.log("Finished Loading Assets");
-}
+// function loadComplete(event) {
+//     console.log("Finished Loading Assets");
+// }
 
-function setupManifest() {
-    manifest = [];
-    for(var i in imgs.player1_walk_sprite)
-        manifest.push({src: imgs.player1_walk_sprite[i], id: "sprite" + i})
-}
+// function setupManifest() {
+//     manifest = [];
+//     for(var i in imgs.player1_walk_sprite)
+//         manifest.push({src: imgs.player1_walk_sprite[i], id: "sprite" + i})
+// }
 
 // Utils
 createjs.Text.prototype.center = function(x = true, y = false){
