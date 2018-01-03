@@ -5,7 +5,7 @@ class Player {
 		this.direction = 'right';
 		var data = new createjs.SpriteSheet({
 			"images": imgs.player1_walk_sprite,
-			"frames": {"regX": 0, "height": 97, "count": 11, "regY": 0, "width": 72},
+			"frames": {"regX": 36, "height": 97, "count": 11, "regY": 0, "width": 72},
 			"animations": {
 				walk: {
 		            frames: [0,1,2,3,4,5,6,7,8,9,10],
@@ -17,10 +17,8 @@ class Player {
 			}
 			});
 		this.sprite = new createjs.Sprite(data, "stand");
-		//this.sprite.gotoAndPlay('walk');
 		this.sprite.x = 5;
 		this.sprite.y = 5;
-		this.sprite.scaleX *= -1;
 	}
 
 	move(dir){
@@ -30,7 +28,9 @@ class Player {
 				this.sprite.scaleX *= -1;
 		}
 		this.direction = dir;
-		//this.sprite.gotoAndPlay('walk');
+		this.sprite.gotoAndPlay('walk');
+		var that = this;
+		setTimeout(function(){that.sprite.gotoAndPlay('stand');}, 1000);
 	}
 
 }
