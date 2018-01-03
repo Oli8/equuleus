@@ -21,7 +21,7 @@ function init(){
 		    preload.installPlugin(createjs.Sound);
 		    preload.on("fileload", this.handleFileLoad);
 		    preload.on("progress", this.handleFileProgress);
-		    preload.on("complete", this.startScreen);
+		    preload.on("complete", this.startScreen.bind(this));
 		    preload.on("error", this.loadError);
 		    preload.loadManifest(manifest);
 		},
@@ -62,20 +62,9 @@ function init(){
 			createjs.Ticker.addEventListener('tick', tick);
 			createjs.Ticker.setFPS(60);
 
-			var data = new createjs.SpriteSheet({
-			"images": imgs.player1_walk_sprite,
-			"frames": {"regX": 0, "height": 97, "count": 11, "regY": 0, "width": 72},
-			"animations": {
-				walk: {
-		            frames: [0,1,2,3,4,5,6,7,8,9,10],
-		            speed: 0.5,
-		        }
-			}
-			});
-			character = new createjs.Sprite(data, "walk");
-			character.gotoAndPlay('walk');
-			character.x = 5;
-			stage.addChild(character);
+			this.player1 = new Player();
+			stage.addChild(this.player1.sprite);
+			this.start();
 			//createjs.Sound.registerSound('assets/sounds/sfx_lose.ogg', 'lose');
 		},
 
@@ -115,7 +104,12 @@ function init(){
 	}
 
 	function handleKeyDown(e){
-
+		var key = e.keyCode;
+		for(var v of Object.keys(keys.direction))
+			if(key == keys.direction[v]){
+				game.player1.move(v);
+				break;
+			}
 	}
 
 	function handleKeyUp(e){
