@@ -3,6 +3,7 @@ class Player {
 	constructor(){
 		console.log('new player!');
 		this.direction = 'right';
+		this.orientation = 'right';
 		var data = new createjs.SpriteSheet({
 			"images": imgs.player1_walk_sprite,
 			"frames": {"regX": 36, "height": 97, "count": 11, "regY": 0, "width": 72},
@@ -24,13 +25,21 @@ class Player {
 	move(dir){
 		l('movin ' + dir + ' from ' + this.direction)
 		if(dir == 'left' || dir == 'right'){
-			if(dir !== this.direction) //change orientation
+			if(dir !== this.orientation) //change orientation
 				this.sprite.scaleX *= -1;
+
+			createjs.Tween.get(this.sprite)
+                .to({x: this.sprite.x + (dir === 'right' ? 50 : -50), y: this.sprite.y}, 500, createjs.Ease.getPowInOut(1))
+
+			this.orientation = dir;
+		}
+		else{
+			createjs.Tween.get(this.sprite)
+                .to({x: this.sprite.x, y: this.sprite.y + (dir === 'down' ? 50 : -50)}, 500, createjs.Ease.getPowInOut(1))
 		}
 		this.direction = dir;
 		this.sprite.gotoAndPlay('walk');
-		var that = this;
-		setTimeout(function(){that.sprite.gotoAndPlay('stand');}, 1000);
+		setTimeout(_ => this.sprite.gotoAndPlay('stand'), 500);
 	}
 
 }

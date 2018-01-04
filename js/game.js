@@ -105,11 +105,15 @@ function init(){
 
 	function handleKeyDown(e){
 		var key = e.keyCode;
-		for(var v of Object.keys(keys.direction))
-			if(key == keys.direction[v]){
-				game.player1.move(v);
-				break;
-			}
+		dir = Object.entries(keys.direction).find(v => v [1] === key);
+		if(dir !== undefined)
+			game.player1.move(dir[0]);
+
+		// for(let v of Object.keys(keys.direction))
+		// 	if(key === keys.direction[v]){
+		// 		game.player1.move(v);
+		// 		break;
+		// 	}
 	}
 
 	function handleKeyUp(e){
