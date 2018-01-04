@@ -19,17 +19,19 @@ const imgs = {
 		return ``;
 	},
 
-	player1_walk_sprite: ["img/Player/p1_walk/PNG/p1_walk01.png",
-			"img/Player/p1_walk/PNG/p1_walk02.png",
-			"img/Player/p1_walk/PNG/p1_walk03.png",
-			"img/Player/p1_walk/PNG/p1_walk04.png",
-			"img/Player/p1_walk/PNG/p1_walk05.png",
-			"img/Player/p1_walk/PNG/p1_walk06.png",
-			"img/Player/p1_walk/PNG/p1_walk07.png",
-			"img/Player/p1_walk/PNG/p1_walk08.png",
-			"img/Player/p1_walk/PNG/p1_walk09.png",
-			"img/Player/p1_walk/PNG/p1_walk10.png",
-			"img/Player/p1_walk/PNG/p1_walk11.png"],
+	player1_walk_sprite: [
+		"img/Player/p1_walk/PNG/p1_walk01.png",
+		"img/Player/p1_walk/PNG/p1_walk02.png",
+		"img/Player/p1_walk/PNG/p1_walk03.png",
+		"img/Player/p1_walk/PNG/p1_walk04.png",
+		"img/Player/p1_walk/PNG/p1_walk05.png",
+		"img/Player/p1_walk/PNG/p1_walk06.png",
+		"img/Player/p1_walk/PNG/p1_walk07.png",
+		"img/Player/p1_walk/PNG/p1_walk08.png",
+		"img/Player/p1_walk/PNG/p1_walk09.png",
+		"img/Player/p1_walk/PNG/p1_walk10.png",
+		"img/Player/p1_walk/PNG/p1_walk11.png"
+	],
 };
 
 const messages = {

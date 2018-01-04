@@ -122,10 +122,10 @@ function init(){
 }
 
 var tile_desc_div = document.getElementById("tile-description");
-for(let tile in tiles){
-	let t = tiles[tile];
-	tile_desc_div.insertAdjacentHTML('beforeend',`
-		<img src='${t.image}' alt='${tile}'/>
-		<p>${t.description}</p>
-	`);
-}
+// for(let tile in tiles){
+// 	let t = tiles[tile];
+// 	tile_desc_div.insertAdjacentHTML('beforeend',`
+// 		<img src='${t.image}' alt='${tile}'/>
+// 		<p>${t.description}</p>
+// 	`);
+// }

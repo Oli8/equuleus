@@ -1,5 +1,12 @@
 class Player {
 
+	static MOVING(){
+		return {
+			range: 72,
+			time: 500
+		};
+	}
+
 	constructor(){
 		console.log('new player!');
 		this.direction = 'right';
@@ -33,13 +40,23 @@ class Player {
 				this.sprite.scaleX *= -1;
 
 			createjs.Tween.get(this.sprite)
-                .to({x: this.sprite.x + (dir === 'right' ? 50 : -50), y: this.sprite.y}, 500, createjs.Ease.getPowInOut(1))
+                .to({
+					x: this.sprite.x + (dir === 'right' ? 72 : -72),
+					y: this.sprite.y
+				},
+				this.constructor.MOVING().time,
+				createjs.Ease.getPowInOut(1))
 
 			this.orientation = dir;
 		}
 		else{
 			createjs.Tween.get(this.sprite)
-                .to({x: this.sprite.x, y: this.sprite.y + (dir === 'down' ? 50 : -50)}, 500, createjs.Ease.getPowInOut(1))
+                .to({
+					x: this.sprite.x,
+					y: this.sprite.y + (dir === 'down' ? 50 : -50)
+				},
+				this.constructor.MOVING().time,
+				createjs.Ease.getPowInOut(1))
 		}
 
 		this.state = 'walk';
@@ -48,7 +65,7 @@ class Player {
 		setTimeout(_ => {
 			this.sprite.gotoAndPlay('stand');
 			this.state = 'stand';
-		}, 500);
+		}, this.constructor.MOVING().time);
 	}
 
 }
