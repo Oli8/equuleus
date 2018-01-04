@@ -2,7 +2,8 @@ class Player {
 
 	static MOVING(){
 		return {
-			range: 72,
+			width: 72,
+			height: 97,
 			time: 500
 		};
 	}
@@ -41,7 +42,7 @@ class Player {
 
 			createjs.Tween.get(this.sprite)
                 .to({
-					x: this.sprite.x + (dir === 'right' ? 72 : -72),
+					x: this.sprite.x + (dir === 'right' ? this.constructor.MOVING().width : -this.constructor.MOVING().width),
 					y: this.sprite.y
 				},
 				this.constructor.MOVING().time,
@@ -53,7 +54,7 @@ class Player {
 			createjs.Tween.get(this.sprite)
                 .to({
 					x: this.sprite.x,
-					y: this.sprite.y + (dir === 'down' ? 50 : -50)
+					y: this.sprite.y + (dir === 'down' ? this.constructor.MOVING().height : -this.constructor.MOVING().height)
 				},
 				this.constructor.MOVING().time,
 				createjs.Ease.getPowInOut(1))

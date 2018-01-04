@@ -66,7 +66,9 @@ function init(){
 			createjs.Ticker.setFPS(60);
 
 			this.player1 = new Player();
-			stage.addChild(this.player1.sprite);
+			let alien = this.player1.sprite;
+			alien.x = 35;
+			stage.addChild(alien);
 			this.start();
 			//createjs.Sound.registerSound('assets/sounds/sfx_lose.ogg', 'lose');
 		},
