@@ -4,6 +4,7 @@ class Player {
 		console.log('new player!');
 		this.direction = 'right';
 		this.orientation = 'right';
+		this.state = 'stand';
 		var data = new createjs.SpriteSheet({
 			"images": imgs.player1_walk_sprite,
 			"frames": {"regX": 36, "height": 97, "count": 11, "regY": 0, "width": 72},
@@ -23,6 +24,9 @@ class Player {
 	}
 
 	move(dir){
+		if(this.state !== 'stand') // if we're not standing, we should't run the animation
+			return false;
+
 		l('movin ' + dir + ' from ' + this.direction)
 		if(dir == 'left' || dir == 'right'){
 			if(dir !== this.orientation) //change orientation
@@ -37,9 +41,14 @@ class Player {
 			createjs.Tween.get(this.sprite)
                 .to({x: this.sprite.x, y: this.sprite.y + (dir === 'down' ? 50 : -50)}, 500, createjs.Ease.getPowInOut(1))
 		}
+
+		this.state = 'walk';
 		this.direction = dir;
 		this.sprite.gotoAndPlay('walk');
-		setTimeout(_ => this.sprite.gotoAndPlay('stand'), 500);
+		setTimeout(_ => {
+			this.sprite.gotoAndPlay('stand');
+			this.state = 'stand';
+		}, 500);
 	}
 
 }
