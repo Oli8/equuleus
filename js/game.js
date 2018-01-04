@@ -104,16 +104,10 @@ function init(){
 	}
 
 	function handleKeyDown(e){
-		var key = e.keyCode;
-		dir = Object.entries(keys.direction).find(v => v [1] === key);
+		let key = e.keyCode;
+		let dir = Object.entries(keys.direction).find(v => v[1] === key);
 		if(dir !== undefined)
 			game.player1.move(dir[0]);
-
-		// for(let v of Object.keys(keys.direction))
-		// 	if(key === keys.direction[v]){
-		// 		game.player1.move(v);
-		// 		break;
-		// 	}
 	}
 
 	function handleKeyUp(e){
