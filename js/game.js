@@ -9,25 +9,28 @@ function init(){
 		],
 
 		setupManifest: function(){
-		    manifest = [];
-		    for(var i in imgs.player1_walk_sprite)
-		        manifest.push({src: imgs.player1_walk_sprite[i], id: "sprite" + i})
+		    this.manifest = [];
+		    for(var i in imgs.player1_walk_sprite){
+		        this.manifest.push({src: imgs.player1_walk_sprite[i], id: "sprite" + i})
+		        console.log(imgs.player1_walk_sprite[i]);
+		    }
 		},
 
 		_preload: function(){
 			console.log('preload');
 			this.setupManifest();
+			l(this.manifest);
 			preload = new createjs.LoadQueue(true);
 		    preload.installPlugin(createjs.Sound);
 		    preload.on("fileload", this.handleFileLoad);
 		    preload.on("progress", this.handleFileProgress);
 		    preload.on("complete", this.startScreen.bind(this));
 		    preload.on("error", this.loadError);
-		    preload.loadManifest(manifest);
+		    preload.loadManifest(this.manifest);
 		},
 
-		handleFileLoad: function(){
-
+		handleFileLoad: function(event){
+			console.log("File loaded : " + event.item.id);
 		},
 
 		handleFileProgress: function(){
