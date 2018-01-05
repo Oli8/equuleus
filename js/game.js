@@ -3,6 +3,12 @@ function init(){
 	var stage = new createjs.Stage("canvas");
 
 	var game = {
+
+		levelContainer: (_ => {
+			let levelContainer = new createjs.Container();
+			stage.addChild(levelContainer);
+			return levelContainer;
+		})(),
 		/* ***** Loading related methods ***** */
 		setupManifest: function(){
 		    this.manifest = [];
@@ -69,11 +75,7 @@ function init(){
 			let alien = this.player1.sprite;
 			alien.x = 35;
 
-			let box = new createjs.Bitmap(tiles.box.image);
-			box.x = 72;
-			box.y = 97;
-
-			stage.addChild(alien, box);
+			stage.addChild(alien);
 			this.start();
 			//createjs.Sound.registerSound('assets/sounds/sfx_lose.ogg', 'lose');
 		},
