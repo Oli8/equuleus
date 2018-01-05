@@ -24,7 +24,7 @@ function init(){
 		    preload.installPlugin(createjs.Sound);
 		    preload.on("fileload", this.handleFileLoad);
 		    preload.on("progress", this.handleFileProgress);
-		    preload.on("complete", this.startScreen.bind(this));
+		    preload.on("complete", this.setup.bind(this));
 		    preload.on("error", this.loadError);
 		    preload.loadManifest(this.manifest);
 		},
@@ -59,7 +59,7 @@ function init(){
 
 		},
 
-		startScreen: function(){
+		setup: function(){
 			console.log('lets go');
 			stage.enableMouseOver(10);
 			createjs.Ticker.addEventListener('tick', tick);
