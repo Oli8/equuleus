@@ -9,6 +9,38 @@ function init(){
 			stage.addChild(levelContainer);
 			return levelContainer;
 		})(),
+
+		level: [
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, "exit"]
+		],
+
+		randomizeLevel: function(){
+			for(let i=rand(5, 30); i>=0; i--){
+				let [y, x] = [rand(0, 6), rand(0, 9)];
+				if((x === 0 && y === 0) || (x === 9 && y === 6))
+					continue;
+				this.level[y][x] = Object.keys(tiles).filter(t => t !== "exit")[rand(0, 2)];
+			}
+		},
+
+		loadLevel: function(){
+			this.level.forEach((line, y) => {
+				line.forEach((tile, x) => {
+					if(tile !== 0){
+						let t = new createjs.Bitmap(tiles[tile].image);
+						t.x = x * 72;
+						t.y = y * 97;
+						this.levelContainer.addChild(t);
+					}
+				})
+			})
+		},
 		/* ***** Loading related methods ***** */
 		setupManifest: function(){
 		    this.manifest = [];
@@ -74,12 +106,12 @@ function init(){
 			this.player1 = new Player(sprite);
 			let alien = this.player1.sprite;
 			alien.x = 35;
-
+			/*
 			let box = new createjs.Bitmap(tiles.box.image);
 			box.x = 72;
 			box.y = 33;
 			this.levelContainer.addChild(box);
-
+			*/
 			stage.addChild(alien);
 			this.start();
 			//createjs.Sound.registerSound('assets/sounds/sfx_lose.ogg', 'lose');
@@ -88,6 +120,9 @@ function init(){
 		start: function(){
 			document.onkeydown = handleKeyDown;
 			document.onkeyup = handleKeyUp;
+			this.randomizeLevel()
+			this.loadLevel();
+			l(this.level);
 		},
 	}
 
