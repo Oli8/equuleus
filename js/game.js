@@ -65,7 +65,25 @@ function init(){
 			createjs.Ticker.addEventListener('tick', tick);
 			createjs.Ticker.setFPS(60);
 
-			this.player1 = new Player();
+			let sprite_images = [];
+			for(var i in imgs.player1_walk_sprite) //store preloaded sprite images
+				sprite_images.push(preload.getResult("sprite" + i))
+
+			let data_sprite = new createjs.SpriteSheet({
+			"images": sprite_images,
+			"frames": {"regX": 36, "height": 97, "count": 11, "regY": 0, "width": 72},
+			"animations": {
+				walk: {
+		            frames: [0,1,2,3,4,5,6,7,8,9,10],
+		            speed: 0.5,
+		        },
+		        stand: {
+		            frames: [1],
+		        }
+			}
+			});
+			sprite = new createjs.Sprite(data_sprite, "stand");
+			this.player1 = new Player(sprite);
 			let alien = this.player1.sprite;
 			alien.x = 35;
 			stage.addChild(alien);
