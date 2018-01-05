@@ -75,6 +75,11 @@ function init(){
 			let alien = this.player1.sprite;
 			alien.x = 35;
 
+			let box = new createjs.Bitmap(tiles.box.image);
+			box.x = 72;
+			box.y = 33;
+			this.levelContainer.addChild(box);
+
 			stage.addChild(alien);
 			this.start();
 			//createjs.Sound.registerSound('assets/sounds/sfx_lose.ogg', 'lose');
