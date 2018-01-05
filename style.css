@@ -1,13 +1,11 @@
 body {
 	background-color: #FFF;
 	text-align: center;
-	/*display: none;*/
 }
 
 canvas {
-	/*background-image: url(assets/PNG/background.png);
-	background-size: cover;*/
-
+	background-image: url(img/medievalTile_15.png);
+	/*background-size: cover;*/
 	background-color: lightblue;
 	border: 1px solid #000;
 }

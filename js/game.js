@@ -7,7 +7,7 @@ function init(){
 		buttons: [
 			//new Button('Hit', '#fff', 100, 100, () => player.hit()),
 		],
-
+		/* ***** Loading related methods ***** */
 		setupManifest: function(){
 		    this.manifest = [];
 		    for(var i in imgs.player1_walk_sprite){
@@ -44,7 +44,7 @@ function init(){
 		loadError: function(){
 
 		},
-
+		/* ***** ***** */
 		_alert: function(msg){
 			/*var alertText = new createjs.Text(msg.msg, '30px Arial', 'orange');
 			alertText.x = msg.x || 745;
@@ -86,7 +86,12 @@ function init(){
 			this.player1 = new Player(sprite);
 			let alien = this.player1.sprite;
 			alien.x = 35;
-			stage.addChild(alien);
+
+			let box = new createjs.Bitmap(tiles.box.image);
+			box.x = 72;
+			box.y = 97;
+
+			stage.addChild(alien, box);
 			this.start();
 			//createjs.Sound.registerSound('assets/sounds/sfx_lose.ogg', 'lose');
 		},

@@ -1,5 +1,5 @@
-const width = 1100;
-const height = 650;
+const width = 720;
+const height = 680;
 
 const keys = {
 	direction: {
