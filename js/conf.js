@@ -20,17 +20,17 @@ const imgs = {
 	},
 
 	player1_walk_sprite: [
-		"img/Player/p1_walk/PNG/p1_walk01.png",
-		"img/Player/p1_walk/PNG/p1_walk02.png",
-		"img/Player/p1_walk/PNG/p1_walk03.png",
-		"img/Player/p1_walk/PNG/p1_walk04.png",
-		"img/Player/p1_walk/PNG/p1_walk05.png",
-		"img/Player/p1_walk/PNG/p1_walk06.png",
-		"img/Player/p1_walk/PNG/p1_walk07.png",
-		"img/Player/p1_walk/PNG/p1_walk08.png",
-		"img/Player/p1_walk/PNG/p1_walk09.png",
-		"img/Player/p1_walk/PNG/p1_walk10.png",
-		"img/Player/p1_walk/PNG/p1_walk11.png"
+		{id: 'sprite_0', src:"img/Player/p1_walk/PNG/p1_walk01.png"},
+		{id: 'sprite_1', src:"img/Player/p1_walk/PNG/p1_walk02.png"},
+		{id: 'sprite_2', src:"img/Player/p1_walk/PNG/p1_walk03.png"},
+		{id: 'sprite_3', src:"img/Player/p1_walk/PNG/p1_walk04.png"},
+		{id: 'sprite_4', src:"img/Player/p1_walk/PNG/p1_walk05.png"},
+		{id: 'sprite_5', src:"img/Player/p1_walk/PNG/p1_walk06.png"},
+		{id: 'sprite_6', src:"img/Player/p1_walk/PNG/p1_walk07.png"},
+		{id: 'sprite_7', src:"img/Player/p1_walk/PNG/p1_walk08.png"},
+		{id: 'sprite_8', src:"img/Player/p1_walk/PNG/p1_walk09.png"},
+		{id: 'sprite_9', src:"img/Player/p1_walk/PNG/p1_walk10.png"},
+		{id: 'sprite_10', src:"img/Player/p1_walk/PNG/p1_walk11.png"}
 	],
 };
 

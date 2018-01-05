@@ -13,7 +13,7 @@ function init(){
 		setupManifest: function(){
 		    this.manifest = [];
 		    for(var i in imgs.player1_walk_sprite){
-		        this.manifest.push({src: imgs.player1_walk_sprite[i], id: "sprite" + i})
+		        this.manifest.push({src: imgs.player1_walk_sprite[i].src, id: imgs.player1_walk_sprite[i].id})
 		        console.log(imgs.player1_walk_sprite[i]);
 		    }
 		},
@@ -55,7 +55,7 @@ function init(){
 
 			let sprite_images = [];
 			for(var i in imgs.player1_walk_sprite) //store preloaded sprite images
-				sprite_images.push(preload.getResult("sprite" + i))
+				sprite_images.push(preload.getResult(imgs.player1_walk_sprite[i].id))
 
 			let data_sprite = new createjs.SpriteSheet({
 			"images": sprite_images,
