@@ -55,7 +55,7 @@ function init(){
 		_preload: function(){
 			console.log('preload');
 			this.setupManifest();
-			preload = new createjs.LoadQueue(true);
+			preload = new createjs.LoadQueue(false); // (false, null, true)
 		    preload.installPlugin(createjs.Sound);
 		    preload.on("fileload", this.handleFileLoad);
 		    preload.on("progress", this.handleFileProgress);
