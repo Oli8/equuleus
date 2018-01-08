@@ -6,9 +6,10 @@ class Player {
 		};
 	}
 
-	constructor(sprite){
+	constructor(sprite, stage){
 		console.log(map.tiles_w)
 		console.log('new player!');
+		this.stage = stage;
 		this.direction = 'right';
 		this.orientation = 'right';
 		this.state = 'stand';
@@ -22,6 +23,7 @@ class Player {
 			return false;
 
 		l('movin ' + dir + ' from ' + this.direction)
+		l(this.stage.getChildIndex(this.sprite))
 		if(dir == 'left' || dir == 'right'){
 			if(dir !== this.orientation) //change orientation
 				this.sprite.scaleX *= -1;
@@ -44,6 +46,9 @@ class Player {
 				},
 				this.constructor.MOVING().time,
 				createjs.Ease.getPowInOut(1))
+
+			if(dir === 'down')
+				this.stage.setChildIndex(this.sprite, this.stage.getChildIndex(this.sprite) + 1);//add 1 to z-index
 		}
 
 		this.state = 'walk';

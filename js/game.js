@@ -40,6 +40,7 @@ function init(){
 						t.x = x * map.tiles_w;
 						t.y = y * map.tiles_h;
 						this.levelContainer.addChild(t);
+						stage.setChildIndex(t, y);
 					}
 				})
 			})
@@ -47,16 +48,13 @@ function init(){
 		/* ***** Loading related methods ***** */
 		setupManifest: function(){
 		    this.manifest = [];
-		    for(var i in imgs.player1_walk_sprite){
+		    for(var i in imgs.player1_walk_sprite)
 		        this.manifest.push({src: imgs.player1_walk_sprite[i].src, id: imgs.player1_walk_sprite[i].id})
-		        console.log(imgs.player1_walk_sprite[i]);
-		    }
 		},
 
 		_preload: function(){
 			console.log('preload');
 			this.setupManifest();
-			l(this.manifest);
 			preload = new createjs.LoadQueue(true);
 		    preload.installPlugin(createjs.Sound);
 		    preload.on("fileload", this.handleFileLoad);
@@ -106,11 +104,12 @@ function init(){
 			}
 			});
 			sprite = new createjs.Sprite(data_sprite, "stand");
-			this.player1 = new Player(sprite);
+			this.player1 = new Player(sprite, stage);
 			let alien = this.player1.sprite;
 			alien.y = -(alien.getBounds().height / 2);
 			alien.x = 35;
 			stage.addChild(alien);
+			stage.setChildIndex(alien, 0);
 			this.start();
 			//createjs.Sound.registerSound('assets/sounds/sfx_lose.ogg', 'lose');
 		},
