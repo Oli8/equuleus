@@ -1,5 +1,13 @@
-const width = 720;
-const height = 680;
+const width = 700;
+const height = 700;
+
+const map = {
+	width: 700,
+	height: 700,
+	// 10 * 10 level
+	tiles_w: 70,
+	tiles_h: 70,
+};
 
 const keys = {
 	direction: {

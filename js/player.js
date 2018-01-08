@@ -2,13 +2,12 @@ class Player {
 
 	static MOVING(){
 		return {
-			width: 72,
-			height: 97,
 			time: 500
 		};
 	}
 
 	constructor(sprite){
+		console.log(map.tiles_w)
 		console.log('new player!');
 		this.direction = 'right';
 		this.orientation = 'right';
@@ -29,7 +28,7 @@ class Player {
 
 			createjs.Tween.get(this.sprite)
                 .to({
-					x: this.sprite.x + (dir === 'right' ? this.constructor.MOVING().width : -this.constructor.MOVING().width),
+					x: this.sprite.x + (dir === 'right' ? map.tiles_w : -map.tiles_w),
 					y: this.sprite.y
 				},
 				this.constructor.MOVING().time,
@@ -41,7 +40,7 @@ class Player {
 			createjs.Tween.get(this.sprite)
                 .to({
 					x: this.sprite.x,
-					y: this.sprite.y + (dir === 'down' ? this.constructor.MOVING().height : -this.constructor.MOVING().height)
+					y: this.sprite.y + (dir === 'down' ? map.tiles_h : -map.tiles_h)
 				},
 				this.constructor.MOVING().time,
 				createjs.Ease.getPowInOut(1))
