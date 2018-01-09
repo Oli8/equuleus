@@ -96,7 +96,7 @@ function init(){
 			let groundImg = new Image();
 			groundImg.src = 'img/medievalTile_15.png';
 			ground.graphics.beginBitmapFill(groundImg);
-			ground.graphics.drawRect(0, 0, 700, 700);
+			ground.graphics.drawRect(0, 0, map.width, map.height);
 			this.levelContainer.addChild(ground);
 
 			this.player1 = this.addPlayer();
