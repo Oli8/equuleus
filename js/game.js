@@ -98,7 +98,26 @@ function init(){
 			ground.graphics.drawRect(0, 0, 700, 700);
 			this.levelContainer.addChild(ground);
 
+			this.player1 = this.addPlayer();
+			let alien = this.player1.sprite;
+			alien.y = -(alien.getBounds().height / 2);
+			alien.x = 35;
 
+			this.levelContainer.addChild(alien);
+			this.levelContainer.setChildIndex(alien, 2);
+			this.start();
+			//createjs.Sound.registerSound('assets/sounds/sfx_lose.ogg', 'lose');
+		},
+
+		start: function(){
+			document.onkeydown = handleKeyDown;
+			document.onkeyup = handleKeyUp;
+			this.randomizeLevel()
+			this.loadLevel();
+			l(this.level);
+		},
+
+		addPlayer: function(){
 			let sprite_images = [];
 			for(var i in imgs.player1_walk_sprite) //store preloaded sprite images
 				sprite_images.push(preload.getResult(imgs.player1_walk_sprite[i].id))
@@ -117,23 +136,8 @@ function init(){
 			}
 			});
 			sprite = new createjs.Sprite(data_sprite, "stand");
-			this.player1 = new Player(stage, sprite, {x: 0, y: 0});
-			let alien = this.player1.sprite;
-			alien.y = -(alien.getBounds().height / 2);
-			alien.x = 35;
-
-			this.levelContainer.addChild(alien);
-			this.levelContainer.setChildIndex(alien, 2);
-			this.start();
-			//createjs.Sound.registerSound('assets/sounds/sfx_lose.ogg', 'lose');
-		},
-
-		start: function(){
-			document.onkeydown = handleKeyDown;
-			document.onkeyup = handleKeyUp;
-			this.randomizeLevel()
-			this.loadLevel();
-			l(this.level);
+			player = new Player(stage, sprite, {x: 0, y: 0});
+			return player;
 		},
 	}
 
