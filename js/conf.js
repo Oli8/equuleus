@@ -2,11 +2,11 @@ const width = 700;
 const height = 700;
 
 const map = {
-	width: 700,
-	height: 700,
+	width: 640,
+	height: 640,
 	// 10 * 10 level
-	tiles_w: 70,
-	tiles_h: 70,
+	tiles_w: 64,
+	tiles_h: 64,
 };
 
 const keys = {
