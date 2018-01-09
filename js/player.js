@@ -46,9 +46,6 @@ class Player {
 				},
 				this.constructor.MOVING().time,
 				createjs.Ease.getPowInOut(1))
-
-			if(dir === 'down')
-				this.stage.setChildIndex(this.sprite, this.stage.getChildIndex(this.sprite) + 1);//add 1 to z-index
 		}
 
 		this.state = 'walk';

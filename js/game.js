@@ -40,7 +40,7 @@ function init(){
 						t.x = x * map.tiles_w;
 						t.y = y * map.tiles_h;
 						this.levelContainer.addChild(t);
-						stage.setChildIndex(t, y);
+						stage.setChildIndex(t, 0);
 					}
 				})
 			})
@@ -109,7 +109,7 @@ function init(){
 			alien.y = -(alien.getBounds().height / 2);
 			alien.x = 35;
 			stage.addChild(alien);
-			stage.setChildIndex(alien, 0);
+			stage.setChildIndex(alien, 1);
 			this.start();
 			//createjs.Sound.registerSound('assets/sounds/sfx_lose.ogg', 'lose');
 		},
