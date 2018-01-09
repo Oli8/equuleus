@@ -18,6 +18,15 @@ const tiles = {
 			}
 		}
 	),
+	boxSpot: new Tile(
+		'box_spot',
+		"A box must be placed on this spot in order to allow you to exit the level.",
+		{
+			over: level => {
+				// check if box
+			}
+		}
+	),
 	ice: new Tile(
 		'iceBlock',
 		"Will makes you slide and unable to move when you are on it.",
