@@ -119,24 +119,24 @@ function init(){
 
 		addPlayer: function(){
 			let sprite_images = [];
-			for(var i in imgs.player1_walk_sprite) //store preloaded sprite images
+			for(let i in imgs.player1_walk_sprite) //store preloaded sprite images
 				sprite_images.push(preload.getResult(imgs.player1_walk_sprite[i].id))
 
-			let data_sprite = new createjs.SpriteSheet({
-			"images": sprite_images,
-			"frames": {"regX": 36, "height": 97, "count": 11, "regY": 0, "width": 72},
-			"animations": {
-				walk: {
-		            frames: [0,1,2,3,4,5,6,7,8,9,10],
-		            speed: 0.5,
-		        },
-		        stand: {
-		            frames: [1],
-		        }
-			}
+			let player_sprite = new createjs.SpriteSheet({
+				"images": sprite_images,
+				"frames": {"regX": 36, "height": 97, "count": 11, "regY": 0, "width": 72},
+				"animations": {
+					walk: {
+			            frames: [0,1,2,3,4,5,6,7,8,9,10],
+			            speed: 0.5,
+			        },
+			        stand: {
+			            frames: [1],
+			        }
+				}
 			});
-			sprite = new createjs.Sprite(data_sprite, "stand");
-			player = new Player(stage, sprite, {x: 0, y: 0});
+			let sprite = new createjs.Sprite(player_sprite, "stand");
+			let player = new Player(stage, sprite, {x: 0, y: 0});
 			return player;
 		},
 	}
