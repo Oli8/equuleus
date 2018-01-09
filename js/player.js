@@ -6,10 +6,12 @@ class Player {
 		};
 	}
 
-	constructor(sprite, stage){
+	constructor(stage, sprite, position){
 		console.log(map.tiles_w)
 		console.log('new player!');
 		this.stage = stage;
+		this.x = position.x;
+		this.y = position.y;
 		this.direction = 'right';
 		this.orientation = 'right';
 		this.state = 'stand';
@@ -19,11 +21,11 @@ class Player {
 	}
 
 	move(dir){
-		if(this.state !== 'stand') // if we're not standing, we should't run the animation
+		if(this.state !== 'stand' || !this.can_move(dir)) // if we're not standing, we should't run the animation
 			return false;
 
+		l('x: ' + this.x + ' y: ' + this.y);
 		l('movin ' + dir + ' from ' + this.direction)
-		l(this.stage.getChildIndex(this.sprite))
 		if(dir == 'left' || dir == 'right'){
 			if(dir !== this.orientation) //change orientation
 				this.sprite.scaleX *= -1;
@@ -36,6 +38,7 @@ class Player {
 				this.constructor.MOVING().time,
 				createjs.Ease.getPowInOut(1))
 
+            this.x += (dir === 'right' ? 1 : -1);
 			this.orientation = dir;
 		}
 		else{
@@ -46,6 +49,8 @@ class Player {
 				},
 				this.constructor.MOVING().time,
 				createjs.Ease.getPowInOut(1))
+
+			this.y += (dir === 'down' ? 1 : -1);
 		}
 
 		this.state = 'walk';
@@ -55,6 +60,14 @@ class Player {
 			this.sprite.gotoAndPlay('stand');
 			this.state = 'stand';
 		}, this.constructor.MOVING().time);
+	}
+
+	can_move(dir){
+		let actions = {left: {x: -1, y: 0}, right: {x: 1, y: 0}, down: {x: 0, y: 1}, up: {x: 0, y: -1}};
+		let new_x = this.x + actions[dir].x;
+		let new_y = this.y + actions[dir].y;
+
+		return (new_x >= 0 && new_x < 10 && new_y >= 0 && new_y < 10); //hardcoded bounderies for now
 	}
 
 }

@@ -104,7 +104,7 @@ function init(){
 			}
 			});
 			sprite = new createjs.Sprite(data_sprite, "stand");
-			this.player1 = new Player(sprite, stage);
+			this.player1 = new Player(stage, sprite, {x: 0, y: 0});
 			let alien = this.player1.sprite;
 			alien.y = -(alien.getBounds().height / 2);
 			alien.x = 35;
