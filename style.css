@@ -4,8 +4,6 @@ body {
 }
 
 canvas {
-	/* background-image: url(img/medievalTile_15.png); */
-	/*background-size: cover;*/
-	background-color: lightgrey;
+	background-image: url(img/medievalTile_13.png);
 	border: 1px solid #000;
 }

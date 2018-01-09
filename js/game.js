@@ -38,13 +38,6 @@ function init(){
 		loadLevel: function(){
 			this.level.forEach((line, y) => {
 				line.forEach((tile, x) => {
-					/*
-					let ground = new createjs.Bitmap("img/medievalTile_15.png");
-					ground.x = x * map.tiles_w;
-					ground.y = y * map.tiles_h;
-					this.levelContainer.addChild(ground);
-					this.levelContainer.setChildIndex(ground, 0);
-					*/
 					if(tile !== 0){
 						let t = new createjs.Bitmap(tiles[tile].image);
 						t.x = x * map.tiles_w;
@@ -61,13 +54,13 @@ function init(){
 		    for(var i in imgs.player1_walk_sprite)
 		        this.manifest.push({src: imgs.player1_walk_sprite[i].src, id: imgs.player1_walk_sprite[i].id})
 
-		    this.manifest.push('img/medievalTile_15.png');
+		    this.manifest.push(imgs.ground);
 		},
 
 		_preload: function(){
 			console.log('preload');
 			this.setupManifest();
-			preload = new createjs.LoadQueue(false); // (false, null, true)
+			preload = new createjs.LoadQueue(false);
 		    preload.installPlugin(createjs.Sound);
 		    preload.on("fileload", this.handleFileLoad);
 		    preload.on("progress", this.handleFileProgress);
@@ -97,16 +90,13 @@ function init(){
 			stage.enableMouseOver(10);
 			createjs.Ticker.addEventListener('tick', tick);
 			createjs.Ticker.setFPS(60);
-
-			// let ground = new createjs.Rectangle(20, 50, 700, 700);
-			// stage.addChild(ground);
+			// Dispastch into methods though
 			let ground = new createjs.Shape();
 			let groundImg = new Image();
 			groundImg.src = 'img/medievalTile_15.png';
 			ground.graphics.beginBitmapFill(groundImg);
-			ground.graphics.drawRect(20, 50, 700, 700);
-			ground.graphics.endFill();
-			stage.addChild(ground);
+			ground.graphics.drawRect(0, 0, 700, 700);
+			this.levelContainer.addChild(ground);
 
 
 			let sprite_images = [];
