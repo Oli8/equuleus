@@ -29,7 +29,7 @@ const tiles = {
 	),
 	ice: new Tile(
 		'iceBlock',
-		"Will makes you slide and unable to move when you are on it.",
+		"Will make you slide and unable to move when you are on it.",
 		{
 			over: level => {
 				// make player slide
