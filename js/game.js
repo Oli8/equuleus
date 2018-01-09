@@ -6,6 +6,9 @@ function init(){
 
 		levelContainer: (_ => {
 			let levelContainer = new createjs.Container();
+			levelContainer.x = 20;
+			levelContainer.y = 50;
+
 			stage.addChild(levelContainer);
 			return levelContainer;
 		})(),
@@ -24,7 +27,7 @@ function init(){
 		],
 
 		randomizeLevel: function(){
-			for(let i=rand(5, 50); i>=0; i--){
+			for(let i=rand(15, 60); i>=0; i--){
 				let [y, x] = [rand(0, 9), rand(0, 9)];
 				if((x === 0 && y === 0) || (x === 9 && y === 9))
 					continue;
@@ -40,7 +43,7 @@ function init(){
 						t.x = x * map.tiles_w;
 						t.y = y * map.tiles_h;
 						this.levelContainer.addChild(t);
-						stage.setChildIndex(t, 0);
+						this.levelContainer.setChildIndex(t, 1);
 					}
 				})
 			})
@@ -50,12 +53,14 @@ function init(){
 		    this.manifest = [];
 		    for(var i in imgs.player1_walk_sprite)
 		        this.manifest.push({src: imgs.player1_walk_sprite[i].src, id: imgs.player1_walk_sprite[i].id})
+
+		    this.manifest.push(imgs.ground);
 		},
 
 		_preload: function(){
 			console.log('preload');
 			this.setupManifest();
-			preload = new createjs.LoadQueue(false); // (false, null, true)
+			preload = new createjs.LoadQueue(false);
 		    preload.installPlugin(createjs.Sound);
 		    preload.on("fileload", this.handleFileLoad);
 		    preload.on("progress", this.handleFileProgress);
@@ -85,6 +90,14 @@ function init(){
 			stage.enableMouseOver(10);
 			createjs.Ticker.addEventListener('tick', tick);
 			createjs.Ticker.setFPS(60);
+			// Dispastch into methods though
+			let ground = new createjs.Shape();
+			let groundImg = new Image();
+			groundImg.src = 'img/medievalTile_15.png';
+			ground.graphics.beginBitmapFill(groundImg);
+			ground.graphics.drawRect(0, 0, 700, 700);
+			this.levelContainer.addChild(ground);
+
 
 			let sprite_images = [];
 			for(var i in imgs.player1_walk_sprite) //store preloaded sprite images
@@ -108,8 +121,9 @@ function init(){
 			let alien = this.player1.sprite;
 			alien.y = -(alien.getBounds().height / 2);
 			alien.x = 35;
-			stage.addChild(alien);
-			stage.setChildIndex(alien, 1);
+
+			this.levelContainer.addChild(alien);
+			this.levelContainer.setChildIndex(alien, 2);
 			this.start();
 			//createjs.Sound.registerSound('assets/sounds/sfx_lose.ogg', 'lose');
 		},

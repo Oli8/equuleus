@@ -40,6 +40,8 @@ const imgs = {
 		{id: 'sprite_9', src:"img/Player/p1_walk/PNG/p1_walk10.png"},
 		{id: 'sprite_10', src:"img/Player/p1_walk/PNG/p1_walk11.png"}
 	],
+
+	ground: 'img/medievalTile_15.png'
 };
 
 const messages = {
