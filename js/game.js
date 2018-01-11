@@ -31,7 +31,7 @@ function init(){
 				let [y, x] = [rand(0, 9), rand(0, 9)];
 				if((x === 0 && y === 0) || (x === 9 && y === 9))
 					continue;
-				tiles_keys = Object.keys(tiles);
+				let tiles_keys = Object.keys(tiles);
 				this.level[y][x] = tiles_keys.filter(t => t !== "exit")[rand(0, tiles_keys.length-2)];
 			}
 		},
@@ -94,7 +94,7 @@ function init(){
 			// Dispastch into methods though
 			let ground = new createjs.Shape();
 			let groundImg = new Image();
-			groundImg.src = 'img/medievalTile_15.png';
+			groundImg.src = imgs.ground;
 			ground.graphics.beginBitmapFill(groundImg);
 			ground.graphics.drawRect(0, 0, map.width, map.height);
 			this.levelContainer.addChild(ground);
@@ -137,8 +137,7 @@ function init(){
 				}
 			});
 			let sprite = new createjs.Sprite(player_sprite, "stand");
-			let player = new Player(stage, sprite, {x: 0, y: 0});
-			return player;
+			return new Player(stage, sprite, {x: 0, y: 0}, this.level);
 		},
 	}
 
@@ -159,12 +158,3 @@ function init(){
 
 	game._preload();
 }
-
-var tile_desc_div = document.getElementById("tile-description");
-// for(let tile in tiles){
-// 	let t = tiles[tile];
-// 	tile_desc_div.insertAdjacentHTML('beforeend',`
-// 		<img src='${t.image}' alt='${tile}'/>
-// 		<p>${t.description}</p>
-// 	`);
-// }

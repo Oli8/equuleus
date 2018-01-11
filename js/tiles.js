@@ -13,8 +13,9 @@ const tiles = {
 		'box_brown', 
 		"You can push this object, which is a way to create bridge over water. There is no water yet tho :|",
 		{
-			onPush: level => {
+			onPush: (level, pos, dir) => {
 				// push the box
+				alert(`${pos.x} ${pos.y} ${dir}`);
 			}
 		}
 	),

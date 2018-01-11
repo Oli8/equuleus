@@ -59,8 +59,8 @@ function rand(min, max){
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function l(v){
-	console.log(v);
+function l(){
+	console.log(...arguments);
 }
 
 function t(v){
