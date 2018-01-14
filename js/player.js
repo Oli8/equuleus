@@ -6,10 +6,10 @@ class Player {
 		};
 	}
 
-	constructor(stage, sprite, position, level){
+	constructor(stage, sprite, position, game){
 		console.log(map.tiles_w)
 		console.log('new player!');
-		this.stage = stage;
+		this.stage = stage; // useless ?
 		this.x = position.x;
 		this.y = position.y;
 		this.direction = 'right';
@@ -18,7 +18,7 @@ class Player {
 		this.sprite = sprite;
 		this.sprite.x = 5;
 		this.sprite.y = 5;
-		this.level = level;
+		this.game = game;
 	}
 
 	move(dir){
@@ -74,19 +74,14 @@ class Player {
 			return false;
 		}
 		// check next pos tiles
-		let next_pos = this.level[new_y][new_x];
+		let next_pos = this.game.level.tiles[new_y][new_x];
 		l('next pos:', next_pos);
 		if(next_pos === 0){ // empty
 			return true;
 		} else {
-			let tile = tiles[next_pos];
-			console.log('tile', tile);
-			if(tile.onPush !== undefined){
-				l('onpush event');
-				tile.onPush(this.level, {x: new_x, y: new_y}, this.direction)
-			}
+			this.game.handleTileEvent(tiles[next_pos], {x: new_x, y: new_y}, dir);
 		}
-		//tiles[next_pos]
+
 		return true;
 	}
 

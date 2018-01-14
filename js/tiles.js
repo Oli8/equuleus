@@ -13,9 +13,24 @@ const tiles = {
 		'box_brown', 
 		"You can push this object, which is a way to create bridge over water. There is no water yet tho :|",
 		{
-			onPush: (level, pos, dir) => {
+			onPush: (level, levelContainer, pos, dir) => {
 				// push the box
 				alert(`${pos.x} ${pos.y} ${dir}`);
+				// check if next tile is available
+				if(level[dir](pos) === 0){
+					//move box
+					l(levelContainer.getChildAt(1));
+					/*
+					createjs.Tween.get(levelContainer.getChildAt()).to({
+							x: this.sprite.x,
+							y: this.sprite.y + (dir === 'down' ? map.tiles_h : -map.tiles_h)
+						},
+						this.constructor.MOVING().time,
+						createjs.Ease.getPowInOut(1))
+					*/
+					return true;
+				}
+				return false;
 			}
 		}
 	),

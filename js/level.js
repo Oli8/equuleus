@@ -8,4 +8,20 @@ class Level {
 		this.difficulty = difficulty;
 	}
 
+	up(pos){
+		return this.tiles[pos.y-1][pos.x];
+	}
+
+	right(pos){
+		return this.tiles[pos.y][pos.x+1];
+	}
+
+	down(pos){
+		return this.tiles[pos.y+1][pos.x];
+	}
+
+	left(pos){
+		return this.tiles[pos.y][pos.x-1];
+	}
+
 }

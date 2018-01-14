@@ -13,18 +13,19 @@ function init(){
 			return levelContainer;
 		})(),
 
-		level: [
-			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0, 0, 0, 0, 0, "exit"]
-		],
+		level: new Level("demo", "Oli", [
+				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+				[0, 0, 0, 0, 0, 0, 0, 0, 0, "exit"]
+			],
+		"hard af"),
 
 		randomizeLevel: function(){
 			for(let i=rand(15, 60); i>=0; i--){
@@ -32,18 +33,18 @@ function init(){
 				if((x === 0 && y === 0) || (x === 9 && y === 9))
 					continue;
 				let tiles_keys = Object.keys(tiles);
-				this.level[y][x] = tiles_keys.filter(t => t !== "exit")[rand(0, tiles_keys.length-2)];
+				this.level.tiles[y][x] = tiles_keys.filter(t => t !== "exit")[rand(0, tiles_keys.length-2)];
 			}
 		},
 
 		loadLevel: function(){
-			this.level.forEach((line, y) => {
+			this.level.tiles.forEach((line, y) => {
 				line.forEach((tile, x) => {
 					if(tile !== 0){
 						let t = new createjs.Bitmap(tiles[tile].image);
 						t.x = x * map.tiles_w;
 						t.y = y * map.tiles_h;
-						this.levelContainer.addChild(t);
+						this.levelContainer.addChild(t); // with id
 						this.levelContainer.setChildIndex(t, 1);
 					}
 				})
@@ -137,8 +138,17 @@ function init(){
 				}
 			});
 			let sprite = new createjs.Sprite(player_sprite, "stand");
-			return new Player(stage, sprite, {x: 0, y: 0}, this.level);
+			return new Player(stage, sprite, {x: 0, y: 0}, this);
 		},
+
+		handleTileEvent: function(tile, tilePos, direction){
+			console.log('tile', tile);
+			l('dir', direction);
+			if(tile.onPush !== undefined){
+				l('onpush event');
+				tile.onPush(this.level, this.levelContainer, tilePos, direction);
+			}
+		}
 	}
 
 	function tick(){
