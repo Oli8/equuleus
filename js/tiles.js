@@ -15,19 +15,16 @@ const tiles = {
 		{
 			onPush: (level, levelContainer, pos, dir) => {
 				// push the box
-				alert(`${pos.x} ${pos.y} ${dir}`);
+				let bitmap = level.tiles[pos.y][pos.x].bitmap;
+				let index = levelContainer.getChildIndex(bitmap);
 				// check if next tile is available
 				if(level[dir](pos) === 0){
 					//move box
-					l(levelContainer.getChildAt(1));
-					/*
-					createjs.Tween.get(levelContainer.getChildAt()).to({
-							x: this.sprite.x,
-							y: this.sprite.y + (dir === 'down' ? map.tiles_h : -map.tiles_h)
+					createjs.Tween.get(levelContainer.getChildAt(index)).to({
+							x: bitmap.x + 64
 						},
-						this.constructor.MOVING().time,
+						500,
 						createjs.Ease.getPowInOut(1))
-					*/
 					return true;
 				}
 				return false;

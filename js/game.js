@@ -44,11 +44,14 @@ function init(){
 						let t = new createjs.Bitmap(tiles[tile].image);
 						t.x = x * map.tiles_w;
 						t.y = y * map.tiles_h;
+						this.level.tiles[y][x] = {bitmap: t, tile: tile};
 						this.levelContainer.addChild(t); // with id
 						this.levelContainer.setChildIndex(t, 1);
 					}
 				})
 			})
+			l(this.levelContainer);
+			l(this.level.tiles);
 		},
 		/* ***** Loading related methods ***** */
 		setupManifest: function(){

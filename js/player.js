@@ -74,7 +74,7 @@ class Player {
 			return false;
 		}
 		// check next pos tiles
-		let next_pos = this.game.level.tiles[new_y][new_x];
+		let next_pos = this.game.level.tiles[new_y][new_x].tile || 0;
 		l('next pos:', next_pos);
 		if(next_pos === 0){ // empty
 			return true;
