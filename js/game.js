@@ -126,7 +126,7 @@ function init(){
 			let sprite_images = [];
 			for(let i in imgs.player1_walk_sprite) //store preloaded sprite images
 				sprite_images.push(preload.getResult(imgs.player1_walk_sprite[i].id))
-
+			// TO DO: remove useless ""
 			let player_sprite = new createjs.SpriteSheet({
 				"images": sprite_images,
 				"frames": {"regX": 36, "height": 97, "count": 11, "regY": 0, "width": 72},
@@ -145,11 +145,14 @@ function init(){
 		},
 
 		handleTileEvent: function(tile, tilePos, direction){
+			// return a boolean wether we can move or not
 			console.log('tile', tile);
 			l('dir', direction);
 			if(tile.onPush !== undefined){
 				l('onpush event');
-				tile.onPush(this.level, this.levelContainer, tilePos, direction);
+				return tile.onPush(this.level, this.levelContainer, tilePos, direction);
+			} else {
+				return true;
 			}
 		}
 	}

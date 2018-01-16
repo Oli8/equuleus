@@ -48,6 +48,28 @@ const messages = {
 	
 };
 
+const moveActions = {left: {x: -1, y: 0}, right: {x: 1, y: 0}, down: {x: 0, y: 1}, up: {x: 0, y: -1}};
+
+function moveObject(bitmap, dir){
+	let pos = {x: bitmap.x, y: bitmap.y};
+
+	switch(dir){
+		case "up":
+			pos.y -= map.tiles_h;
+			break;
+		case "right":
+			pos.x += map.tiles_w;
+			break;
+		case "down":
+			pos.y += map.tiles_h;
+			break;
+		case "left":
+			pos.x -=  map.tiles_w;
+			break;
+	}
+	return pos;
+}
+
 // Utils
 createjs.Text.prototype.center = function(x = true, y = false){
 	var bounds = this.getBounds();

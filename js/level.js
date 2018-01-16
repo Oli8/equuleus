@@ -8,6 +8,7 @@ class Level {
 		this.difficulty = difficulty;
 	}
 
+	/* TO DO: those will make an error if the y is undefined */
 	up(pos){
 		return this.tiles[pos.y-1][pos.x];
 	}

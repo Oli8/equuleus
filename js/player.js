@@ -64,9 +64,8 @@ class Player {
 	}
 
 	can_move(dir){
-		let actions = {left: {x: -1, y: 0}, right: {x: 1, y: 0}, down: {x: 0, y: 1}, up: {x: 0, y: -1}};
-		let new_x = this.x + actions[dir].x;
-		let new_y = this.y + actions[dir].y;
+		let new_x = this.x + moveActions[dir].x;
+		let new_y = this.y + moveActions[dir].y;
 
 		l('pos: ', new_y, new_x);
 		// check if player in map
@@ -79,10 +78,8 @@ class Player {
 		if(next_pos === 0){ // empty
 			return true;
 		} else {
-			this.game.handleTileEvent(tiles[next_pos], {x: new_x, y: new_y}, dir);
+			return this.game.handleTileEvent(tiles[next_pos], {x: new_x, y: new_y}, dir);
 		}
-
-		return true;
 	}
 
 }
