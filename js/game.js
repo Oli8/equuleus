@@ -151,7 +151,7 @@ function init(){
 			for(let i in events){
 				if(tile[events[i]] !== undefined){
 					l(events[i] + ' event');
-					return tile[events[i]](this.level, this.levelContainer, tilePos, direction, player);
+					return tile[events[i]](this.level, tilePos, direction, player);
 				}
 			}
 

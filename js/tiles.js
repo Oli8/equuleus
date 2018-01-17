@@ -13,20 +13,12 @@ const tiles = {
 		'box_brown', 
 		"You can push this object, which is a way to create bridge over water. There is no water yet tho :|",
 		{
-			onPush: (level, levelContainer, pos, dir, player) => {
+			onPush: (level, pos, dir, player) => {
 				// push the box
 				let tile = level.tiles[pos.y][pos.x];
-				// check if next tile is available
-				if(level[dir](pos) === 0){
-					//move box
-					createjs.Tween.get(levelContainer.getChildAt(levelContainer.getChildIndex(tile.bitmap))).to(
-						moveObject(tile.bitmap, dir),
-						500,
-						createjs.Ease.getPowInOut(1)
-					)
 
-					level.tiles[pos.y][pos.x] = 0; // empty level tile
-					level.tiles[pos.y + moveActions[dir].y][pos.x + moveActions[dir].x] = tile; // update level 
+				if(level[dir](pos) === 0){
+					moveObject(tile.bitmap, dir, tile_afterMove(level, pos, tile, dir));
 					return true;
 				} else {
 					return false;
@@ -47,7 +39,7 @@ const tiles = {
 		'iceBlock',
 		"Will make you slide and unable to move when you are on it.",
 		{
-			over: (level, levelContainer, pos, dir, player) => {
+			over: (level, pos, dir, player) => {
 				console.log('ice');
 				// make player slide
 				if(level[dir](pos) !== undefined && (level[dir](pos) === 0 )){
