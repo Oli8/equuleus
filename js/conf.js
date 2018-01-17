@@ -52,6 +52,9 @@ const messages = {
 
 const moveActions = {left: {x: -1, y: 0}, right: {x: 1, y: 0}, down: {x: 0, y: 1}, up: {x: 0, y: -1}};
 
+// after move callback param ?
+// would allow us to update level matrix
+// and player coords
 function moveObject(bitmap, dir){
 	let pos = {x: bitmap.x, y: bitmap.y};
 

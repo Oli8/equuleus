@@ -1,6 +1,8 @@
 class Player {
 
 	constructor(stage, sprite, position, game){
+		// TO DO: remove useless property
+		// stage ?
 		console.log(map.tiles_w)
 		console.log('new player!');
 		this.stage = stage; // useless ?
@@ -25,26 +27,12 @@ class Player {
 			if(dir !== this.orientation) //change orientation
 				this.sprite.scaleX *= -1;
 
-			createjs.Tween.get(this.sprite)
-                .to({
-					x: this.sprite.x + (dir === 'right' ? map.tiles_w : -map.tiles_w),
-					y: this.sprite.y
-				},
-				movingTime,
-				createjs.Ease.getPowInOut(1))
-
+			moveObject(this.sprite, dir);
             this.x += (dir === 'right' ? 1 : -1);
 			this.orientation = dir;
 		}
 		else{
-			createjs.Tween.get(this.sprite)
-                .to({
-					x: this.sprite.x,
-					y: this.sprite.y + (dir === 'down' ? map.tiles_h : -map.tiles_h)
-				},
-				movingTime,
-				createjs.Ease.getPowInOut(1))
-
+			moveObject(this.sprite, dir);
 			this.y += (dir === 'down' ? 1 : -1);
 		}
 
