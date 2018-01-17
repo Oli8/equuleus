@@ -150,7 +150,7 @@ function init(){
 			l('dir', direction);
 			if(tile.onPush !== undefined){
 				l('onpush event');
-				return tile.onPush(this.level, this.levelContainer, tilePos, direction);
+				return tile.onPush(this.level, tilePos, direction);
 			} else {
 				return true;
 			}

@@ -69,7 +69,12 @@ function moveObject(bitmap, dir){
 			pos.x -=  map.tiles_w;
 			break;
 	}
-	return pos;
+
+	createjs.Tween.get(bitmap).to(
+		pos,
+		movingTime,
+		createjs.Ease.getPowInOut(1)
+	)
 }
 
 // Utils
