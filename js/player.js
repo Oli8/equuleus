@@ -1,11 +1,5 @@
 class Player {
 
-	static MOVING(){
-		return {
-			time: 500
-		};
-	}
-
 	constructor(stage, sprite, position, game){
 		console.log(map.tiles_w)
 		console.log('new player!');
@@ -36,7 +30,7 @@ class Player {
 					x: this.sprite.x + (dir === 'right' ? map.tiles_w : -map.tiles_w),
 					y: this.sprite.y
 				},
-				this.constructor.MOVING().time,
+				movingTime,
 				createjs.Ease.getPowInOut(1))
 
             this.x += (dir === 'right' ? 1 : -1);
@@ -48,7 +42,7 @@ class Player {
 					x: this.sprite.x,
 					y: this.sprite.y + (dir === 'down' ? map.tiles_h : -map.tiles_h)
 				},
-				this.constructor.MOVING().time,
+				movingTime,
 				createjs.Ease.getPowInOut(1))
 
 			this.y += (dir === 'down' ? 1 : -1);
@@ -60,7 +54,7 @@ class Player {
 		setTimeout(_ => {
 			this.sprite.gotoAndPlay('stand');
 			this.state = 'stand';
-		}, this.constructor.MOVING().time);
+		}, movingTime);
 	}
 
 	can_move(dir){

@@ -19,14 +19,17 @@ const tiles = {
 				// check if next tile is available
 				if(level[dir](pos) === 0){
 					//move box
+					// TO DO:
+					// function that really move the objet
+					// use const moving time
 					createjs.Tween.get(levelContainer.getChildAt(levelContainer.getChildIndex(tile.bitmap))).to(
 						moveObject(tile.bitmap, dir),
-						500,
+						movingTime,
 						createjs.Ease.getPowInOut(1)
 					)
 
 					level.tiles[pos.y][pos.x] = 0; // empty level tile
-					level.tiles[pos.y + moveActions[dir].y][pos.x + moveActions[dir].x] = tile; // update level 
+					level.tiles[pos.y + moveActions[dir].y][pos.x + moveActions[dir].x] = tile; // update level
 					return true;
 				} else {
 					return false;

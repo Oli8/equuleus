@@ -21,6 +21,8 @@ const keys = {
 	enter: 13
 };
 
+const movingTime = 500;
+
 const imgs = {
 	
 	get: function(){
