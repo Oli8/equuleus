@@ -55,7 +55,15 @@ const moveActions = {left: {x: -1, y: 0}, right: {x: 1, y: 0}, down: {x: 0, y: 1
 // after move callback param ?
 // would allow us to update level matrix
 // and player coords
-function moveObject(bitmap, dir){
+
+function tile_afterMove(level, pos, tile, dir){
+	return _ => {
+		level.tiles[pos.y][pos.x] = 0;
+		level.tiles[pos.y + moveActions[dir].y][pos.x + moveActions[dir].x] = tile;
+	}
+}
+
+function moveObject(bitmap, dir, afterMoveCb=false){
 	let pos = {x: bitmap.x, y: bitmap.y};
 
 	switch(dir){
@@ -78,6 +86,9 @@ function moveObject(bitmap, dir){
 		movingTime,
 		createjs.Ease.getPowInOut(1)
 	)
+
+	if(afterMoveCb !== false)
+		afterMoveCb();
 }
 
 // Utils

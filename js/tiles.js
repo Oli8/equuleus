@@ -17,10 +17,7 @@ const tiles = {
 				let tile = level.tiles[pos.y][pos.x];
 
 				if(level[dir](pos) === 0){
-					moveObject(tile.bitmap, dir);
-
-					level.tiles[pos.y][pos.x] = 0; // empty level tile
-					level.tiles[pos.y + moveActions[dir].y][pos.x + moveActions[dir].x] = tile; // update level
+					moveObject(tile.bitmap, dir, tile_afterMove(level, pos, tile, dir));
 					return true;
 				} else {
 					return false;
