@@ -144,18 +144,35 @@ function init(){
 			return new Player(stage, sprite, {x: 0, y: 0}, this);
 		},
 
-		handleTileEvent: function(tile, tilePos, direction, player){
+		handleTileEventBefore: function(tile, tilePos, direction, player){
 			// return a boolean wether we can move or not
 			console.log('tile', tile);
-			let events = ['onPush', 'over'];
-			for(let i in events){
-				if(tile[events[i]] !== undefined){
-					l(events[i] + ' event');
-					return tile[events[i]](this.level, tilePos, direction, player);
+			// events that need to be checked before a move
+			let events = ['onPush'];
+			// for(let i in events){
+			// 	if(tile[events[i]] !== undefined){
+			// 		l(events[i] + ' event');
+			// 		return tile[events[i]](this.level, tilePos, direction, player);
+			// 	}
+			// }
+			events.forEach( (item) => {
+				if(tile[item] !== undefined){
+					l(item + ' event');
+					return tile[item](this.level, tilePos, direction, player);
 				}
-			}
+			});
 
 			return true;
+		},
+
+		handleTileEventAfter: function(tile, tilePos, direction, player){
+			// return a boolean wether we can move or not
+			console.log('tile', tile);
+			// events that need to be checked after a move
+			let events = ['over'];
+
+			return true;
+
 		}
 	}
 

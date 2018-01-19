@@ -60,7 +60,7 @@ class Player {
 		if(next_pos === 0){ // empty
 			return true;
 		} else {
-			return this.game.handleTileEvent(tiles[next_pos], {x: new_x, y: new_y}, dir, this);
+			return this.game.handleTileEventBefore(tiles[next_pos], {x: new_x, y: new_y}, dir, this);
 		}
 	}
 
