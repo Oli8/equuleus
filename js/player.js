@@ -15,6 +15,7 @@ class Player {
 		this.sprite.x = 5;
 		this.sprite.y = 5;
 		this.game = game;
+		this.moveCallback = false;
 	}
 
 	move(dir){
@@ -27,18 +28,19 @@ class Player {
 			if(dir !== this.orientation) //change orientation
 				this.sprite.scaleX *= -1;
 
-			moveObject(this.sprite, dir);
+			moveObject(this.sprite, dir, this.moveCallback);
             this.x += (dir === 'right' ? 1 : -1);
 			this.orientation = dir;
 		}
 		else{
-			moveObject(this.sprite, dir);
+			moveObject(this.sprite, dir, this.moveCallback);
 			this.y += (dir === 'down' ? 1 : -1);
 		}
 
 		this.state = 'walk';
 		this.direction = dir;
 		this.sprite.gotoAndPlay('walk');
+		this.moveCallback = false;
 		setTimeout(_ => {
 			this.sprite.gotoAndPlay('stand');
 			this.state = 'stand';
@@ -60,7 +62,7 @@ class Player {
 		if(next_pos === 0){ // empty
 			return true;
 		} else {
-			return this.game.handleTileEvent(tiles[next_pos], {x: new_x, y: new_y}, dir, this);
+			return this.moveCallback = this.game.handleTileEvent(tiles[next_pos], {x: new_x, y: new_y}, dir, this);
 		}
 	}
 

@@ -63,8 +63,12 @@ function tile_afterMove(level, pos, tile, dir){
 	}
 }
 
-function moveObject(bitmap, dir, afterMoveCb=false){
+function moveObject(bitmap, dir, moveCb=false){
 	let pos = {x: bitmap.x, y: bitmap.y};
+
+	if(moveCb !== false && "before" in moveCb){
+		moveCb.before();
+	}
 
 	switch(dir){
 		case "up":
@@ -87,8 +91,8 @@ function moveObject(bitmap, dir, afterMoveCb=false){
 		createjs.Ease.getPowInOut(1)
 	)
 
-	if(afterMoveCb !== false)
-		afterMoveCb();
+	if(moveCb !== false && "after" in moveCb)
+		moveCb.after();
 }
 
 // Utils

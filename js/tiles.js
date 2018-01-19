@@ -18,8 +18,10 @@ const tiles = {
 				let tile = level.tiles[pos.y][pos.x];
 
 				if(level[dir](pos) === 0){
-					moveObject(tile.bitmap, dir, tile_afterMove(level, pos, tile, dir));
-					return true;
+					// moveObject(tile.bitmap, dir, tile_afterMove(level, pos, tile, dir));
+					return {before: 
+						_ => moveObject(tile.bitmap, dir, tile_afterMove(level, pos, tile, dir))
+					};
 				} else {
 					return false;
 				}
@@ -32,6 +34,7 @@ const tiles = {
 		{
 			over: level => {
 				// check if box
+				return true;
 			}
 		}
 	),
