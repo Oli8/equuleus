@@ -149,18 +149,12 @@ function init(){
 			console.log('tile', tile);
 			// events that need to be checked before a move
 			let events = ['onPush'];
-			// for(let i in events){
-			// 	if(tile[events[i]] !== undefined){
-			// 		l(events[i] + ' event');
-			// 		return tile[events[i]](this.level, tilePos, direction, player);
-			// 	}
-			// }
-			events.forEach( (item) => {
-				if(tile[item] !== undefined){
-					l(item + ' event');
-					return tile[item](this.level, tilePos, direction, player);
+			for(let i in events){
+				if(tile[events[i]] !== undefined){
+					l(events[i] + ' event');
+					return tile[events[i]](this.level, tilePos, direction, player);
 				}
-			});
+			}
 
 			return true;
 		},
@@ -170,6 +164,12 @@ function init(){
 			console.log('tile', tile);
 			// events that need to be checked after a move
 			let events = ['over'];
+			for(let i in events){
+				if(tile[events[i]] !== undefined){
+					l(events[i] + ' event');
+					return tile[events[i]](this.level, tilePos, direction, player);
+				}
+			}
 
 			return true;
 
