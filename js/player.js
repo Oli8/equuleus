@@ -15,6 +15,7 @@ class Player {
 		this.sprite.x = 5;
 		this.sprite.y = 5;
 		this.game = game;
+		this.next_pos_data = false;
 	}
 
 	move(dir){
@@ -42,6 +43,11 @@ class Player {
 		setTimeout(_ => {
 			this.sprite.gotoAndPlay('stand');
 			this.state = 'stand';
+
+			if(this.next_pos_data !== false){
+				this.game.handleTileEventAfter(...this.next_pos_data);
+				this.next_pos_data = false;
+			}
 		}, movingTime);
 	}
 
@@ -60,6 +66,7 @@ class Player {
 		if(next_pos === 0){ // empty
 			return true;
 		} else {
+			this.next_pos_data = [tiles[next_pos], {x: new_x, y: new_y}, dir, this];
 			return this.game.handleTileEventBefore(tiles[next_pos], {x: new_x, y: new_y}, dir, this);
 		}
 	}

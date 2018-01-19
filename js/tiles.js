@@ -42,8 +42,10 @@ const tiles = {
 			over: (level, pos, dir, player) => {
 				console.log('ice');
 				// make player slide
-				if(level[dir](pos) !== undefined && (level[dir](pos) === 0 )){
-					//player.move(dir); dont' do this :|
+				let next_pos = level[dir](pos);
+				if(next_pos === 0 || next_pos.tile === 'ice'){
+					l('can slide');
+					player.move(dir); // dont' do this :|
 				}
 				return true;
 			}
