@@ -46,7 +46,6 @@ class Player {
 
 			if(this.next_pos_data !== false){
 				this.game.handleTileEventAfter(...this.next_pos_data);
-				this.next_pos_data = false;
 			}
 		}, movingTime);
 	}
@@ -64,6 +63,7 @@ class Player {
 		let next_pos = this.game.level.tiles[new_y][new_x].tile || 0;
 		l('next pos:', next_pos);
 		if(next_pos === 0){ // empty
+			this.next_pos_data = false;
 			return true;
 		} else {
 			this.next_pos_data = [tiles[next_pos], {x: new_x, y: new_y}, dir, this];
