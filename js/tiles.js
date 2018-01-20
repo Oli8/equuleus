@@ -45,8 +45,7 @@ const tiles = {
 				let next_pos = level[dir](pos);
 				if(next_pos === 0 || next_pos.tile === 'ice'){
 					l('can slide');
-					// TO DO: create method slide and change anim
-					player.move(dir); // dont' do this :|
+					player.move(dir, true);
 				}
 				return true;
 			}

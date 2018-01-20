@@ -18,7 +18,7 @@ class Player {
 		this.next_pos_data = false;
 	}
 
-	move(dir){
+	move(dir, slide=false){
 		if(this.state !== 'stand' || !this.can_move(dir)) // if we're not standing, we should't run the animation
 			return false;
 
@@ -39,7 +39,10 @@ class Player {
 
 		this.state = 'walk';
 		this.direction = dir;
-		this.sprite.gotoAndPlay('walk');
+		if(slide)
+			this.sprite.gotoAndPlay('slide');
+		else
+			this.sprite.gotoAndPlay('walk');
 		setTimeout(_ => {
 			this.sprite.gotoAndPlay('stand');
 			this.state = 'stand';
