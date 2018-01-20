@@ -38,6 +38,10 @@ function init(){
 		},
 
 		loadLevel: function(){
+			//let levelTitle = new createjs.Text(this.level.title, '20px Arial', '#FFF');
+			//stage.addChild(new createjs.Text(this.level.title, '20px Arial', '#FFF'));
+			//let stepCounter = new createjs.Text(0, '20px Arial', '#000');
+			//stage.addChild(stepCounter);
 			this.level.tiles.forEach((line, y) => {
 				line.forEach((tile, x) => {
 					if(tile !== 0){
@@ -50,8 +54,6 @@ function init(){
 					}
 				})
 			})
-			l(this.levelContainer);
-			l(this.level.tiles);
 		},
 		/* ***** Loading related methods ***** */
 		setupManifest: function(){
@@ -63,7 +65,6 @@ function init(){
 		},
 
 		_preload: function(){
-			console.log('preload');
 			this.setupManifest();
 			preload = new createjs.LoadQueue(false);
 		    preload.installPlugin(createjs.Sound);
@@ -111,7 +112,6 @@ function init(){
 			this.levelContainer.addChild(alien);
 			this.levelContainer.setChildIndex(alien, 2);
 			this.start();
-			//createjs.Sound.registerSound('assets/sounds/sfx_lose.ogg', 'lose');
 		},
 
 		start: function(){
@@ -119,7 +119,6 @@ function init(){
 			document.onkeyup = handleKeyUp;
 			this.randomizeLevel()
 			this.loadLevel();
-			l(this.level);
 		},
 
 		addPlayer: function(){
@@ -161,7 +160,7 @@ function init(){
 
 		handleTileEventAfter: function(tile, tilePos, direction, player){
 			// return a boolean wether we can move or not
-			console.log('tile', tile);
+			console.log('tile event after', tile);
 			// events that need to be checked after a move
 			let events = ['over'];
 			for(let i in events){
@@ -172,7 +171,6 @@ function init(){
 			}
 
 			return true;
-
 		}
 	}
 
