@@ -18,12 +18,10 @@ class Player {
 		this.next_pos_data = false;
 	}
 
-	move(dir, slide=false){
+	move(dir, anim='walk'){
 		if(this.state !== 'stand' || !this.can_move(dir)) // if we're not standing, we should't run the animation
 			return false;
 
-		l('x: ' + this.x + ' y: ' + this.y);
-		l('movin ' + dir + ' from ' + this.direction)
 		if(dir == 'left' || dir == 'right'){
 			if(dir !== this.orientation) //change orientation
 				this.sprite.scaleX *= -1;
@@ -39,10 +37,8 @@ class Player {
 
 		this.state = 'walk';
 		this.direction = dir;
-		if(slide)
-			this.sprite.gotoAndPlay('slide');
-		else
-			this.sprite.gotoAndPlay('walk');
+		this.sprite.gotoAndPlay(anim);
+
 		setTimeout(_ => {
 			this.sprite.gotoAndPlay('stand');
 			this.state = 'stand';
