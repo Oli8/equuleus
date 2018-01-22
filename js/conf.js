@@ -47,8 +47,10 @@ const imgs = {
 	ground: 'img/medievalTile_15.png'
 };
 
-const messages = {
-	
+const font = {
+	name: 'Arial',
+	size: 20,
+	color: '#FFF'
 };
 
 const moveActions = {left: {x: -1, y: 0}, right: {x: 1, y: 0}, down: {x: 0, y: 1}, up: {x: 0, y: -1}};

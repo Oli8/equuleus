@@ -55,7 +55,7 @@ function init(){
 		},
 
 		stepContainer: (_ => {
-			let stepCounter = new createjs.Text(0, '20px Arial', '#FFF');
+			let stepCounter = new createjs.Text(0, `${font.size}px ${font.name}`, font.color);
 			stepCounter.x = width - 50;
 			stepCounter.y = 15;
 			stage.addChild(stepCounter);
