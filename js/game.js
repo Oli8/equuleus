@@ -40,8 +40,6 @@ function init(){
 		loadLevel: function(){
 			//let levelTitle = new createjs.Text(this.level.title, '20px Arial', '#FFF');
 			//stage.addChild(new createjs.Text(this.level.title, '20px Arial', '#FFF'));
-			//let stepCounter = new createjs.Text(0, '20px Arial', '#000');
-			//stage.addChild(stepCounter);
 			this.level.tiles.forEach((line, y) => {
 				line.forEach((tile, x) => {
 					if(tile !== 0){
@@ -55,6 +53,19 @@ function init(){
 				})
 			})
 		},
+
+		stepContainer: (_ => {
+			let stepCounter = new createjs.Text(0, '20px Arial', '#FFF');
+			stepCounter.x = width - 50;
+			stepCounter.y = 15;
+			stage.addChild(stepCounter);
+			return {
+				container: stepCounter,
+				increase: function(){
+					this.container.text++;
+				}
+			};
+		})(),
 		/* ***** Loading related methods ***** */
 		setupManifest: function(images){
 		    for(var i in images)

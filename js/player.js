@@ -47,6 +47,9 @@ class Player {
 				this.game.handleTileEventAfter(...this.next_pos_data);
 			}
 		}, movingTime);
+
+		if(anim === 'walk')
+			this.game.stepContainer.increase();
 	}
 
 	can_move(dir){
