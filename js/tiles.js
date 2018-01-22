@@ -3,9 +3,8 @@ const tiles = {
 		'signExit',
 		"You need to reach this sign to complete the level.",
 		{
-			over: level => {
-				// The level is done
-				//level.completed();
+			over: (level, pos, dir, player) => {
+				player.game.completed();
 			}
 		}
 	),

@@ -159,6 +159,11 @@ function init(){
 			return new Player(stage, sprite, {x: 0, y: 0}, this);
 		},
 
+		completed: function(){
+			// TO DO: replace with our custom alert
+			alert(`Level completed ! in ${this.stepContainer.container.text} step`);
+		},
+
 		handleTileEventBefore: function(tile, tilePos, direction, player){
 			// return a boolean wether we can move or not
 			console.log('tile', tile);

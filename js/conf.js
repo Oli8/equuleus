@@ -24,11 +24,6 @@ const keys = {
 const movingTime = 500;
 
 const imgs = {
-	
-	get: function(){
-		return ``;
-	},
-
 	player1_walk_sprite: [
 		"img/Player/p1_walk/PNG/p1_walk01.png",
 		"img/Player/p1_walk/PNG/p1_walk02.png",
