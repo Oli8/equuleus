@@ -50,14 +50,13 @@ const imgs = {
 const font = {
 	name: 'Arial',
 	size: 20,
-	color: '#FFF'
+	color: '#FFF',
+	format: function(){
+		return [`${this.size}px ${this.name}`, this.color];
+	}
 };
 
 const moveActions = {left: {x: -1, y: 0}, right: {x: 1, y: 0}, down: {x: 0, y: 1}, up: {x: 0, y: -1}};
-
-// after move callback param ?
-// would allow us to update level matrix
-// and player coords
 
 function tile_afterMove(level, pos, tile, dir){
 	return _ => {

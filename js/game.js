@@ -38,8 +38,10 @@ function init(){
 		},
 
 		loadLevel: function(){
-			//let levelTitle = new createjs.Text(this.level.title, '20px Arial', '#FFF');
-			//stage.addChild(new createjs.Text(this.level.title, '20px Arial', '#FFF'));
+			let levelTitle = new createjs.Text(this.level.title, ...font.format());
+			levelTitle.x = height / 2 - this.level.title.length * 10;
+			levelTitle.y = 15;
+			stage.addChild(levelTitle);
 			this.level.tiles.forEach((line, y) => {
 				line.forEach((tile, x) => {
 					if(tile !== 0){
@@ -55,7 +57,7 @@ function init(){
 		},
 
 		stepContainer: (_ => {
-			let stepCounter = new createjs.Text(0, `${font.size}px ${font.name}`, font.color);
+			let stepCounter = new createjs.Text(0, ...font.format());
 			stepCounter.x = width - 50;
 			stepCounter.y = 15;
 			stage.addChild(stepCounter);
