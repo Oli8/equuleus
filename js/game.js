@@ -56,16 +56,14 @@ function init(){
 			})
 		},
 		/* ***** Loading related methods ***** */
-		setupManifest: function(){
-		    this.manifest = [];
-		    for(var i in imgs.player1_walk_sprite)
-		        this.manifest.push({src: imgs.player1_walk_sprite[i].src, id: imgs.player1_walk_sprite[i].id})
-
-		    this.manifest.push(imgs.ground);
+		setupManifest: function(images){
+		    for(var i in images)
+				typeof images[i] == 'string' ? this.manifest.push({src: images[i]}) : this.setupManifest(images[i]);
 		},
 
 		_preload: function(){
-			this.setupManifest();
+			this.manifest = [];
+			this.setupManifest(imgs);
 			preload = new createjs.LoadQueue(false);
 		    preload.installPlugin(createjs.Sound);
 		    preload.on("fileload", this.handleFileLoad);
@@ -122,12 +120,9 @@ function init(){
 		},
 
 		addPlayer: function(){
-			let sprite_images = [];
-			for(let i in imgs.player1_walk_sprite) //store preloaded sprite images
-				sprite_images.push(preload.getResult(imgs.player1_walk_sprite[i].id))
 			// TO DO: remove useless ""
 			let player_sprite = new createjs.SpriteSheet({
-				"images": sprite_images,
+				"images": imgs.player1_walk_sprite,
 				"frames": {
 					"regX": 36,
 					"height": 97,
