@@ -39,7 +39,8 @@ const imgs = {
 		"img/Player/p1_jump.png"
 	],
 
-	ground: 'img/medievalTile_15.png'
+	ground: 'img/medievalTile_15.png',
+	tiles: Object.values(tiles).map(t => t.image),
 };
 
 const font = {

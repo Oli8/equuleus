@@ -54,5 +54,41 @@ const tiles = {
 	water: new Tile(
 		"water",
 		"You can not cross over this tile, you may use a box to create a bridge."
-	)
+	),
+	arrow_up: new Tile(
+		"arrow_up",
+		"You can only walk over this tile on way",
+		{
+			onPush: (level, pos, dir, player) => {
+				return dir === "up";
+			},
+		}
+	),
+	arrow_right: new Tile(
+		"arrow_right",
+		"You can only walk over this tile on way",
+		{
+			onPush: (level, pos, dir, player) => {
+				return dir === "right";
+			},
+		}
+	),
+	arrow_down: new Tile(
+		"arrow_down",
+		"You can only walk over this tile on way",
+		{
+			onPush: (level, pos, dir, player) => {
+				return dir === "down";
+			},
+		}
+	),
+	arrow_left: new Tile(
+		"arrow_left",
+		"You can only walk over this tile on way",
+		{
+			onPush: (level, pos, dir, player) => {
+				return dir === "left";
+			},
+		}
+	),
 };
