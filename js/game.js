@@ -4,6 +4,15 @@ function init(){
 
 	var game = {
 
+		loadGround: function(){
+			let ground = new createjs.Shape();
+			let groundImg = new Image();
+			groundImg.src = imgs.ground;
+			ground.graphics.beginBitmapFill(groundImg);
+			ground.graphics.drawRect(0, 0, map.width, map.height);
+			this.levelContainer.addChild(ground);
+		},
+
 		levelContainer: (_ => {
 			let levelContainer = new createjs.Container();
 			levelContainer.x = 20;
@@ -87,7 +96,7 @@ function init(){
 		},
 
 		handleFileLoad: function(event){
-			console.log("File loaded : " + event.item.id);
+			l(`File loaded -> ${event.item.src}`);
 		},
 
 		handleFileProgress: function(){
@@ -107,13 +116,8 @@ function init(){
 			stage.enableMouseOver(10);
 			createjs.Ticker.addEventListener('tick', tick);
 			createjs.Ticker.setFPS(60);
-			// Dispastch into methods though
-			let ground = new createjs.Shape();
-			let groundImg = new Image();
-			groundImg.src = imgs.ground;
-			ground.graphics.beginBitmapFill(groundImg);
-			ground.graphics.drawRect(0, 0, map.width, map.height);
-			this.levelContainer.addChild(ground);
+
+			this.loadGround();
 
 			this.player1 = this.addPlayer();
 			let alien = this.player1.sprite;
