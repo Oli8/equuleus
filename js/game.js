@@ -120,17 +120,16 @@ function init(){
 		},
 
 		addPlayer: function(){
-			// TO DO: remove useless ""
 			let player_sprite = new createjs.SpriteSheet({
-				"images": imgs.player1_walk_sprite,
-				"frames": {
-					"regX": 36,
-					"height": 97,
-					"count": imgs.player1_walk_sprite.length,
-					"regY": 0,
-					"width": 72
+				images: imgs.player1_walk_sprite,
+				frames: {
+					regX: 36,
+					height: 97,
+					count: imgs.player1_walk_sprite.length,
+					regY: 0,
+					width: 72
 				},
-				"animations": {
+				animations: {
 					walk: {
 						frames: [0,1,2,3,4,5,6,7,8,9,10],
 						speed: 0.5,
