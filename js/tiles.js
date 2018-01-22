@@ -42,7 +42,8 @@ const tiles = {
 				console.log('ice');
 				// make player slide
 				let next_pos = level[dir](pos);
-				if(next_pos === 0 || next_pos.tile === 'ice'){
+				// TO DO: brainstorm about how we gonna handle the "ground like" tile
+				if(next_pos === 0 || ['ice', 'boxSpot'].includes(next_pos.tile)){
 					l('can slide');
 					player.move(dir, 'slide');
 				}
