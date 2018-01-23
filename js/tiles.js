@@ -57,36 +57,52 @@ const tiles = {
 	),
 	arrow_up: new Tile(
 		"arrow_up",
-		"You can only walk over this tile on way",
+		"You can only walk over this tile one way",
 		{
 			onPush: (level, pos, dir, player) => {
+				return dir !== oppositeDirections.up;
+			},
+			onLeave: (level, pos, dir, player) => {
+				l('onLeave')
 				return dir === "up";
 			},
 		}
 	),
 	arrow_right: new Tile(
 		"arrow_right",
-		"You can only walk over this tile on way",
+		"You can only walk over this tile one way",
 		{
 			onPush: (level, pos, dir, player) => {
+				return dir !== oppositeDirections.right;
+			},
+			onLeave: (level, pos, dir, player) => {
+				l('onLeave')
 				return dir === "right";
 			},
 		}
 	),
 	arrow_down: new Tile(
 		"arrow_down",
-		"You can only walk over this tile on way",
+		"You can only walk over this tile one way",
 		{
 			onPush: (level, pos, dir, player) => {
+				return dir !== oppositeDirections.down;
+			},
+			onLeave: (level, pos, dir, player) => {
+				l('onLeave')
 				return dir === "down";
 			},
 		}
 	),
 	arrow_left: new Tile(
 		"arrow_left",
-		"You can only walk over this tile on way",
+		"You can only walk over this tile one way",
 		{
 			onPush: (level, pos, dir, player) => {
+				return dir !== oppositeDirections.left;
+			},
+			onLeave: (level, pos, dir, player) => {
+				l('onLeave')
 				return dir === "left";
 			},
 		}

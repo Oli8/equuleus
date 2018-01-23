@@ -173,7 +173,8 @@ function init(){
 			for(let i in events){
 				if(tile[events[i]] !== undefined){
 					l(events[i] + ' event');
-					return tile[events[i]](this.level, tilePos, direction, player);
+					if(tile[events[i]](this.level, tilePos, direction, player) === false)
+						return false;
 				}
 			}
 

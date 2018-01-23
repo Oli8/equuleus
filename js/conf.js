@@ -21,6 +21,13 @@ const keys = {
 	enter: 13
 };
 
+const oppositeDirections = {
+	left: 'right',
+	right: 'left',
+	up: 'down',
+	down: 'up',
+}
+
 const movingTime = 500;
 
 const imgs = {
