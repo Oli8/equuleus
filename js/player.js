@@ -60,23 +60,20 @@ class Player {
 				}
 		}
 
-		let new_x = this.x + moveActions[dir].x;
-		let new_y = this.y + moveActions[dir].y;
-
-		l('pos: ', new_y, new_x);
+		let newX = this.x + moveActions[dir].x;
+		let nexY = this.y + moveActions[dir].y;
 		// check if player in map
-		if(!(new_x >= 0 && new_x < 10 && new_y >= 0 && new_y < 10)){ //hardcoded bounderies for now
+		if(!(newX >= 0 && newX < 10 && nexY >= 0 && nexY < 10)){ //hardcoded bounderies for now
 			return false;
 		}
 		// check next pos tiles
-		let next_pos = this.game.level.tiles[new_y][new_x].tile || 0;
-		l('next pos:', next_pos);
-		if(next_pos === 0){ // empty
+		let nextPos = this.game.level.tiles[nexY][newX].tile || 0;
+		if(nextPos === 0){ // empty
 			this.next_pos_data = false;
 			return true;
 		} else {
-			this.next_pos_data = [tiles[next_pos], {x: new_x, y: new_y}, dir, this];
-			return this.game.handleTileEventBefore(tiles[next_pos], {x: new_x, y: new_y}, dir, this);
+			this.next_pos_data = [tiles[nextPos], {x: newX, y: nexY}, dir, this];
+			return this.game.handleTileEventBefore(tiles[nextPos], {x: newX, y: nexY}, dir, this);
 		}
 	}
 
