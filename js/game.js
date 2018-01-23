@@ -103,10 +103,6 @@ function init(){
 
 		},
 
-		loadComplete: function(){
-
-		},
-
 		loadError: function(){
 
 		},
@@ -172,7 +168,8 @@ function init(){
 			// return a boolean wether we can move or not
 			console.log('tile', tile);
 			// events that need to be checked before a move
-			let events = ['onPush'];
+			// TO DO: update multi event to not stop when true
+			let events = ['onPush', 'onLeave'];
 			for(let i in events){
 				if(tile[events[i]] !== undefined){
 					l(events[i] + ' event');
