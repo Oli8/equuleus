@@ -164,17 +164,25 @@ function init(){
 			alert(`Level completed ! in ${this.stepContainer.container.text} step`);
 		},
 
+		handleTileLeaveEvent: function(tile, tilePos, direction, player){
+			if(tile.onLeave !== undefined){
+				return tile.onLeave(this.level, tilePos, direction, player);
+			}
+			return true;
+		},
+
 		handleTileEventBefore: function(tile, tilePos, direction, player){
 			// return a boolean wether we can move or not
 			console.log('tile', tile);
 			// events that need to be checked before a move
 			// TO DO: update multi event to not stop when true
-			let events = ['onPush', 'onLeave'];
+			let events = ['onPush'];
 			for(let i in events){
 				if(tile[events[i]] !== undefined){
 					l(events[i] + ' event');
-					if(tile[events[i]](this.level, tilePos, direction, player) === false)
-						return false;
+					return tile[events[i]](this.level, tilePos, direction, player);
+					//if(tile[events[i]](this.level, tilePos, direction, player) === false)
+						//return false;
 				}
 			}
 

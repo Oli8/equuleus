@@ -53,6 +53,13 @@ class Player {
 	}
 
 	can_move(dir){
+		let currentTile = this.game.level.tiles[this.y][this.x].tile || 0;
+		if(currentTile !== 0){
+				if(this.game.handleTileLeaveEvent(tiles[currentTile], {x: this.x, y: this.y}, dir, this) === false){
+					return false;
+				}
+		}
+
 		let new_x = this.x + moveActions[dir].x;
 		let new_y = this.y + moveActions[dir].y;
 

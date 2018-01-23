@@ -8,6 +8,8 @@ class Tile {
 		this.onPush = event.onPush;
 		// What happens when we're on the same line or column than the tile
 		this.onAlign = event.onAlign;
+		// What happens when we leave the tile
+		this.onLeave = event.onLeave
 		this.description = description;
 	}	
 
