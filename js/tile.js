@@ -1,7 +1,8 @@
 class Tile {
 
-	constructor(image, description, event={}){
+	constructor(image, description, event={}, walkable=false){
 		this.image = `img/${image}.png`;
+		this.description = description;
 		// What happens when we're over the tile
 		this.over = event.over;
 		// What happens when we push the tile
@@ -10,7 +11,8 @@ class Tile {
 		this.onAlign = event.onAlign;
 		// What happens when we leave the tile
 		this.onLeave = event.onLeave
-		this.description = description;
+
+		this.walkable = walkable
 	}	
 
 }

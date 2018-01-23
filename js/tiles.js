@@ -1,3 +1,4 @@
+const walkable = true;
 const tiles = {
 	exit: new Tile(
 		'signExit',
@@ -6,7 +7,8 @@ const tiles = {
 			over: (level, pos, dir, player) => {
 				player.game.completed();
 			}
-		}
+		},
+		walkable
 	),
 	box: new Tile(
 		'box_brown', 
@@ -27,29 +29,31 @@ const tiles = {
 	),
 	boxSpot: new Tile(
 		'box_spot',
+
 		"A box must be placed on this spot in order to allow you to exit the level.",
 		{
 			over: level => {
 				// check if box
 			}
-		}
+		},
+		walkable
 	),
 	ice: new Tile(
 		'iceBlock',
 		"Will make you slide and unable to move when you are on it.",
 		{
-			over: (level, pos, dir, player) => {
-				console.log('ice');
-				// make player slide
+			over: function(level, pos, dir, player){
 				let next_pos = level[dir](pos);
-				// TO DO: brainstorm about how we gonna handle the "ground like" tile
-				if(next_pos === 0 || ['ice', 'boxSpot'].includes(next_pos.tile)){
+				if(next_pos === 0 ||
+					(tiles[next_pos.tile].onPush === undefined || tiles[next_pos.tile].onPush(...arguments))
+					&& tiles[next_pos.tile].walkable){
 					l('can slide');
 					player.move(dir, 'slide');
 				}
 				return true;
 			}
-		}
+		},
+		walkable
 	),
 	water: new Tile(
 		"water",
@@ -66,7 +70,8 @@ const tiles = {
 				l('onLeave')
 				return dir === "up";
 			},
-		}
+		},
+		walkable
 	),
 	arrow_right: new Tile(
 		"arrow_right",
@@ -79,7 +84,8 @@ const tiles = {
 				l('onLeave')
 				return dir === "right";
 			},
-		}
+		},
+		walkable
 	),
 	arrow_down: new Tile(
 		"arrow_down",
@@ -92,7 +98,8 @@ const tiles = {
 				l('onLeave')
 				return dir === "down";
 			},
-		}
+		},
+		walkable
 	),
 	arrow_left: new Tile(
 		"arrow_left",
@@ -105,6 +112,7 @@ const tiles = {
 				l('onLeave')
 				return dir === "left";
 			},
-		}
+		},
+		walkable
 	),
 };
