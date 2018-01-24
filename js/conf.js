@@ -62,6 +62,11 @@ const font = {
 const moveActions = {left: {x: -1, y: 0}, right: {x: 1, y: 0}, down: {x: 0, y: 1}, up: {x: 0, y: -1}};
 
 function tile_afterMove(level, pos, tile, dir){
+	// TO DO:
+	// need to make it work with several tile on one pos
+	// -> remove tile from the level
+	// and add it to its new pos
+	// use a array or something
 	return _ => {
 		level.tiles[pos.y][pos.x] = 0;
 		level.tiles[pos.y + moveActions[dir].y][pos.x + moveActions[dir].x] = tile;

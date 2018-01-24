@@ -14,11 +14,21 @@ const tiles = {
 		'box_brown', 
 		"You can push this object, which is a way to create bridge over water. There is no water yet tho :|",
 		{
-			onPush: (level, pos, dir, player) => {
+			onPush: function(level, pos, dir, player){
 				// push the box
 				let tile = level.tiles[pos.y][pos.x];
-
-				if(level[dir](pos) === 0){
+				let nextPos = level[dir](pos);
+				l('push next pos', nextPos);
+				if(nextPos === 0){
+					moveObject(tile.bitmap, dir, tile_afterMove(level, pos, tile, dir));
+					return true;
+				}
+				else if(tiles[nextPos.tile].walkable === true &&
+					(tiles[nextPos.tile].onPush === undefined || tiles[nextPos.tile].onPush(...arguments))){
+					// TO DO:
+					// there will be two tile on one pos
+					// update level accordingly (edit tile_aftermove ?)
+					// set z-index of ground lower or somethin
 					moveObject(tile.bitmap, dir, tile_afterMove(level, pos, tile, dir));
 					return true;
 				} else {
