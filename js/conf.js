@@ -61,6 +61,13 @@ const font = {
 
 const moveActions = {left: {x: -1, y: 0}, right: {x: 1, y: 0}, down: {x: 0, y: 1}, up: {x: 0, y: -1}};
 
+function getPos(currentPos, dir){
+	return {
+		x: currentPos.x + moveActions[dir].x,
+		y: currentPos.y + moveActions[dir].y
+	};
+}
+
 function tile_afterMove(level, pos, tile, dir){
 	// TO DO:
 	// need to make it work with several tile on one pos

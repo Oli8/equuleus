@@ -26,6 +26,7 @@ const tiles = {
 				else if(tiles[nextPos.tile].walkable === true &&
 					(tiles[nextPos.tile].onPush === undefined || tiles[nextPos.tile].onPush(...arguments))){
 					// TO DO:
+					// edit pos in the onPush above call
 					// there will be two tile on one pos
 					// update level accordingly (edit tile_aftermove ?)
 					// set z-index of ground lower or somethin
@@ -39,7 +40,6 @@ const tiles = {
 	),
 	boxSpot: new Tile(
 		'box_spot',
-
 		"A box must be placed on this spot in order to allow you to exit the level.",
 		{
 			over: level => {
@@ -52,11 +52,12 @@ const tiles = {
 		'iceBlock',
 		"Will make you slide and unable to move when you are on it.",
 		{
-			over: function(level, pos, dir, player){
+			over: (level, pos, dir, player) => {
 				let next_pos = level[dir](pos);
 				if(next_pos === 0 ||
-					(tiles[next_pos.tile].onPush === undefined || tiles[next_pos.tile].onPush(...arguments))
+					(tiles[next_pos.tile].onPush === undefined || tiles[next_pos.tile].onPush(level, pos, dir, player))
 					&& tiles[next_pos.tile].walkable){
+					// need to edit pos in the above onPush call ?
 					l('can slide');
 					player.move(dir, 'slide');
 				}
