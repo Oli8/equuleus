@@ -58,7 +58,7 @@ function init(){
 						t.x = x * map.tiles_w;
 						t.y = y * map.tiles_h;
 						this.level.tiles[y][x] = {bitmap: t, tile: tile};
-						this.levelContainer.addChild(t); // with id
+						this.levelContainer.addChild(t);
 						this.levelContainer.setChildIndex(t, 1);
 					}
 				})

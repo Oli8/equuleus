@@ -55,8 +55,12 @@ const tiles = {
 		{
 			over: (level, pos, dir, player) => {
 				let next_pos = level[dir](pos);
+				// TO DO
+				// if we hit a box
+				// the box will move but not the player as player.move won't be called
+				let nextPosCoord = getPos(pos, dir);
 				if(next_pos === 0 ||
-					(tiles[next_pos.tile].onPush === undefined || tiles[next_pos.tile].onPush(level, pos, dir, player))
+					(tiles[next_pos.tile].onPush === undefined || tiles[next_pos.tile].onPush(level, nextPosCoord, dir, player))
 					&& tiles[next_pos.tile].walkable){
 					// need to edit pos in the above onPush call ?
 					l('can slide');

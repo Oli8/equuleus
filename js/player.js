@@ -8,8 +8,8 @@ class Player {
 		this.orientation = 'right';
 		this.state = 'stand';
 		this.sprite = sprite;
-		this.sprite.x = 5;
-		this.sprite.y = 5;
+		this.sprite.x = 5; // useless ?
+		this.sprite.y = 5; // useless ?
 		this.game = game;
 		this.next_pos_data = false;
 	}
