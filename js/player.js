@@ -2,10 +2,6 @@ class Player {
 
 	constructor(stage, sprite, position, game){
 		// TO DO: remove useless property
-		// stage ?
-		console.log(map.tiles_w)
-		console.log('new player!');
-		this.stage = stage; // useless ?
 		this.x = position.x;
 		this.y = position.y;
 		this.direction = 'right';
@@ -61,8 +57,6 @@ class Player {
 		}
 
 		let newPos = getPos({x: this.x, y: this.y}, dir);
-		//let newX = this.x + moveActions[dir].x;
-		//let nexY = this.y + moveActions[dir].y;
 		// check if player in map
 		if(!(newPos.x >= 0 && newPos.x < 10 && newPos.y >= 0 && newPos.y < 10)){ //hardcoded bounderies for now
 			return false;

@@ -31,6 +31,7 @@ const tiles = {
 					// update level accordingly (edit tile_aftermove ?)
 					// set z-index of ground lower or somethin
 					moveObject(tile.bitmap, dir, tile_afterMove(level, pos, tile, dir));
+					// launch the over event ?
 					return true;
 				} else {
 					return false;
