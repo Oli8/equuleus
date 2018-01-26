@@ -156,7 +156,7 @@ function init(){
 				}
 			});
 			let sprite = new createjs.Sprite(player_sprite, "stand");
-			return new Player(stage, sprite, {x: 0, y: 0}, this);
+			return new Player(sprite, {x: 0, y: 0}, this);
 		},
 
 		completed: function(){

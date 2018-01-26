@@ -1,6 +1,6 @@
 class Player {
 
-	constructor(stage, sprite, position, game){
+	constructor(sprite, position, game){
 		// TO DO: remove useless property
 		this.x = position.x;
 		this.y = position.y;
