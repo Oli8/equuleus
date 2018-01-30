@@ -1,4 +1,3 @@
-const walkable = true;
 const tiles = {
 	exit: new Tile(
 		'signExit',
@@ -8,7 +7,9 @@ const tiles = {
 				player.game.completed();
 			}
 		},
-		walkable
+		{
+			walkable: true,
+		}
 	),
 	box: new Tile(
 		'box_brown', 
@@ -47,7 +48,10 @@ const tiles = {
 				// check if box
 			}
 		},
-		walkable
+		{
+			walkable: true,
+			ground: true,
+		}
 	),
 	ice: new Tile(
 		'iceBlock',
@@ -69,11 +73,18 @@ const tiles = {
 				return true;
 			}
 		},
-		walkable
+		{
+			walkable: true,
+			ground: true,
+		}
 	),
 	water: new Tile(
 		"water",
-		"You can not cross over this tile, you may use a box to create a bridge."
+		"You can not cross over this tile, you may use a box to create a bridge.",
+		{},
+		{
+			ground: true,
+		}
 	),
 	arrow_up: new Tile(
 		"arrow_up",
@@ -87,7 +98,10 @@ const tiles = {
 				return dir === "up";
 			},
 		},
-		walkable
+		{
+			walkable: true,
+			ground: true,
+		}
 	),
 	arrow_right: new Tile(
 		"arrow_right",
@@ -101,7 +115,10 @@ const tiles = {
 				return dir === "right";
 			},
 		},
-		walkable
+		{
+			walkable: true,
+			ground: true,
+		}
 	),
 	arrow_down: new Tile(
 		"arrow_down",
@@ -115,7 +132,10 @@ const tiles = {
 				return dir === "down";
 			},
 		},
-		walkable
+		{
+			walkable: true,
+			ground: true,
+		}
 	),
 	arrow_left: new Tile(
 		"arrow_left",
@@ -129,6 +149,9 @@ const tiles = {
 				return dir === "left";
 			},
 		},
-		walkable
+		{
+			walkable: true,
+			ground: true,
+		}
 	),
 };
