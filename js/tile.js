@@ -12,7 +12,7 @@ class Tile {
 		// What happens when we leave the tile
 		this.onLeave = event.onLeave
 
-		this.walkable = walkable
+		this.walkable = walkable;
 	}	
 
 }

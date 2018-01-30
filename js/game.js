@@ -117,7 +117,8 @@ function init(){
 
 			this.player1 = this.addPlayer();
 			let alien = this.player1.sprite;
-			alien.y = -(alien.getBounds().height / 2);
+			// FIX ME: getBounds might return null
+			alien.y = -(alien.getBounds().height / 2) || -48;
 			alien.x = 35;
 
 			this.levelContainer.addChild(alien);

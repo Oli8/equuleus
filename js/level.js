@@ -10,19 +10,35 @@ class Level {
 
 	/* TO DO: those will make an error if the y is undefined */
 	up(pos){
-		return this.tiles[pos.y-1][pos.x];
+		try {
+			return this.tiles[pos.y-1][pos.x];
+		} catch(error) {
+			return false;
+		}
 	}
 
 	right(pos){
-		return this.tiles[pos.y][pos.x+1];
+		try {
+			return this.tiles[pos.y][pos.x+1];
+		} catch(error) {
+			return false;
+		}
 	}
 
 	down(pos){
-		return this.tiles[pos.y+1][pos.x];
+		try {
+			return this.tiles[pos.y+1][pos.x];
+		} catch(error) {
+			return false;
+		}
 	}
 
 	left(pos){
-		return this.tiles[pos.y][pos.x-1];
+		try {
+			return this.tiles[pos.y][pos.x-1];
+		} catch(error) {
+			return false;
+		}
 	}
 
 }
