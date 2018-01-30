@@ -117,8 +117,13 @@ function init(){
 
 			this.player1 = this.addPlayer();
 			let alien = this.player1.sprite;
-			// FIX ME: getBounds might return null
-			alien.y = -(alien.getBounds().height / 2) || -48;
+			// FIX ME: getBounds might causes an error
+			try {
+				alien.y = -(alien.getBounds().height / 2);
+			} catch(error) {
+				l('error alien getBounds');
+				alien.y = -48;
+			}
 			alien.x = 35;
 
 			this.levelContainer.addChild(alien);
