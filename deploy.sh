@@ -1,15 +1,12 @@
 #!/bin/bash
 
-# set the user by running in your terminal
-# export EQUULEUS_USER="user" 
-# change with your server username
-
-if [ -z ${EQUULEUS_USER} ]; then 
+if [ -z ${1} ]; then
 	echo "EQUULEUS_USER is not set";
+	echo "Usage : ./deploy.sh username"
 	exit 1
 fi
 
-ssh -A "$EQUULEUS_USER@jerome-crete.me" << EOF
+ssh -A "$1@jerome-crete.me" << EOF
 	cd /var/www/html/equuleus
 	git pull
 EOF
