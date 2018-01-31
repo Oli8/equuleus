@@ -54,12 +54,13 @@ function init(){
 			this.level.tiles.forEach((line, y) => {
 				line.forEach((tile, x) => {
 					if(tile !== 0){
-						let t = new createjs.Bitmap(tiles[tile].image);
-						t.x = x * map.tiles_w;
-						t.y = y * map.tiles_h;
-						this.level.tiles[y][x] = {bitmap: t, tile: tile};
-						this.levelContainer.addChild(t);
-						this.levelContainer.setChildIndex(t, 1);
+						let tileObject = tiles[tile];
+						let tileBitmap = new createjs.Bitmap(tileObject.image);
+						tileBitmap.x = x * map.tiles_w;
+						tileBitmap.y = y * map.tiles_h;
+						this.level.tiles[y][x] = {bitmap: tileBitmap, tile: tile};
+						this.levelContainer.addChildAt(tileBitmap,
+							tileObject.ground ? 1 : this.levelContainer.numChildren);
 					}
 				})
 			})
@@ -116,18 +117,6 @@ function init(){
 			this.loadGround();
 
 			this.player1 = this.addPlayer();
-			let alien = this.player1.sprite;
-			// FIX ME: getBounds might causes an error
-			try {
-				alien.y = -(alien.getBounds().height / 2);
-			} catch(error) {
-				l('error alien getBounds');
-				alien.y = -48;
-			}
-			alien.x = 35;
-
-			this.levelContainer.addChild(alien);
-			this.levelContainer.setChildIndex(alien, 2);
 			this.start();
 		},
 
@@ -136,6 +125,15 @@ function init(){
 			document.onkeyup = handleKeyUp;
 			this.randomizeLevel()
 			this.loadLevel();
+			let alien = this.player1.sprite;
+			// FIX ME: getBounds might causes an error
+			try {
+				alien.y = -(alien.getBounds().height / 2);
+			} catch(error) {
+				alien.y = -48;
+			}
+			alien.x = 35;
+			this.levelContainer.addChild(alien);
 		},
 
 		addPlayer: function(){
