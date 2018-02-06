@@ -48,9 +48,10 @@ class Player {
 	}
 
 	can_move(dir){
-		let currentTile = this.game.level.tiles[this.y][this.x].tile || 0;
+		let currentTile = getTile(this.game.level.tiles, this.x, this.y);
 		if(currentTile !== 0){
-				if(this.game.handleTileLeaveEvent(tiles[currentTile], {x: this.x, y: this.y}, dir, this) === false){
+				if(this.game.handleTileLeaveEvent(tiles[currentTile.tile],
+					{x: this.x, y: this.y}, dir, this) === false){
 					return false;
 				}
 		}
@@ -61,13 +62,13 @@ class Player {
 			return false;
 		}
 		// check next pos tiles
-		let nextPos = this.game.level.tiles[newPos.y][newPos.x].tile || 0;
+		let nextPos = getTile(this.game.level.tiles, newPos.x, newPos.y);
 		if(nextPos === 0){ // empty
 			this.next_pos_data = false;
 			return true;
 		} else {
-			this.next_pos_data = [tiles[nextPos], newPos, dir, this];
-			return this.game.handleTileEventBefore(tiles[nextPos], newPos, dir, this);
+			this.next_pos_data = [tiles[nextPos.tile], newPos, dir, this];
+			return this.game.handleTileEventBefore(tiles[nextPos.tile], newPos, dir, this);
 		}
 	}
 
