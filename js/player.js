@@ -25,8 +25,7 @@ class Player {
 			moveObject(this.sprite, dir);
             this.x += (dir === 'right' ? 1 : -1);
 			this.orientation = dir;
-		}
-		else{
+		} else {
 			moveObject(this.sprite, dir);
 			this.y += (dir === 'down' ? 1 : -1);
 		}
