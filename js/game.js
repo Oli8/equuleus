@@ -54,13 +54,19 @@ function init(){
 			this.level.tiles.forEach((line, y) => {
 				line.forEach((tile, x) => {
 					if(tile !== 0){
+						let levelTile = {ground: undefined, obj: undefined};
 						let tileObject = tiles[tile];
 						let tileBitmap = new createjs.Bitmap(tileObject.image);
 						tileBitmap.x = x * map.tiles_w;
 						tileBitmap.y = y * map.tiles_h;
-						this.level.tiles[y][x] = {bitmap: tileBitmap, tile: tile};
-						this.levelContainer.addChildAt(tileBitmap,
-							tileObject.ground ? 1 : this.levelContainer.numChildren);
+						if(tileObject.ground){
+							this.levelContainer.addChildAt(tileBitmap, 1);
+							levelTile.ground = {bitmap: tileBitmap, tile: tile};
+						} else {
+							this.levelContainer.addChildAt(tileBitmap, this.levelContainer.numChildren);
+							levelTile.obj = {bitmap: tileBitmap, tile: tile};
+						}
+						this.level.tiles[y][x] = levelTile;
 					}
 				})
 			})
