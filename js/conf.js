@@ -16,7 +16,6 @@ const keys = {
 		up: 38,
 		down: 40
 	},
-	fire: [32, 17],
 	pause: [27, 80],
 	enter: 13
 };
@@ -26,7 +25,7 @@ const oppositeDirections = {
 	right: 'left',
 	up: 'down',
 	down: 'up',
-}
+};
 
 const movingTime = 500;
 
@@ -59,7 +58,12 @@ const font = {
 	}
 };
 
-const moveActions = {left: {x: -1, y: 0}, right: {x: 1, y: 0}, down: {x: 0, y: 1}, up: {x: 0, y: -1}};
+const moveActions = {
+	left: {x: -1, y: 0},
+	right: {x: 1, y: 0},
+	down: {x: 0, y: 1},
+	up: {x: 0, y: -1}
+};
 
 function getPos(currentPos, dir){
 	return {
@@ -68,16 +72,21 @@ function getPos(currentPos, dir){
 	};
 }
 
+/* return 0 if empty
+or the tile obj property if defined
+else return the ground property */
+function getTile(level, x, y){
+	let tile = level[y][x];
+	return (tile.obj || tile.ground) || 0;
+}
+
 function tile_afterMove(level, pos, tile, dir){
-	// TO DO:
-	// need to make it work with several tile on one pos
-	// -> remove tile from the level
-	// and add it to its new pos
-	// use a array or something
 	return _ => {
-		level.tiles[pos.y][pos.x] = 0;
-		level.tiles[pos.y + moveActions[dir].y][pos.x + moveActions[dir].x] = tile;
-	}
+		// the box has moved so we remove it
+		level.tiles[pos.y][pos.x].obj = 0;
+		// edit the tile where the box has been pushed
+		level.tiles[pos.y + moveActions[dir].y][pos.x + moveActions[dir].x].obj = tile;
+	};
 }
 
 function moveObject(bitmap, dir, afterMoveCb=false){
