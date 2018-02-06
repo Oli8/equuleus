@@ -81,13 +81,6 @@ function getTile(level, x, y){
 }
 
 function tile_afterMove(level, pos, tile, dir){
-	// TO DO:
-	// need to make it work with several tile on one pos
-	// -> remove tile from the level
-	// and add it to its new pos
-	// use a array or something
-
-	// if it moves it's an object tho :|
 	return _ => {
 		// the box has moved so we remove it
 		level.tiles[pos.y][pos.x].obj = 0;

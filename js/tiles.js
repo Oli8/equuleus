@@ -23,7 +23,7 @@ const tiles = {
 				if(nextPos === 0){
 					moveObject(tile.bitmap, dir, tile_afterMove(level, pos, tile, dir));
 					return true;
-					}
+				}
 				else if(tiles[nextPos.tile].walkable === true &&
 					(tiles[nextPos.tile].onPush === undefined || tiles[nextPos.tile].onPush(...arguments))){
 					// TO DO:
