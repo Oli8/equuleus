@@ -17,20 +17,17 @@ const tiles = {
 		{
 			onPush: function(level, pos, dir, player){
 				// push the box
-				let tile = level.tiles[pos.y][pos.x];
+				let tile = getTile(level.tiles, pos.x, pos.y);
 				let nextPos = level[dir](pos);
 				l('push next pos', nextPos);
 				if(nextPos === 0){
 					moveObject(tile.bitmap, dir, tile_afterMove(level, pos, tile, dir));
 					return true;
-				}
+					}
 				else if(tiles[nextPos.tile].walkable === true &&
 					(tiles[nextPos.tile].onPush === undefined || tiles[nextPos.tile].onPush(...arguments))){
 					// TO DO:
 					// edit pos in the onPush above call
-					// there will be two tile on one pos
-					// update level accordingly (edit tile_aftermove ?)
-					// set z-index of ground lower or somethin
 					moveObject(tile.bitmap, dir, tile_afterMove(level, pos, tile, dir));
 					// launch the over event ?
 					return true;
@@ -64,7 +61,8 @@ const tiles = {
 				// the box will move but not the player as player.move won't be called
 				let nextPosCoord = getPos(pos, dir);
 				if(next_pos === 0 ||
-					(tiles[next_pos.tile].onPush === undefined || tiles[next_pos.tile].onPush(level, nextPosCoord, dir, player))
+					(tiles[next_pos.tile].onPush === undefined
+						|| tiles[next_pos.tile].onPush(level, nextPosCoord, dir, player))
 					&& tiles[next_pos.tile].walkable){
 					// need to edit pos in the above onPush call ?
 					l('can slide');
@@ -94,7 +92,6 @@ const tiles = {
 				return dir !== oppositeDirections.up;
 			},
 			onLeave: (level, pos, dir, player) => {
-				l('onLeave')
 				return dir === "up";
 			},
 		},
@@ -111,7 +108,6 @@ const tiles = {
 				return dir !== oppositeDirections.right;
 			},
 			onLeave: (level, pos, dir, player) => {
-				l('onLeave')
 				return dir === "right";
 			},
 		},
@@ -128,7 +124,6 @@ const tiles = {
 				return dir !== oppositeDirections.down;
 			},
 			onLeave: (level, pos, dir, player) => {
-				l('onLeave')
 				return dir === "down";
 			},
 		},
@@ -145,7 +140,6 @@ const tiles = {
 				return dir !== oppositeDirections.left;
 			},
 			onLeave: (level, pos, dir, player) => {
-				l('onLeave')
 				return dir === "left";
 			},
 		},

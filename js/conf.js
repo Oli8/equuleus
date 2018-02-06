@@ -86,10 +86,14 @@ function tile_afterMove(level, pos, tile, dir){
 	// -> remove tile from the level
 	// and add it to its new pos
 	// use a array or something
+
+	// if it moves it's an object tho :|
 	return _ => {
-		level.tiles[pos.y][pos.x] = 0;
-		level.tiles[pos.y + moveActions[dir].y][pos.x + moveActions[dir].x] = tile;
-	}
+		// the box has moved so we remove it
+		level.tiles[pos.y][pos.x].obj = 0;
+		// edit the tile where the box has been pushed
+		level.tiles[pos.y + moveActions[dir].y][pos.x + moveActions[dir].x].obj = tile;
+	};
 }
 
 function moveObject(bitmap, dir, afterMoveCb=false){

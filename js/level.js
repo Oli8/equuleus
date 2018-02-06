@@ -8,10 +8,9 @@ class Level {
 		this.difficulty = difficulty;
 	}
 
-	/* TO DO: those will make an error if the y is undefined */
 	up(pos){
 		try {
-			return this.tiles[pos.y-1][pos.x];
+			return getTile(this.tiles, pos.x, pos.y-1);
 		} catch(error) {
 			return false;
 		}
@@ -19,7 +18,7 @@ class Level {
 
 	right(pos){
 		try {
-			return this.tiles[pos.y][pos.x+1];
+			return getTile(this.tiles, pos.x+1, pos.y);
 		} catch(error) {
 			return false;
 		}
@@ -27,7 +26,7 @@ class Level {
 
 	down(pos){
 		try {
-			return this.tiles[pos.y+1][pos.x];
+			return getTile(this.tiles, pos.x, pos.y-1);
 		} catch(error) {
 			return false;
 		}
@@ -35,7 +34,7 @@ class Level {
 
 	left(pos){
 		try {
-			return this.tiles[pos.y][pos.x-1];
+			return getTile(this.tiles, pos.x-1, pos.y);
 		} catch(error) {
 			return false;
 		}
