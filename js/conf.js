@@ -114,7 +114,7 @@ function moveObject(bitmap, dir, afterMoveCb=false){
 	).call(_ => {
 		if(afterMoveCb !== false)
 			afterMoveCb();
-	})
+	});
 }
 
 // Utils

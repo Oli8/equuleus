@@ -188,6 +188,7 @@ function init(){
 			console.log('tile', tile);
 			// events that need to be checked before a move
 			// TO DO: update multi event to not stop when true
+			// need to handle event with obj + ground
 			let events = ['onPush'];
 			for(let i in events){
 				if(tile[events[i]] !== undefined){

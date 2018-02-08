@@ -15,21 +15,26 @@ const tiles = {
 		'box_brown', 
 		"You can push this object, which is a way to create bridge over water. There is no water yet tho :|",
 		{
-			onPush: function(level, pos, dir, player){
+			onPush: (level, pos, dir, player) => {
 				// push the box
 				let tile = getTile(level.tiles, pos.x, pos.y);
 				let nextPos = level[dir](pos);
-				l('push next pos', nextPos);
+				let nextPosCoord = getPos(pos, dir);
 				if(nextPos === 0){
 					moveObject(tile.bitmap, dir, tile_afterMove(level, pos, tile, dir));
 					return true;
 				}
-				else if(tiles[nextPos.tile].walkable === true &&
-					(tiles[nextPos.tile].onPush === undefined || tiles[nextPos.tile].onPush(...arguments))){
+				else if(tiles[nextPos.tile].ground === true &&
+					(tiles[nextPos.tile].onPush === undefined
+						|| tiles[nextPos.tile].onPush(level, nextPosCoord, dir, player))){
 					// TO DO:
+					// water is not walkable but we should be able to push box into in
 					// edit pos in the onPush above call
 					moveObject(tile.bitmap, dir, tile_afterMove(level, pos, tile, dir));
 					// launch the over event ?
+					// at the end of moveObject
+					// use Promise ?
+					//tiles[nextPos.tile].over(level, nextPosCoord, dir, 'box');
 					return true;
 				} else {
 					return false;
@@ -45,6 +50,15 @@ const tiles = {
 				// check if box
 			}
 		},
+		{
+			walkable: true,
+			ground: true,
+		}
+	),
+	bridge: new Tile(
+		'crate_32', // crate_42
+		"Box over water",
+		{},
 		{
 			walkable: true,
 			ground: true,
@@ -79,7 +93,13 @@ const tiles = {
 	water: new Tile(
 		"water",
 		"You can not cross over this tile, you may use a box to create a bridge.",
-		{},
+		{
+			over: (level, pos, dir, obj) => {
+				l('water over event');
+				if(obj !== 'water')
+					return;
+			}
+		},
 		{
 			ground: true,
 		}
