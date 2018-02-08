@@ -111,10 +111,10 @@ function moveObject(bitmap, dir, afterMoveCb=false){
 		pos,
 		movingTime,
 		createjs.Ease.getPowInOut(1)
-	)
-
-	if(afterMoveCb !== false)
-		afterMoveCb();
+	).call(_ => {
+		if(afterMoveCb !== false)
+			afterMoveCb();
+	})
 }
 
 // Utils
