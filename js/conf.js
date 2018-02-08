@@ -90,30 +90,33 @@ function tile_afterMove(level, pos, tile, dir){
 }
 
 function moveObject(bitmap, dir, afterMoveCb=false){
-	let pos = {x: bitmap.x, y: bitmap.y};
+	return new Promise((resolve, reject) => {
+		let pos = {x: bitmap.x, y: bitmap.y};
 
-	switch(dir){
-		case "up":
-			pos.y -= map.tiles_h;
-			break;
-		case "right":
-			pos.x += map.tiles_w;
-			break;
-		case "down":
-			pos.y += map.tiles_h;
-			break;
-		case "left":
-			pos.x -=  map.tiles_w;
-			break;
-	}
+		switch(dir){
+			case "up":
+				pos.y -= map.tiles_h;
+				break;
+			case "right":
+				pos.x += map.tiles_w;
+				break;
+			case "down":
+				pos.y += map.tiles_h;
+				break;
+			case "left":
+				pos.x -=  map.tiles_w;
+				break;
+		}
 
-	createjs.Tween.get(bitmap).to(
-		pos,
-		movingTime,
-		createjs.Ease.getPowInOut(1)
-	).call(_ => {
-		if(afterMoveCb !== false)
-			afterMoveCb();
+		createjs.Tween.get(bitmap).to(
+			pos,
+			movingTime,
+			createjs.Ease.getPowInOut(1)
+		).call(_ => {
+			if(afterMoveCb !== false)
+				afterMoveCb();
+			resolve();
+		});
 	});
 }
 
