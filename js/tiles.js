@@ -56,7 +56,7 @@ const tiles = {
 		}
 	),
 	bridge: new Tile(
-		'crate_32', // crate_42
+		'crate_42',
 		"Box over water",
 		{},
 		{
