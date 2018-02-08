@@ -27,14 +27,13 @@ const tiles = {
 				else if(tiles[nextPos.tile].ground === true &&
 					(tiles[nextPos.tile].onPush === undefined
 						|| tiles[nextPos.tile].onPush(level, nextPosCoord, dir, player))){
-					// TO DO:
-					// water is not walkable but we should be able to push box into in
-					// edit pos in the onPush above call
-					moveObject(tile.bitmap, dir, tile_afterMove(level, pos, tile, dir));
-					// launch the over event ?
-					// at the end of moveObject
-					// use Promise ?
-					//tiles[nextPos.tile].over(level, nextPosCoord, dir, 'box');
+					moveObject(tile.bitmap, dir, tile_afterMove(level, pos, tile, dir))
+						.then(_ => {
+							l('promise then');
+							if(tiles[nextPos.tile].over !== undefined)
+								tiles[nextPos.tile].over(level, nextPosCoord, dir,
+									{tile: 'box', game: player.game});
+						});
 					return true;
 				} else {
 					return false;
@@ -46,8 +45,9 @@ const tiles = {
 		'box_spot',
 		"A box must be placed on this spot in order to allow you to exit the level.",
 		{
-			over: level => {
-				// check if box
+			over: (level, pos, dir, obj) => {
+				if(obj.tile === 'box')
+					console.log("boxspot validated");
 			}
 		},
 		{
@@ -78,7 +78,6 @@ const tiles = {
 					(tiles[next_pos.tile].onPush === undefined
 						|| tiles[next_pos.tile].onPush(level, nextPosCoord, dir, player))
 					&& tiles[next_pos.tile].walkable){
-					// need to edit pos in the above onPush call ?
 					l('can slide');
 					player.move(dir, 'slide');
 				}
@@ -95,9 +94,18 @@ const tiles = {
 		"You can not cross over this tile, you may use a box to create a bridge.",
 		{
 			over: (level, pos, dir, obj) => {
-				l('water over event');
-				if(obj !== 'water')
-					return;
+				l('water over event from', obj);
+				if(obj.tile === 'box'){
+					l('create bridge');
+					// change water to bridge
+					// remove box
+					obj.game.levelContainer.removeChild(
+						level.tiles[pos.y][pos.x].obj.bitmap);
+					level.tiles[pos.y][pos.x].obj = 0;
+					// add bridge
+					level.tiles[pos.y][pos.x].ground.bitmap.image.src = tiles["bridge"].image;
+					level.tiles[pos.y][pos.x].ground.tile = "bridge";
+				}
 			}
 		},
 		{
