@@ -41,7 +41,7 @@ function init(){
 				let [y, x] = [rand(0, 9), rand(0, 9)];
 				if((x === 0 && y === 0) || (x === 9 && y === 9))
 					continue;
-				let tiles_keys = Object.keys(tiles).filter(t => t !== "exit");
+				let tiles_keys = Object.keys(tiles).filter(t => !ignoredTile.includes(t));
 				this.level.tiles[y][x] = tiles_keys[rand(0, tiles_keys.length-1)];
 			}
 		},

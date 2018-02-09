@@ -72,6 +72,10 @@ function getPos(currentPos, dir){
 	};
 }
 
+/* Tile that can't be added to a level
+and in randomizeLevel method */
+const ignoredTile = ["exit", "bridge"];
+
 /* return 0 if empty
 or the tile obj property if defined
 else return the ground property */
