@@ -176,4 +176,11 @@ const tiles = {
 			ground: true,
 		}
 	),
+	rock: new Tile(
+		"grey_rock",
+		"A tile you can not walk on nor move",
+		{
+			onPush: (level, pos, dir, player) => false
+		}
+	),
 };
