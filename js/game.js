@@ -55,6 +55,8 @@ function init(){
 				line.forEach((tile, x) => {
 					let levelTile = {ground: 0, obj: 0};
 					if(tile !== 0){
+						if(tile === 'boxSpot')
+							this.level.boxSpot++;
 						let tileObject = tiles[tile];
 						let tileBitmap = new createjs.Bitmap(tileObject.image);
 						tileBitmap.x = x * map.tiles_w;
@@ -68,8 +70,8 @@ function init(){
 						}
 					}
 					this.level.tiles[y][x] = levelTile;
-				})
-			})
+				});
+			});
 		},
 
 		stepContainer: (_ => {

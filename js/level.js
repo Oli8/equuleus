@@ -6,6 +6,8 @@ class Level {
 		// array describing the map of the level
 		this.tiles = tiles;
 		this.difficulty = difficulty;
+
+		this.boxSpot = 0;
 	}
 
 	up(pos){
@@ -38,6 +40,19 @@ class Level {
 		} catch(error) {
 			return false;
 		}
+	}
+
+	checkBoxSpot(){
+		l('checkBoxSpot');
+		l(this.tiles);
+		let boxSpotValid = 0;
+		this.tiles.forEach(line => {
+			this.line.forEach(tile => {
+				if(tile.ground === "boxSpot" && tile.obj === "box")
+					boxSpotValid++;
+			});
+		});
+		return boxSpotValid === this.boxSpot;
 	}
 
 }

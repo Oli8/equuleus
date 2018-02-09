@@ -21,7 +21,8 @@ const tiles = {
 				let nextPos = level[dir](pos);
 				let nextPosCoord = getPos(pos, dir);
 				if(nextPos === 0){
-					moveObject(tile.bitmap, dir, tile_afterMove(level, pos, tile, dir));
+					moveObject(tile.bitmap, dir, tile_afterMove(level, pos, tile, dir))
+						.then(_ => level.checkBoxSpot())
 					return true;
 				}
 				else if(tiles[nextPos.tile].ground === true &&
@@ -33,6 +34,7 @@ const tiles = {
 							if(tiles[nextPos.tile].over !== undefined)
 								tiles[nextPos.tile].over(level, nextPosCoord, dir,
 									{tile: 'box', game: player.game});
+							level.checkBoxSpot();
 						});
 					return true;
 				} else {
