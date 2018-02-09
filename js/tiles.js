@@ -16,7 +16,7 @@ const tiles = {
 		"You can push this object, which is a way to create bridge over water. There is no water yet tho :|",
 		{
 			onPush: (level, pos, dir, player) => {
-				// push the box
+				level.tiles[pos.y][pos.x].obj.bitmap.alpha = 1;
 				let tile = getTile(level.tiles, pos.x, pos.y);
 				let nextPos = level[dir](pos);
 				let nextPosCoord = getPos(pos, dir);
@@ -46,8 +46,10 @@ const tiles = {
 		"A box must be placed on this spot in order to allow you to exit the level.",
 		{
 			over: (level, pos, dir, obj) => {
-				if(obj.tile === 'box')
+				if(obj.tile === 'box'){
 					console.log("boxspot validated");
+					level.tiles[pos.y][pos.x].obj.bitmap.alpha = 0.6;
+				}
 			}
 		},
 		{
