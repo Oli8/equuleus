@@ -66,10 +66,8 @@ function init(){
 							this.levelContainer.addChildAt(tileBitmap, this.levelContainer.numChildren);
 							levelTile.obj = {bitmap: tileBitmap, tile: tile};
 						}
-						this.level.tiles[y][x] = levelTile;
-					} else {
-						this.level.tiles[y][x] = levelTile;
 					}
+					this.level.tiles[y][x] = levelTile;
 				})
 			})
 		},
