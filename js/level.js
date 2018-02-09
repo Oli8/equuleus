@@ -26,7 +26,7 @@ class Level {
 
 	down(pos){
 		try {
-			return getTile(this.tiles, pos.x, pos.y-1);
+			return getTile(this.tiles, pos.x, pos.y+1);
 		} catch(error) {
 			return false;
 		}
