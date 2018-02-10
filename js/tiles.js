@@ -27,7 +27,7 @@ const tiles = {
 				}
 				else if(tiles[nextPos.tile].ground === true &&
 					(tiles[nextPos.tile].onPush === undefined
-						|| tiles[nextPos.tile].onPush(level, nextPosCoord, dir, player))){
+						|| tiles[nextPos.tile].onPush(level, nextPosCoord, dir, {tile: 'box', game: player.game}))){
 					moveObject(tile.bitmap, dir, tile_afterMove(level, pos, tile, dir))
 						.then(_ => {
 							l('promise then');
@@ -110,7 +110,10 @@ const tiles = {
 					level.tiles[pos.y][pos.x].ground.bitmap.image.src = tiles["bridge"].image;
 					level.tiles[pos.y][pos.x].ground.tile = "bridge";
 				}
-			}
+			},
+			onPush: (level, pos, dir, obj) => {
+				return obj.tile && obj.tile === "box";
+			},
 		},
 		{
 			ground: true,
