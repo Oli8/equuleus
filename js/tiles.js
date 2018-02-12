@@ -4,15 +4,13 @@ const tiles = {
 		"You need to reach this sign to complete the level.",
 		{
 			over: (level, pos, dir, player) => {
-				player.game.completed();
+				if(level.open)
+					player.game.completed();
 			}
 		},
 		{
 			walkable: true,
 		},
-		function(bitmap){
-			bitmap.alpha = 0.5;
-		}
 	),
 	box: new Tile(
 		'box_brown', 

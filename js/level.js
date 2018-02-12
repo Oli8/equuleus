@@ -8,6 +8,8 @@ class Level {
 		this.difficulty = difficulty;
 
 		this.boxSpot = 0;
+		// Wether we can exit the level or not
+		this.open = false;
 	}
 
 	up(pos){
@@ -50,8 +52,8 @@ class Level {
 					boxSpotValid++;
 			});
 		});
-		l(boxSpotValid);
-		return boxSpotValid === this.boxSpot;
+		this.open = boxSpotValid === this.boxSpot;
+		this.tiles[9][9].obj.bitmap.alpha = this.open ? 1 : 0.5;
 	}
 
 }

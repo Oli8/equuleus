@@ -72,6 +72,7 @@ function init(){
 					this.level.tiles[y][x] = levelTile;
 				});
 			});
+			this.level.checkBoxSpot();
 		},
 
 		stepContainer: (_ => {
