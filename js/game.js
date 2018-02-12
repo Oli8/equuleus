@@ -66,10 +66,13 @@ function init(){
 							this.levelContainer.addChildAt(tileBitmap, this.levelContainer.numChildren);
 							levelTile.obj = {bitmap: tileBitmap, tile: tile};
 						}
+						if(tileObject.loadOption !== false)
+							tileObject.loadOption.bind(this)(tileBitmap);
 					}
 					this.level.tiles[y][x] = levelTile;
-				})
-			})
+				});
+			});
+			this.level.checkBoxSpot();
 		},
 
 		stepContainer: (_ => {

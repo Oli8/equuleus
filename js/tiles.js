@@ -4,12 +4,13 @@ const tiles = {
 		"You need to reach this sign to complete the level.",
 		{
 			over: (level, pos, dir, player) => {
-				player.game.completed();
+				if(level.open)
+					player.game.completed();
 			}
 		},
 		{
 			walkable: true,
-		}
+		},
 	),
 	box: new Tile(
 		'box_brown', 
@@ -21,7 +22,8 @@ const tiles = {
 				let nextPos = level[dir](pos);
 				let nextPosCoord = getPos(pos, dir);
 				if(nextPos === 0){
-					moveObject(tile.bitmap, dir, tile_afterMove(level, pos, tile, dir));
+					moveObject(tile.bitmap, dir, tile_afterMove(level, pos, tile, dir))
+						.then(_ => level.checkBoxSpot())
 					return true;
 				}
 				else if(tiles[nextPos.tile].ground === true &&
@@ -33,6 +35,7 @@ const tiles = {
 							if(tiles[nextPos.tile].over !== undefined)
 								tiles[nextPos.tile].over(level, nextPosCoord, dir,
 									{tile: 'box', game: player.game});
+							level.checkBoxSpot();
 						});
 					return true;
 				} else {
@@ -55,6 +58,9 @@ const tiles = {
 		{
 			walkable: true,
 			ground: true,
+		},
+		function(bitmap){
+			this.level.boxSpot++
 		}
 	),
 	bridge: new Tile(
