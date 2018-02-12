@@ -43,15 +43,14 @@ class Level {
 	}
 
 	checkBoxSpot(){
-		l('checkBoxSpot');
-		l(this.tiles);
 		let boxSpotValid = 0;
 		this.tiles.forEach(line => {
-			this.line.forEach(tile => {
-				if(tile.ground === "boxSpot" && tile.obj === "box")
+			line.forEach(tile => {
+				if(tile.ground.tile === "boxSpot" && tile.obj.tile === "box")
 					boxSpotValid++;
 			});
 		});
+		l(boxSpotValid);
 		return boxSpotValid === this.boxSpot;
 	}
 

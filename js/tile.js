@@ -1,6 +1,6 @@
 class Tile {
 
-	constructor(image, description, event={}, properties={}){
+	constructor(image, description, event={}, properties={}, loadOption=false){
 		this.image = `img/${image}.png`;
 		this.description = description;
 		// What happens when we're over the tile
@@ -14,6 +14,8 @@ class Tile {
 
 		this.walkable = properties.walkable;
 		this.ground = properties.ground;
+		// Done on level loading
+		this.loadOption = loadOption;
 	}	
 
 }

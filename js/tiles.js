@@ -9,6 +9,9 @@ const tiles = {
 		},
 		{
 			walkable: true,
+		},
+		function(bitmap){
+			bitmap.alpha = 0.5;
 		}
 	),
 	box: new Tile(
@@ -57,6 +60,9 @@ const tiles = {
 		{
 			walkable: true,
 			ground: true,
+		},
+		function(bitmap){
+			this.level.boxSpot++
 		}
 	),
 	bridge: new Tile(

@@ -55,8 +55,6 @@ function init(){
 				line.forEach((tile, x) => {
 					let levelTile = {ground: 0, obj: 0};
 					if(tile !== 0){
-						if(tile === 'boxSpot')
-							this.level.boxSpot++;
 						let tileObject = tiles[tile];
 						let tileBitmap = new createjs.Bitmap(tileObject.image);
 						tileBitmap.x = x * map.tiles_w;
@@ -68,6 +66,8 @@ function init(){
 							this.levelContainer.addChildAt(tileBitmap, this.levelContainer.numChildren);
 							levelTile.obj = {bitmap: tileBitmap, tile: tile};
 						}
+						if(tileObject.loadOption !== false)
+							tileObject.loadOption.bind(this)(tileBitmap);
 					}
 					this.level.tiles[y][x] = levelTile;
 				});
