@@ -17,7 +17,6 @@ const tiles = {
 		"You can push this object, which is a way to create bridge over water. There is no water yet tho :|",
 		{
 			onPush: (level, pos, dir, player) => {
-				level.tiles[pos.y][pos.x].obj.bitmap.alpha = 1;
 				let tile = getTile(level.tiles, pos.x, pos.y);
 				let nextPos = level[dir](pos);
 				let nextPosCoord = getPos(pos, dir);
