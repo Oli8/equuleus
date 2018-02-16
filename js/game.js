@@ -24,7 +24,7 @@ function init(){
 
 		level: new Level("demo", "Oli", [
 				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+				[0, "start", 0, 0, 0, 0, 0, 0, 0, 0],
 				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -39,7 +39,7 @@ function init(){
 		randomizeLevel: function(){
 			for(let i=rand(15, 60); i>=0; i--){
 				let [y, x] = [rand(0, 9), rand(0, 9)];
-				if((x === 0 && y === 0) || (x === 9 && y === 9))
+				if(["exit", "start"].includes(this.level.tiles[y][x]))
 					continue;
 				let tiles_keys = Object.keys(tiles).filter(t => !ignoredTile.includes(t));
 				this.level.tiles[y][x] = tiles_keys[rand(0, tiles_keys.length-1)];
@@ -54,7 +54,10 @@ function init(){
 			this.level.tiles.forEach((line, y) => {
 				line.forEach((tile, x) => {
 					let levelTile = {ground: 0, obj: 0};
-					if(tile !== 0){
+					if(tile === 'start'){
+						this.level.startPos = {x, y};
+					}
+					else if(tile !== 0){
 						let tileObject = tiles[tile];
 						let tileBitmap = new createjs.Bitmap(tileObject.image);
 						tileBitmap.x = x * map.tiles_w;
@@ -124,8 +127,6 @@ function init(){
 			createjs.Ticker.setFPS(60);
 
 			this.loadGround();
-
-			this.player1 = this.addPlayer();
 			this.start();
 		},
 
@@ -134,14 +135,19 @@ function init(){
 			document.onkeyup = handleKeyUp;
 			this.randomizeLevel()
 			this.loadLevel();
+			this.player1 = this.addPlayer();
+			l('startPos', this.level.startPos);
 			let alien = this.player1.sprite;
-			// FIX ME: getBounds might causes an error
 			try {
-				alien.y = -(alien.getBounds().height / 2);
+				alien.x = this.level.startPos.x * map.tiles_w + (alien.getBounds().width / 2);
 			} catch(error) {
-				alien.y = -48;
+				alien.x = this.level.startPos.x * map.tiles_w + 36;
 			}
-			alien.x = 35;
+			try {
+				alien.y = this.level.startPos.y * map.tiles_h - (alien.getBounds().height / 2);
+			} catch(error) {
+				alien.y = this.level.startPos.y * map.tiles_h - 48;
+			}
 			this.levelContainer.addChild(alien);
 		},
 
@@ -169,7 +175,7 @@ function init(){
 				}
 			});
 			let sprite = new createjs.Sprite(player_sprite, "stand");
-			return new Player(sprite, {x: 0, y: 0}, this);
+			return new Player(sprite, this.level.startPos, this);
 		},
 
 		completed: function(){
