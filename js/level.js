@@ -53,8 +53,7 @@ class Level {
 			});
 		});
 		this.open = boxSpotValid === this.boxSpot;
-		// FIX ME: Hardcoded exit pos for now
-		this.tiles[9][9].obj.bitmap.alpha = this.open ? 1 : 0.5;
+		this.tiles[this.exitPos.y][this.exitPos.x].obj.bitmap.alpha = this.open ? 1 : 0.5;
 	}
 
 }

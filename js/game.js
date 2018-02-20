@@ -32,7 +32,7 @@ function init(){
 				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0, 0, "exit"]
+				[0, 0, 0, 0, 0, 0, 0, 0, "exit", 0]
 			],
 		"hard af"),
 
@@ -54,10 +54,16 @@ function init(){
 			this.level.tiles.forEach((line, y) => {
 				line.forEach((tile, x) => {
 					let levelTile = {ground: 0, obj: 0};
-					if(tile === 'start'){
-						this.level.startPos = {x, y};
+					/* Why doesn't this works ?
+					if(["exit", "start"].includes(tile)){
+						this.level[tile + "Pos"] = {x, y};
 					}
+					*/
+					if(tile === 'start')
+						this.level.startPos = {x, y};
 					else if(tile !== 0){
+						if(tile === 'exit')
+							this.level.exitPos = {x, y};
 						let tileObject = tiles[tile];
 						let tileBitmap = new createjs.Bitmap(tileObject.image);
 						tileBitmap.x = x * map.tiles_w;
@@ -136,7 +142,6 @@ function init(){
 			this.randomizeLevel()
 			this.loadLevel();
 			this.player1 = this.addPlayer();
-			l('startPos', this.level.startPos);
 			let alien = this.player1.sprite;
 			try {
 				alien.x = this.level.startPos.x * map.tiles_w + (alien.getBounds().width / 2);
@@ -201,8 +206,6 @@ function init(){
 				if(tile[events[i]] !== undefined){
 					l(events[i] + ' event');
 					return tile[events[i]](this.level, tilePos, direction, player);
-					//if(tile[events[i]](this.level, tilePos, direction, player) === false)
-						//return false;
 				}
 			}
 
