@@ -9,6 +9,8 @@ function init(){
 			let groundImg = new Image();
 			groundImg.src = imgs.ground;
 			ground.graphics.beginBitmapFill(groundImg);
+			// TO DO: Update ground dimensions with level size
+			// -> map width = map.tiles_w * level.width
 			ground.graphics.drawRect(0, 0, map.width, map.height);
 			this.levelContainer.addChild(ground);
 		},
@@ -38,6 +40,7 @@ function init(){
 
 		randomizeLevel: function(){
 			for(let i=rand(15, 60); i>=0; i--){
+				// TO DO: Update with level dimension
 				let [y, x] = [rand(0, 9), rand(0, 9)];
 				if(["exit", "start"].includes(this.level.tiles[y][x]))
 					continue;
