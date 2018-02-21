@@ -36,7 +36,7 @@ function init(){
 				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 				[0, 0, 0, 0, 0, 0, 0, 0, "exit", 0]
 			],
-		"hard af"),
+		10, 10, "hard af"),
 
 		randomizeLevel: function(){
 			for(let i=rand(15, 60); i>=0; i--){
