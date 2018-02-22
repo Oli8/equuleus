@@ -58,8 +58,8 @@ class Player {
 
 		let newPos = getPos({x: this.x, y: this.y}, dir);
 		// check if player in map
-		// TO DO: Update with level dimension
-		if(!(newPos.x >= 0 && newPos.x < 10 && newPos.y >= 0 && newPos.y < 10)){ //hardcoded bounderies for now
+		if(!(newPos.x >= 0 && newPos.x < this.game.level.width
+			&& newPos.y >= 0 && newPos.y < this.game.level.height)){
 			return false;
 		}
 		// check next pos tiles

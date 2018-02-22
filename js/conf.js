@@ -4,7 +4,6 @@ const height = 710;
 const map = {
 	width: 640,
 	height: 640,
-	// 10 * 10 level
 	tiles_w: 64,
 	tiles_h: 64,
 };

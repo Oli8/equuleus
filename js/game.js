@@ -9,9 +9,10 @@ function init(){
 			let groundImg = new Image();
 			groundImg.src = imgs.ground;
 			ground.graphics.beginBitmapFill(groundImg);
-			// TO DO: Update ground dimensions with level size
-			// -> map width = map.tiles_w * level.width
-			ground.graphics.drawRect(0, 0, map.width, map.height);
+			ground.graphics.drawRect(0, 0,
+				map.tiles_w * this.level.width,
+				map.tiles_h * this.level.height
+			);
 			this.levelContainer.addChild(ground);
 		},
 
@@ -25,23 +26,21 @@ function init(){
 		})(),
 
 		level: new Level("demo", "Oli", [
-				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-				[0, "start", 0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0, "exit", 0]
+				[0, 0, 0, 0, 0, 0, 0, 0, 0],
+				[0, "start", 0, 0, 0, 0, 0, 0, 0],
+				[0, 0, 0, 0, 0, 0, 0, 0, 0],
+				[0, 0, 0, 0, 0, 0, 0, 0, 0],
+				[0, 0, 0, 0, 0, 0, 0, 0, 0],
+				[0, 0, 0, 0, 0, 0, 0, 0, 0],
+				[0, 0, 0, 0, 0, 0, 0, 0, 0],
+				[0, 0, 0, 0, 0, 0, 0, 0, 0],
+				[0, 0, 0, 0, 0, 0, 0, 0, "exit"]
 			],
-		10, 10, "hard af"),
+		9, 9, "hard af"),
 
 		randomizeLevel: function(){
 			for(let i=rand(15, 60); i>=0; i--){
-				// TO DO: Update with level dimension
-				let [y, x] = [rand(0, 9), rand(0, 9)];
+				let [y, x] = [rand(0, this.level.height-1), rand(0, this.level.width-1)];
 				if(["exit", "start"].includes(this.level.tiles[y][x]))
 					continue;
 				let tiles_keys = Object.keys(tiles).filter(t => !ignoredTile.includes(t));
@@ -62,6 +61,7 @@ function init(){
 						this.level[tile + "Pos"] = {x, y};
 					}
 					*/
+					// TO DO: use tile loadOptions
 					if(tile === 'start')
 						this.level.startPos = {x, y};
 					else if(tile !== 0){
