@@ -194,4 +194,11 @@ const tiles = {
 			onPush: (level, pos, dir, player) => false
 		}
 	),
+	laser: new Tile(
+		"buttonBlue",
+		"Laser that will kill you if you align with it",
+		{
+			onPush: (level, pos, dir, player) => false
+		}
+	)
 };
