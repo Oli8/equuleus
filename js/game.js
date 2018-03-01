@@ -125,8 +125,8 @@ function init(){
 
 		},
 
-		loadError: function(){
-
+		loadError: function(event){
+			console.error(`[Equuleus] Could not load -> ${event.item.src}`);
 		},
 		/* ***** ***** */
 		setup: function(){
