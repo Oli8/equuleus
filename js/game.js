@@ -25,18 +25,7 @@ function init(){
 			return levelContainer;
 		})(),
 
-		level: new Level("demo", "Oli", [
-				[0, 0, 0, 0, 0, 0, 0, 0, 0],
-				[0, "start", 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0, "exit"]
-			],
-		9, 9, "hard af"),
+		level: levels[0],
 
 		randomizeLevel: function(){
 			for(let i=rand(15, 60); i>=0; i--){
@@ -142,7 +131,7 @@ function init(){
 		start: function(){
 			document.onkeydown = handleKeyDown;
 			document.onkeyup = handleKeyUp;
-			this.randomizeLevel()
+			//this.randomizeLevel()
 			this.loadLevel();
 			this.player1 = this.addPlayer();
 			let alien = this.player1.sprite;
