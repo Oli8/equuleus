@@ -25,7 +25,7 @@ function init(){
 			return levelContainer;
 		})(),
 
-		level: levels[0],
+		level: levels[rand(0, levels.length-1)],
 
 		randomizeLevel: function(){
 			for(let i=rand(15, 60); i>=0; i--){
