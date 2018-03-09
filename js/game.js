@@ -131,7 +131,7 @@ function init(){
 		start: function(){
 			document.onkeydown = handleKeyDown;
 			document.onkeyup = handleKeyUp;
-			//this.randomizeLevel()
+
 			this.loadLevel();
 			this.player1 = this.addPlayer();
 			let alien = this.player1.sprite;
@@ -229,10 +229,6 @@ function init(){
 		let dir = Object.entries(keys.direction).find(v => v[1] === key);
 		if(dir !== undefined)
 			game.player1.move(dir[0]);
-	}
-
-	function handleKeyUp(e){
-
 	}
 
 	game._preload();
