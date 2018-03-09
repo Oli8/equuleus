@@ -11,6 +11,9 @@ const tiles = {
 		{
 			walkable: true,
 		},
+		function(bitmap, pos){
+			this.level.exitPos = pos;
+		},
 	),
 	box: new Tile(
 		'box_brown', 
@@ -59,7 +62,7 @@ const tiles = {
 			walkable: true,
 			ground: true,
 		},
-		function(bitmap){
+		function(bitmap, pos){
 			this.level.boxSpot++
 		}
 	),

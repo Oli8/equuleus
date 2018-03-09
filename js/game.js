@@ -50,12 +50,9 @@ function init(){
 						this.level[tile + "Pos"] = {x, y};
 					}
 					*/
-					// TO DO: use tile loadOptions
 					if(tile === 'start')
 						this.level.startPos = {x, y};
 					else if(tile !== 0){
-						if(tile === 'exit')
-							this.level.exitPos = {x, y};
 						let tileObject = tiles[tile];
 						let tileBitmap = new createjs.Bitmap(tileObject.image);
 						tileBitmap.x = x * map.tiles_w;
@@ -68,7 +65,7 @@ function init(){
 							levelTile.obj = {bitmap: tileBitmap, tile: tile};
 						}
 						if(tileObject.loadOption !== false)
-							tileObject.loadOption.bind(this)(tileBitmap);
+							tileObject.loadOption.bind(this)(tileBitmap, {x, y});
 					}
 					this.level.tiles[y][x] = levelTile;
 				});
@@ -130,7 +127,6 @@ function init(){
 
 		start: function(){
 			document.onkeydown = handleKeyDown;
-			document.onkeyup = handleKeyUp;
 
 			this.loadLevel();
 			this.player1 = this.addPlayer();
