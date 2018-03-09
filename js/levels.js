@@ -8,7 +8,7 @@ const levels = [
 		["rock", 0, 0, 0, "rock", "exit", 0],
 		["rock", 0, 0, 0, "rock", "rock", "rock"],
 	], 7, 7, "Easy"),
-	new Level("Over the Briges", "Oli", [
+	new Level("Over the Bridge", "Oli", [
 		["start", 0, 0],
 		[0, "box", 0],
 		[0, "box", 0],
