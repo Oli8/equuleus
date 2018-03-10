@@ -49,11 +49,10 @@ class Player {
 
 	can_move(dir){
 		let currentTile = getTile(this.game.level.tiles, this.x, this.y);
-		if(currentTile !== 0){
-				if(this.game.handleTileLeaveEvent(tiles[currentTile.tile],
+
+		if(currentTile !== 0 && this.game.handleTileLeaveEvent(tiles[currentTile.tile],
 					{x: this.x, y: this.y}, dir, this) === false){
-					return false;
-				}
+			return false;
 		}
 
 		let newPos = getPos({x: this.x, y: this.y}, dir);
