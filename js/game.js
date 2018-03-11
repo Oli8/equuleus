@@ -9,7 +9,9 @@ function init(){
 			let groundImg = new Image();
 			groundImg.src = imgs.ground;
 			ground.graphics.beginBitmapFill(groundImg);
-			ground.graphics.drawRect(0, 0,
+			ground.graphics.drawRect(
+				this.level.padWidth,
+				this.level.padHeight,
 				map.tiles_w * this.level.width,
 				map.tiles_h * this.level.height
 			);
@@ -55,8 +57,8 @@ function init(){
 					else if(tile !== 0){
 						let tileObject = tiles[tile];
 						let tileBitmap = new createjs.Bitmap(tileObject.image);
-						tileBitmap.x = x * map.tiles_w;
-						tileBitmap.y = y * map.tiles_h;
+						tileBitmap.x = x * map.tiles_w + this.level.padWidth;
+						tileBitmap.y = y * map.tiles_h + this.level.padHeight;
 						if(tileObject.ground){
 							this.levelContainer.addChildAt(tileBitmap, 1);
 							levelTile.ground = {bitmap: tileBitmap, tile: tile};
@@ -121,6 +123,9 @@ function init(){
 			createjs.Ticker.addEventListener('tick', tick);
 			createjs.Ticker.setFPS(60);
 
+			this.level.padWidth = ((10 - this.level.width) * map.tiles_w) / 2;
+			this.level.padHeight = ((10 - this.level.height) * map.tiles_h) / 2;
+
 			this.loadGround();
 			this.start();
 		},
@@ -132,14 +137,14 @@ function init(){
 			this.player1 = this.addPlayer();
 			let alien = this.player1.sprite;
 			try {
-				alien.x = this.level.startPos.x * map.tiles_w + (alien.getBounds().width / 2);
+				alien.x = this.level.startPos.x * map.tiles_w + (alien.getBounds().width / 2) + this.level.padWidth;
 			} catch(error) {
-				alien.x = this.level.startPos.x * map.tiles_w + 36;
+				alien.x = this.level.startPos.x * map.tiles_w + 36 + this.level.padWidth;
 			}
 			try {
-				alien.y = this.level.startPos.y * map.tiles_h - (alien.getBounds().height / 2);
+				alien.y = this.level.startPos.y * map.tiles_h - (alien.getBounds().height / 2) + this.level.padHeight;
 			} catch(error) {
-				alien.y = this.level.startPos.y * map.tiles_h - 48;
+				alien.y = this.level.startPos.y * map.tiles_h - 48 + this.level.padHeight;
 			}
 			this.levelContainer.addChild(alien);
 		},
