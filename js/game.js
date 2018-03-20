@@ -87,6 +87,23 @@ function init(){
 				}
 			};
 		})(),
+
+		loadGiveUpButton: function(){
+			let button = new createjs.Text("Give up", ...font.format());
+			button.x = 15;
+			button.y = 15;
+			var hit = new createjs.Shape();
+			hit.graphics.beginFill('#000').drawRect(0, 0, button.getMeasuredWidth(), button.getMeasuredHeight());
+			button.hitArea = hit;
+			button.alpha = 0.7;
+			button.on('mouseover', function(event){
+				button.alpha = 1;
+				button.cursor = 'Pointer';
+			});
+			button.on('mouseout', event => button.alpha = 0.7);
+			button.addEventListener('click', _ => this.giveUp());
+			stage.addChild(button);
+		},
 		/* ***** Loading related methods ***** */
 		setupManifest: function(images){
 		    for(var i in images)
@@ -127,6 +144,7 @@ function init(){
 			this.level.padHeight = ((10 - this.level.height) * map.tiles_h) / 2;
 
 			this.loadGround();
+			this.loadGiveUpButton();
 			this.start();
 		},
 
@@ -224,7 +242,11 @@ function init(){
 			// TO DO: go through the level array from the player position
 			// in each four directions and check the onAlign property of the
 			// first object met.
-		}
+		},
+
+		giveUp: function(){
+			location.reload();
+		},
 	}
 
 	function tick(){
