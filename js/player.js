@@ -41,6 +41,7 @@ class Player {
 			if(this.next_pos_data !== false){
 				this.game.handleTileEventAfter(...this.next_pos_data);
 			}
+			this.game.handleAlignEvent(this)
 		}, movingTime);
 
 		if(anim === 'walk')

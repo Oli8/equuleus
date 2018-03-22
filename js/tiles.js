@@ -202,7 +202,9 @@ const tiles = {
 		"Laser that will kill you if you align with it",
 		{
 			onPush: (level, pos, dir, player) => false,
-			onAlign: (level, pos, dir, player) => false,
+			onAlign: (level, pos, dir, player) => {
+				alert('you got lasered :/')
+			},
 		}
 	)
 };

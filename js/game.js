@@ -242,7 +242,7 @@ function init(){
 			// TO DO: go through the level array from the player position
 			// in each four directions and check the onAlign property of the
 			// first object met.
-			console.log(player, this.level);
+			console.log("align event", player, this.level);
 
 			//Factorise code maybe ? :|
 			//left
