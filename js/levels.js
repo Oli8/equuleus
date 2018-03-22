@@ -19,4 +19,9 @@ const levels = [
 		[0, "water", "water"],
 		[0, "water", "exit"],
 	], 3, 9, "Easy"),
+	new Level("Laser", "Jé", [
+		["start", 0, 0],
+		[0, "box", "laser"],
+		[0, "box", "exit"],
+	], 3, 3, "Easy"),
 ];
