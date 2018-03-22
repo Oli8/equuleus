@@ -242,6 +242,22 @@ function init(){
 			// TO DO: go through the level array from the player position
 			// in each four directions and check the onAlign property of the
 			// first object met.
+			console.log(player, this.level);
+
+			//left
+			for(let i = player.x; i >= 0; i--){
+				if(this.level.tiles[player.y][i] !== 0) {
+					if(this.level.tiles[player.y][i] !== 'laser') {
+						break; // laser can't reach you :o
+					}
+					else {
+						//you dieded :(
+						//Trigger onAlign event
+						this.level.tiles[player.y][i].onAlign(this.level, {x: i, y: player.y}, 'left', player);
+					}
+				}
+			}
+
 		},
 
 		giveUp: function(){
