@@ -247,50 +247,54 @@ function init(){
 			//Factorise code maybe ? :|
 			//left
 			for(let i = player.x; i >= 0; i--){
-				if(this.level.tiles[player.y][i] !== 0) {
-					if(this.level.tiles[player.y][i] !== 'laser') {
+				let tile = getTile(this.level.tiles, i, player.y);
+				if(tile !== 0) {
+					if(tile !== 'laser') {
 						break; // laser can't reach you :o
 					}
 					else {
 						//you dieded :(
 						//Trigger onAlign event
-						this.level.tiles[player.y][i].onAlign(this.level, {x: i, y: player.y}, 'left', player);
+						tile.onAlign(this.level, {x: i, y: player.y}, 'left', player);
 					}
 				}
 			}
 
 			//right
 			for(let i = player.x; i <= this.level.width; i++){
-				if(this.level.tiles[player.y][i] !== 0) {
-					if(this.level.tiles[player.y][i] !== 'laser') {
+				let tile = getTile(this.level.tiles, i, player.y);
+				if(tile !== 0) {
+					if(tile !== 'laser') {
 						break;
 					}
 					else {
-						this.level.tiles[player.y][i].onAlign(this.level, {x: i, y: player.y}, 'right', player);
+						tile.onAlign(this.level, {x: i, y: player.y}, 'right', player);
 					}
 				}
 			}
 
 			//up
 			for(let i = player.y; i >= 0; i--){
-				if(this.level.tiles[i][player.x] !== 0) {
-					if(this.level.tiles[i][player.x] !== 'laser') {
+				let tile = getTile(this.level.tiles, player.x, i);
+				if(tile !== 0) {
+					if(tile !== 'laser') {
 						break;
 					}
 					else {
-						this.level.tiles[i][player.x].onAlign(this.level, {x: player.x, y: i}, 'up', player);
+						tile.onAlign(this.level, {x: player.x, y: i}, 'up', player);
 					}
 				}
 			}
 
 			//down
 			for(let i = player.y; i <= this.level.height; i++){
-				if(this.level.tiles[i][player.x] !== 0) {
-					if(this.level.tiles[i][player.x] !== 'laser') {
+				let tile = getTile(this.level.tiles, player.x, i);
+				if(tile !== 0) {
+					if(tile !== 'laser') {
 						break;
 					}
 					else {
-						this.level.tiles[i][player.x].onAlign(this.level, {x: player.x, y: i}, 'down', player);
+						tile.onAlign(this.level, {x: player.x, y: i}, 'down', player);
 					}
 				}
 			}
