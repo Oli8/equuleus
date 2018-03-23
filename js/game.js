@@ -265,11 +265,12 @@ function init(){
 			for(let i = player.x; i <= this.level.width; i++){
 				let tile = getTile(this.level.tiles, i, player.y);
 				if(tile !== 0) {
-					if(tile !== 'laser') {
+					let tileName = tile.tile;
+					if(tileName !== 'laser') {
 						break;
 					}
 					else {
-						tile.onAlign(this.level, {x: i, y: player.y}, 'right', player);
+						tiles[tileName].onAlign(this.level, {x: i, y: player.y}, 'right', player);
 					}
 				}
 			}
@@ -278,11 +279,12 @@ function init(){
 			for(let i = player.y; i >= 0; i--){
 				let tile = getTile(this.level.tiles, player.x, i);
 				if(tile !== 0) {
-					if(tile !== 'laser') {
+					let tileName = tile.tile;
+					if(tileName !== 'laser') {
 						break;
 					}
 					else {
-						tile.onAlign(this.level, {x: player.x, y: i}, 'up', player);
+						tiles[tileName].onAlign(this.level, {x: player.x, y: i}, 'up', player);
 					}
 				}
 			}
@@ -291,11 +293,12 @@ function init(){
 			for(let i = player.y; i <= this.level.height; i++){
 				let tile = getTile(this.level.tiles, player.x, i);
 				if(tile !== 0) {
-					if(tile !== 'laser') {
+					let tileName = tile.tile;
+					if(tileName !== 'laser') {
 						break;
 					}
 					else {
-						tile.onAlign(this.level, {x: player.x, y: i}, 'down', player);
+						tiles[tileName].onAlign(this.level, {x: player.x, y: i}, 'down', player);
 					}
 				}
 			}
