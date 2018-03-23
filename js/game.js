@@ -249,13 +249,14 @@ function init(){
 			for(let i = player.x; i >= 0; i--){
 				let tile = getTile(this.level.tiles, i, player.y);
 				if(tile !== 0) {
-					if(tile !== 'laser') {
+					let tileName = tile.tile;
+					if(tileName !== 'laser') { // Maybe check if has onAlgin prop ?
 						break; // laser can't reach you :o
 					}
 					else {
 						//you dieded :(
 						//Trigger onAlign event
-						tile.onAlign(this.level, {x: i, y: player.y}, 'left', player);
+						tiles[tileName].onAlign(this.level, {x: i, y: player.y}, 'left', player);
 					}
 				}
 			}
