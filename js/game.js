@@ -242,6 +242,67 @@ function init(){
 			// TO DO: go through the level array from the player position
 			// in each four directions and check the onAlign property of the
 			// first object met.
+			console.log("align event", player, this.level);
+
+			//Factorise code maybe ? :|
+			//left
+			for(let i = player.x; i >= 0; i--){
+				let tile = getTile(this.level.tiles, i, player.y);
+				if(tile !== 0) {
+					let tileName = tile.tile;
+					if(tileName !== 'laser') { // Maybe check if has onAlgin prop ?
+						break; // laser can't reach you :o
+					}
+					else {
+						//you dieded :(
+						//Trigger onAlign event
+						tiles[tileName].onAlign(this.level, {x: i, y: player.y}, 'left', player);
+					}
+				}
+			}
+
+			//right
+			for(let i = player.x; i <= this.level.width; i++){
+				let tile = getTile(this.level.tiles, i, player.y);
+				if(tile !== 0) {
+					let tileName = tile.tile;
+					if(tileName !== 'laser') {
+						break;
+					}
+					else {
+						tiles[tileName].onAlign(this.level, {x: i, y: player.y}, 'right', player);
+					}
+				}
+			}
+
+			//up
+			for(let i = player.y; i >= 0; i--){
+				let tile = getTile(this.level.tiles, player.x, i);
+				if(tile !== 0) {
+					let tileName = tile.tile;
+					if(tileName !== 'laser') {
+						break;
+					}
+					else {
+						tiles[tileName].onAlign(this.level, {x: player.x, y: i}, 'up', player);
+					}
+				}
+			}
+
+			//down
+			for(let i = player.y; i <= this.level.height; i++){
+				let tile = getTile(this.level.tiles, player.x, i);
+				if(tile !== 0) {
+					let tileName = tile.tile;
+					if(tileName !== 'laser') {
+						break;
+					}
+					else {
+						tiles[tileName].onAlign(this.level, {x: player.x, y: i}, 'down', player);
+					}
+				}
+			}
+
 		},
 
 		giveUp: function(){
