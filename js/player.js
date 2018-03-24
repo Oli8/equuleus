@@ -41,6 +41,7 @@ class Player {
 			if(this.next_pos_data !== false){
 				this.game.handleTileEventAfter(...this.next_pos_data);
 			}
+			// TO DO: don't call it for every direction all the time
 			this.game.handleAlignEvent(this)
 		}, movingTime);
 
