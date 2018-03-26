@@ -27,7 +27,7 @@ function init(){
 			return levelContainer;
 		})(),
 
-		level: levels[rand(0, levels.length-1)],
+		level: levels[2], //levels[rand(0, levels.length-1)],
 
 		randomizeLevel: function(){
 			for(let i=rand(15, 60); i>=0; i--){
@@ -307,6 +307,20 @@ function init(){
 
 		giveUp: function(){
 			location.reload();
+		},
+
+		laserAnim: function(dir, pos){
+			posSettings = {
+				right: {rotation: 270, x: 0},
+				down: {rotation: 0, x: 0},
+				left: {rotation: 90, x: 0},
+				up: {rotation: 180, x: 0},
+			};
+			let laserBitmap = new createjs.Bitmap(imgs.laser);
+			laserBitmap.x = this.level.padWidth + (pos.x * map.tiles_w);
+			laserBitmap.y = this.level.padHeight + (pos.y * map.tiles_h);
+			this.levelContainer.addChild(laserBitmap);
+			laserBitmap.rotation = posSettings[dir].rotation;
 		},
 	}
 

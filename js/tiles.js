@@ -203,7 +203,8 @@ const tiles = {
 		{
 			onPush: (level, pos, dir, player) => false,
 			onAlign: (level, pos, dir, player) => {
-				alert(`you got lasered from ${dir}side :/`)
+				alert(`you got lasered from ${dir}side :/`);
+				player.game.laserAnim(dir, pos);
 			},
 		}
 	)

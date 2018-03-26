@@ -46,6 +46,7 @@ const imgs = {
 
 	ground: 'img/medievalTile_15.png',
 	tiles: Object.values(tiles).map(t => t.image),
+	laser: 'img/Lasers/laserBlue01.png',
 };
 
 const font = {
