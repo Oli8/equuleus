@@ -204,6 +204,7 @@ const tiles = {
 			onPush: (level, pos, dir, player) => false,
 			onAlign: (level, pos, dir, player) => {
 				alert(`you got lasered from ${dir}side :/`)
+				//TODO: Make laser animation
 			},
 		}
 	)
