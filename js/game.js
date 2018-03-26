@@ -239,11 +239,7 @@ function init(){
 		},
 
 		handleAlignEvent: function(player){
-			// TO DO: go through the level array from the player position
-			// in each four directions and check the onAlign property of the
-			// first object met.
 			console.log("align event", player, this.level);
-
 			//Factorise code maybe ? :|
 			//left
 			for(let i = player.x; i >= 0; i--){
@@ -260,9 +256,8 @@ function init(){
 					}
 				}
 			}
-
 			//right
-			for(let i = player.x; i <= this.level.width; i++){
+			for(let i = player.x; i < this.level.width; i++){
 				let tile = getTile(this.level.tiles, i, player.y);
 				if(tile !== 0) {
 					let tileName = tile.tile;
@@ -274,7 +269,6 @@ function init(){
 					}
 				}
 			}
-
 			//up
 			for(let i = player.y; i >= 0; i--){
 				let tile = getTile(this.level.tiles, player.x, i);
@@ -288,9 +282,8 @@ function init(){
 					}
 				}
 			}
-
 			//down
-			for(let i = player.y; i <= this.level.height; i++){
+			for(let i = player.y; i < this.level.height; i++){
 				let tile = getTile(this.level.tiles, player.x, i);
 				if(tile !== 0) {
 					let tileName = tile.tile;
@@ -302,7 +295,6 @@ function init(){
 					}
 				}
 			}
-
 		},
 
 		giveUp: function(){
