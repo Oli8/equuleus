@@ -208,7 +208,7 @@ function init(){
 
 		handleTileEventBefore: function(tile, tilePos, direction, player){
 			// return a boolean wether we can move or not
-			console.log('tile', tile);
+			// console.log('tile', tile);
 			// events that need to be checked before a move
 			// TO DO: update multi event to not stop when true
 			// need to handle event with obj + ground
@@ -225,7 +225,7 @@ function init(){
 
 		handleTileEventAfter: function(tile, tilePos, direction, player){
 			// return a boolean wether we can move or not
-			console.log('tile event after', tile);
+			// console.log('tile event after', tile);
 			// events that need to be checked after a move
 			let events = ['over'];
 			for(let i in events){
@@ -242,7 +242,7 @@ function init(){
 			// TO DO: go through the level array from the player position
 			// in each four directions and check the onAlign property of the
 			// first object met.
-			console.log("align event", player, this.level);
+			// console.log("align event", player, this.level);
 
 			//Factorise code maybe ? :|
 			//left
@@ -250,7 +250,7 @@ function init(){
 				let tile = getTile(this.level.tiles, i, player.y);
 				if(tile !== 0) {
 					let tileName = tile.tile;
-					if(tileName !== 'laser') { // Maybe check if has onAlgin prop ?
+					if(!tiles[tileName].hasOwnProperty('onAlign')) {
 						break; // laser can't reach you :o
 					}
 					else {
@@ -266,7 +266,7 @@ function init(){
 				let tile = getTile(this.level.tiles, i, player.y);
 				if(tile !== 0) {
 					let tileName = tile.tile;
-					if(tileName !== 'laser') {
+					if(!tiles[tileName].hasOwnProperty('onAlign')) {
 						break;
 					}
 					else {
@@ -280,7 +280,7 @@ function init(){
 				let tile = getTile(this.level.tiles, player.x, i);
 				if(tile !== 0) {
 					let tileName = tile.tile;
-					if(tileName !== 'laser') {
+					if(!tiles[tileName].hasOwnProperty('onAlign')) {
 						break;
 					}
 					else {
@@ -294,7 +294,7 @@ function init(){
 				let tile = getTile(this.level.tiles, player.x, i);
 				if(tile !== 0) {
 					let tileName = tile.tile;
-					if(tileName !== 'laser') {
+					if(!tiles[tileName].hasOwnProperty('onAlign')) {
 						break;
 					}
 					else {
