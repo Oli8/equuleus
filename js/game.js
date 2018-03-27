@@ -27,7 +27,7 @@ function init(){
 			return levelContainer;
 		})(),
 
-		level: levels[rand(0, levels.length-1)],
+		level: levels[2], //levels[rand(0, levels.length-1)],
 
 		randomizeLevel: function(){
 			for(let i=rand(15, 60); i>=0; i--){
@@ -256,7 +256,7 @@ function init(){
 				}
 			}
 			//right
-			for(let i = player.x; i <= this.level.width; i++){
+			for(let i = player.x; i < this.level.width; i++){
 				let tile = getTile(this.level.tiles, i, player.y);
 				if(tile !== 0) {
 					let tileName = tile.tile;
@@ -282,7 +282,7 @@ function init(){
 				}
 			}
 			//down
-			for(let i = player.y; i <= this.level.height; i++){
+			for(let i = player.y; i < this.level.height; i++){
 				let tile = getTile(this.level.tiles, player.x, i);
 				if(tile !== 0) {
 					let tileName = tile.tile;
@@ -299,7 +299,30 @@ function init(){
 		giveUp: function(){
 			location.reload();
 		},
-	}
+
+		laserAnim: function(dir, pos, player){
+			let posSetting = {
+				right: {rotation: 270, x: 0, y: 35},
+				down: {rotation: 0, x: 35, y: 0},
+				left: {rotation: 90, x: 35, y: 35},
+				up: {rotation: 180, x: 35, y: 0},
+			}[dir];
+			let laserBitmap = new createjs.Bitmap(imgs.laser);
+			laserBitmap.x = this.level.padWidth + (pos.x * map.tiles_w) + posSetting.x;
+			laserBitmap.y = this.level.padHeight + (pos.y * map.tiles_h) + posSetting.y;
+            laserBitmap.rotation = posSetting.rotation;
+            this.levelContainer.addChild(laserBitmap);
+			// TODO: set time so the laser goes the same speed no matter the distance
+			createjs.Tween.get(laserBitmap).to(
+                {
+                    x: this.level.padWidth + player.x * map.tiles_w + posSetting.x,
+                    y: this.level.padHeight + player.y * map.tiles_h + posSetting.y,
+                },
+                200,
+                createjs.Ease.getPowInOut(1)
+            )
+		},
+	};
 
 	function tick(){
 		stage.update();
