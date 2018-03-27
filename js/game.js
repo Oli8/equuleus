@@ -245,10 +245,9 @@ function init(){
 				let tile = getTile(this.level.tiles, i, player.y);
 				if(tile !== 0) {
 					let tileName = tile.tile;
-					if(tileName !== 'laser') { // Maybe check if has onAlgin prop ?
+					if(!tiles[tileName].hasOwnProperty('onAlign')){
 						break; // laser can't reach you :o
-					}
-					else {
+					} else {
 						//you dieded :(
 						//Trigger onAlign event
 						tiles[tileName].onAlign(this.level, {x: i, y: player.y}, 'left', player);
@@ -260,10 +259,9 @@ function init(){
 				let tile = getTile(this.level.tiles, i, player.y);
 				if(tile !== 0) {
 					let tileName = tile.tile;
-					if(tileName !== 'laser') {
+					if(!tiles[tileName].hasOwnProperty('onAlign')){
 						break;
-					}
-					else {
+					} else {
 						tiles[tileName].onAlign(this.level, {x: i, y: player.y}, 'right', player);
 					}
 				}
@@ -273,10 +271,9 @@ function init(){
 				let tile = getTile(this.level.tiles, player.x, i);
 				if(tile !== 0) {
 					let tileName = tile.tile;
-					if(tileName !== 'laser') {
+					if(!tiles[tileName].hasOwnProperty('onAlign')){
 						break;
-					}
-					else {
+					} else {
 						tiles[tileName].onAlign(this.level, {x: player.x, y: i}, 'up', player);
 					}
 				}
@@ -286,10 +283,9 @@ function init(){
 				let tile = getTile(this.level.tiles, player.x, i);
 				if(tile !== 0) {
 					let tileName = tile.tile;
-					if(tileName !== 'laser') {
+					if(!tiles[tileName].hasOwnProperty('onAlign')){
 						break;
-					}
-					else {
+					} else {
 						tiles[tileName].onAlign(this.level, {x: player.x, y: i}, 'down', player);
 					}
 				}
