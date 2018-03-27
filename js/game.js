@@ -239,7 +239,6 @@ function init(){
 		},
 
 		handleAlignEvent: function(player){
-			console.log("align event", player, this.level);
 			//Factorise code maybe ? :|
 			//left
 			for(let i = player.x; i >= 0; i--){
