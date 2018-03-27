@@ -311,13 +311,12 @@ function init(){
 			laserBitmap.y = this.level.padHeight + (pos.y * map.tiles_h) + posSetting.y;
             laserBitmap.rotation = posSetting.rotation;
             this.levelContainer.addChild(laserBitmap);
-			// TODO: set time so the laser goes the same speed no matter the distance
 			createjs.Tween.get(laserBitmap).to(
                 {
                     x: this.level.padWidth + player.x * map.tiles_w + posSetting.x,
                     y: this.level.padHeight + player.y * map.tiles_h + posSetting.y,
                 },
-                200,
+                200 * Math.max(...[pos.x - player.x, pos.y - player.y].map(Math.abs)), // So the speed is the same
                 createjs.Ease.getPowInOut(1)
             )
 		},
