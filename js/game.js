@@ -27,7 +27,7 @@ function init(){
 			return levelContainer;
 		})(),
 
-		level: levels[2], //levels[rand(0, levels.length-1)],
+		level: levels[rand(0, levels.length-1)],
 
 		randomizeLevel: function(){
 			for(let i=rand(15, 60); i>=0; i--){
@@ -41,7 +41,7 @@ function init(){
 
 		loadLevel: function(){
 			let levelTitle = new createjs.Text(this.level.title, ...font.format());
-			levelTitle.x = height / 2 - this.level.title.length * 10;
+			levelTitle.center("x");
 			levelTitle.y = 15;
 			stage.addChild(levelTitle);
 			this.level.tiles.forEach((line, y) => {
