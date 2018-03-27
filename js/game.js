@@ -1,8 +1,8 @@
 function init(){
 
-	var stage = new createjs.Stage("canvas");
+	const stage = new createjs.Stage("canvas");
 
-	var game = {
+	const game = {
 
 		loadGround: function(){
 			let ground = new createjs.Shape();
@@ -92,7 +92,7 @@ function init(){
 			let button = new createjs.Text("Give up", ...font.format());
 			button.x = 15;
 			button.y = 15;
-			var hit = new createjs.Shape();
+			let hit = new createjs.Shape();
 			hit.graphics.beginFill('#000').drawRect(0, 0, button.getMeasuredWidth(), button.getMeasuredHeight());
 			button.hitArea = hit;
 			button.alpha = 0.7;
@@ -106,14 +106,14 @@ function init(){
 		},
 		/* ***** Loading related methods ***** */
 		setupManifest: function(images){
-		    for(var i in images)
-				typeof images[i] == 'string' ? this.manifest.push({src: images[i]}) : this.setupManifest(images[i]);
+		    for(let i in images)
+				typeof images[i] === 'string' ? this.manifest.push({src: images[i]}) : this.setupManifest(images[i]);
 		},
 
 		_preload: function(){
 			this.manifest = [];
 			this.setupManifest(imgs);
-			preload = new createjs.LoadQueue(false);
+			let preload = new createjs.LoadQueue(false);
 		    preload.installPlugin(createjs.Sound);
 		    preload.on("fileload", this.handleFileLoad);
 		    preload.on("progress", this.handleFileProgress);
@@ -195,7 +195,7 @@ function init(){
 		},
 
 		completed: function(){
-			// TO DO: replace with our custom alert
+			// TODO: replace with our custom alert
 			alert(`Level completed ! in ${this.stepContainer.container.text} step`);
 		},
 
