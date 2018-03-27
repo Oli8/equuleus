@@ -21,8 +21,8 @@ const levels = [
 	], 3, 9, "Easy"),
 	new Level("Laser", "Jé", [
 		["start", 0, 0, 0],
-		[0, 0, "box", 0],
-		[0, "laser", 0, 0],
+		["rock", 0, "box", 0],
+		["laser", 0, 0, 0],
 		[0, 0, "exit", 0],
 	], 4, 4, "Easy"),
 ];
