@@ -301,20 +301,29 @@ function init(){
 			location.reload();
 		},
 
-		laserAnim: function(dir, pos){
-			posSettings = {
-				right: {rotation: 270, x: 0},
-				down: {rotation: 0, x: 0},
-				left: {rotation: 90, x: 0},
-				up: {rotation: 180, x: 0},
-			};
+		laserAnim: function(dir, pos, player){
+			let posSetting = {
+				right: {rotation: 270, x: 0, y: 35},
+				down: {rotation: 0, x: 35, y: 0},
+				left: {rotation: 90, x: 35, y: 35},
+				up: {rotation: 180, x: 35, y: 0},
+			}[dir];
 			let laserBitmap = new createjs.Bitmap(imgs.laser);
-			laserBitmap.x = this.level.padWidth + (pos.x * map.tiles_w);
-			laserBitmap.y = this.level.padHeight + (pos.y * map.tiles_h);
-			this.levelContainer.addChild(laserBitmap);
-			laserBitmap.rotation = posSettings[dir].rotation;
+			laserBitmap.x = this.level.padWidth + (pos.x * map.tiles_w) + posSetting.x;
+			laserBitmap.y = this.level.padHeight + (pos.y * map.tiles_h) + posSetting.y;
+            laserBitmap.rotation = posSetting.rotation;
+            this.levelContainer.addChild(laserBitmap);
+			// TODO: set time so the laser goes the same speed no matter the distance
+			createjs.Tween.get(laserBitmap).to(
+                {
+                    x: this.level.padWidth + player.x * map.tiles_w + posSetting.x,
+                    y: this.level.padHeight + player.y * map.tiles_h + posSetting.y,
+                },
+                200,
+                createjs.Ease.getPowInOut(1)
+            )
 		},
-	}
+	};
 
 	function tick(){
 		stage.update();
