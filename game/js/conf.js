@@ -1,3 +1,5 @@
+import tiles from '../../game/js/tiles.js'
+
 const width = 680;
 const height = 710;
 

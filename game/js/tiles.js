@@ -1,3 +1,6 @@
+
+import Tile from './tile.js'
+
 const tiles = {
 	exit: new Tile(
 		'signExit',
@@ -208,3 +211,5 @@ const tiles = {
 		}
 	)
 };
+
+export default tiles;
