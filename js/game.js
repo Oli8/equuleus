@@ -300,6 +300,7 @@ function init(){
 		},
 
 		laserAnim: function(dir, pos, player){
+			// TODO: Make the player unable to move while the laser moves
 			let posSetting = {
 				right: {rotation: 270, x: 0, y: 35},
 				down: {rotation: 0, x: 35, y: 0},
@@ -318,7 +319,9 @@ function init(){
                 },
                 200 * Math.max(...[pos.x - player.x, pos.y - player.y].map(Math.abs)), // So the speed is the same
                 createjs.Ease.getPowInOut(1)
-            )
+            ).call(_ => {
+				// TODO: kill player
+			})
 		},
 	};
 
