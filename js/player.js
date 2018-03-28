@@ -18,7 +18,7 @@ class Player {
 		if(this.state !== 'stand' || !this.can_move(dir)) // if we're not standing, we should't run the animation
 			return false;
 
-		if(dir == 'left' || dir == 'right'){
+		if(dir === 'left' || dir === 'right'){
 			if(dir !== this.orientation) //change orientation
 				this.sprite.scaleX *= -1;
 

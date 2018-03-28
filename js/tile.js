@@ -10,7 +10,7 @@ class Tile {
 		// What happens when we're on the same line or column than the tile
 		this.onAlign = event.onAlign;
 		// What happens when we leave the tile
-		this.onLeave = event.onLeave
+		this.onLeave = event.onLeave;
 
 		this.walkable = properties.walkable;
 		this.ground = properties.ground;
