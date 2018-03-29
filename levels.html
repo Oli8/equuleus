@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Equuleus</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/Player/p1_walk/PNG/p1_walk01.png" type="image/png" />
+</head>
+<body>
+
+<h1>Equuleus</h1>
+
+<div id="levels">
+    <h2>Levels</h2>
+    <ul>
+        <li v-for="level, key in levels">
+            <a :href="`index.html?level=${key}`">{{level.title}}</a>
+        </li>
+    </ul>
+</div>
+
+<script src="js/level.js"></script>
+<script src="js/levels.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script>
+new Vue({
+    el: '#levels',
+    data: {
+        levels: levels,
+    },
+})
+</script>
+</body>
+</html>

@@ -7,3 +7,7 @@ canvas {
 	background-image: url(img/medievalTile_13.png);
 	border: 1px solid #000;
 }
+
+ul {
+	list-style-type: none;
+}
