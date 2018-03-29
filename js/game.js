@@ -337,19 +337,19 @@ function init(){
 	}
 
 	function getUrlVariable(key){
-        let $_GET = {};
-        if(document.location.toString().indexOf('?') !== -1) {
-            let query = document.location
-                .toString()
-                .replace(/^.*?\?/, '')
-                .replace(/#.*$/, '')
-                .split('&');
-            for(let i=0, l=query.length; i<l; i++) {
-                let aux = decodeURIComponent(query[i]).split('=');
-                $_GET[aux[0]] = aux[1];
-            }
-        }
-        return $_GET[key];
+		let $_GET = {};
+		if(document.location.toString().indexOf('?') !== -1) {
+			let query = document.location
+				.toString()
+				.replace(/^.*?\?/, '')
+				.replace(/#.*$/, '')
+				.split('&');
+			for(let i=0, l=query.length; i<l; i++) {
+				let aux = decodeURIComponent(query[i]).split('=');
+				$_GET[aux[0]] = aux[1];
+			}
+		}
+		return $_GET[key];
 	}
 
 	game._preload();
