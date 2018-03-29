@@ -41,7 +41,8 @@ const imgs = {
 		"img/Player/p1_walk/PNG/p1_walk09.png",
 		"img/Player/p1_walk/PNG/p1_walk10.png",
 		"img/Player/p1_walk/PNG/p1_walk11.png",
-		"img/Player/p1_slide.png"
+		"img/Player/p1_slide.png",
+		"img/Player/p1_hurt.png",
 	],
 
 	ground: 'img/medievalTile_15.png',

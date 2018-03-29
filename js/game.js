@@ -187,7 +187,10 @@ function init(){
 			        },
 			        stand: {
 						frames: [1],
-			        }
+			        },
+					death: {
+						frames: [11], // set to [12] when redimensioned
+					},
 				}
 			});
 			let sprite = new createjs.Sprite(player_sprite, "stand");
@@ -197,6 +200,10 @@ function init(){
 		completed: function(){
 			// TODO: replace with our custom alert
 			alert(`Level completed ! in ${this.stepContainer.container.text} step`);
+		},
+
+		failed: function(){
+			alert('Level failed :(');
 		},
 
 		handleTileLeaveEvent: function(tile, tilePos, direction, player){
@@ -249,10 +256,6 @@ function init(){
 						break; // laser can't reach you :o
 					} else {
 						//you dieded :(
-						//Trigger onAlign event
-						l("trigger on align", tileName);
-						l(tiles[tileName].onAlign);
-						l(tiles[tileName]);
 						tiles[tileName].onAlign(this.level, {x: i, y: player.y}, 'left', player);
 					}
 				}
@@ -300,7 +303,6 @@ function init(){
 		},
 
 		laserAnim: function(dir, pos, player){
-			// TODO: Make the player unable to move while the laser moves
 			let posSetting = {
 				right: {rotation: 270, x: 0, y: 35},
 				down: {rotation: 0, x: 35, y: 0},
@@ -317,11 +319,9 @@ function init(){
                     x: this.level.padWidth + player.x * map.tiles_w + posSetting.x,
                     y: this.level.padHeight + player.y * map.tiles_h + posSetting.y,
                 },
-                200 * Math.max(...[pos.x - player.x, pos.y - player.y].map(Math.abs)), // So the speed is the same
+                150 * Math.max(...[pos.x - player.x, pos.y - player.y].map(Math.abs)), // So the speed is the same
                 createjs.Ease.getPowInOut(1)
-            ).call(_ => {
-				// TODO: kill player
-			})
+            ).call(player.dies.bind(player))
 		},
 	};
 
