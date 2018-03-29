@@ -203,6 +203,7 @@ const tiles = {
 		{
 			onPush: (level, pos, dir, player) => false,
 			onAlign: (level, pos, dir, player) => {
+				player.state = "freeze";
 				player.game.laserAnim(dir, pos, player);
 			},
 		}
