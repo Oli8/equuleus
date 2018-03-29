@@ -27,7 +27,7 @@ function init(){
 			return levelContainer;
 		})(),
 
-		level: levels[rand(0, levels.length-1)],
+		level: levels[getUrlVariable("level") || rand(0, levels.length-1)],
 
 		randomizeLevel: function(){
 			for(let i=rand(15, 60); i>=0; i--){
@@ -334,6 +334,22 @@ function init(){
 		let dir = Object.entries(keys.direction).find(v => v[1] === key);
 		if(dir !== undefined)
 			game.player1.move(dir[0]);
+	}
+
+	function getUrlVariable(key){
+		let $_GET = {};
+		if(document.location.toString().indexOf('?') !== -1) {
+			let query = document.location
+				.toString()
+				.replace(/^.*?\?/, '')
+				.replace(/#.*$/, '')
+				.split('&');
+			for(let i=0, l=query.length; i<l; i++) {
+				let aux = decodeURIComponent(query[i]).split('=');
+				$_GET[aux[0]] = aux[1];
+			}
+		}
+		return $_GET[key];
 	}
 
 	game._preload();
