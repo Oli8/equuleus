@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Equuleus</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/Player/p1_walk/PNG/p1_walk01.png" type="image/png" />
+</head>
+<body>
+
+<h1>Equuleus</h1>
+
+<div id="details">
+    <h3>{{ level.title }}</h3>
+    <div v-if="completed">
+        Level completed, Congratulations !
+    </div>
+    <div v-else>
+        <p>Level failed :(</p>
+        <a :href="`index.html?level=${level_id}`">Try again</a>
+    </div>
+</div>
+
+<script src="js/level.js"></script>
+<script src="js/levels.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script>
+function getUrlVariable(key){
+    let $_GET = {};
+    if(document.location.toString().indexOf('?') !== -1) {
+        let query = document.location
+            .toString()
+            .replace(/^.*?\?/, '')
+            .replace(/#.*$/, '')
+            .split('&');
+        for(let i=0, l=query.length; i<l; i++) {
+            let aux = decodeURIComponent(query[i]).split('=');
+            $_GET[aux[0]] = aux[1];
+        }
+    }
+    return $_GET[key];
+}
+
+new Vue({
+    el: '#details',
+    data: {
+    	level_id: getUrlVariable("level"),
+        completed: getUrlVariable("completed") === "true",
+    },
+    computed: {
+    	level: function(){
+    		return levels[this.level_id]
+		},
+    },
+})
+</script>
+</body>
+</html>
