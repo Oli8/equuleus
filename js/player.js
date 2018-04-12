@@ -76,7 +76,7 @@ class Player {
 
 	dies(){
 		this.sprite.gotoAndPlay("death");
-		setTimeout(this.game.failed, 300);
+		setTimeout(this.game.failed.bind(this.game), 300);
 	}
 
 }

@@ -27,8 +27,6 @@ function init(){
 			return levelContainer;
 		})(),
 
-		level: levels[getUrlVariable("level") || rand(0, levels.length-1)],
-
 		randomizeLevel: function(){
 			for(let i=rand(15, 60); i>=0; i--){
 				let [y, x] = [rand(0, this.level.height-1), rand(0, this.level.width-1)];
@@ -140,6 +138,9 @@ function init(){
 			createjs.Ticker.addEventListener('tick', tick);
 			createjs.Ticker.setFPS(60);
 
+			this.level_id = getUrlVariable("level") || rand(0, levels.length-1);
+			this.level = levels[this.level_id];
+
 			this.level.padWidth = ((10 - this.level.width) * map.tiles_w) / 2;
 			this.level.padHeight = ((10 - this.level.height) * map.tiles_h) / 2;
 
@@ -204,6 +205,7 @@ function init(){
 
 		failed: function(){
 			alert('Level failed :(');
+			location.replace(`end.html?level=${this.level_id}&completed=false`);
 		},
 
 		handleTileLeaveEvent: function(tile, tilePos, direction, player){
