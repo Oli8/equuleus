@@ -99,7 +99,7 @@ function init(){
 				button.cursor = 'Pointer';
 			});
 			button.on('mouseout', event => button.alpha = 0.7);
-			button.addEventListener('click', _ => this.giveUp());
+			button.addEventListener('click', this.failed.bind(this));
 			stage.addChild(button);
 		},
 		/* ***** Loading related methods ***** */
@@ -200,12 +200,13 @@ function init(){
 
 		completed: function(){
 			// TODO: replace with our custom alert
-			alert(`Level completed ! in ${this.stepContainer.container.text} step`);
+			alert("Level completed !");
+			return location.replace(`end.html?level=${this.level_id}&completed=true`);
 		},
 
 		failed: function(){
 			alert('Level failed :(');
-			location.replace(`end.html?level=${this.level_id}&completed=false`);
+			return location.replace(`end.html?level=${this.level_id}&completed=false`);
 		},
 
 		handleTileLeaveEvent: function(tile, tilePos, direction, player){
@@ -298,10 +299,6 @@ function init(){
 					}
 				}
 			}
-		},
-
-		giveUp: function(){
-			location.reload();
 		},
 
 		laserAnim: function(dir, pos, player){
