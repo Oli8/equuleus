@@ -201,7 +201,9 @@ function init(){
 		completed: function(){
 			// TODO: replace with our custom alert
 			alert("Level completed !");
-			return location.replace(`end.html?level=${this.level_id}&completed=true`);
+			return location.replace(
+				`end.html?level=${this.level_id}&completed=true&step=${this.stepContainer.container.text}`
+			);
 		},
 
 		failed: function(){

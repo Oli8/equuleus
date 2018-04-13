@@ -12,7 +12,7 @@
 <div id="details">
     <h3>{{ level.title }}</h3>
     <div v-if="completed">
-        Level completed, Congratulations !
+        Level completed in {{ step }} steps, Congratulations !
     </div>
     <div v-else>
         <p>Level failed :(</p>
@@ -45,7 +45,8 @@ new Vue({
     data: {
     	level_id: getUrlVariable("level"),
         completed: getUrlVariable("completed") === "true",
-    },
+        step: getUrlVariable("step") || "",
+	},
     computed: {
     	level: function(){
     		return levels[this.level_id]
