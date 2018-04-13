@@ -25,4 +25,14 @@ const levels = [
 		["laser", 0, 0, 0],
 		[0, 0, "exit", 0],
 	], 4, 4, "Easy"),
+	new Level("Rock'n Slide", "Oli", [
+		["ice", "start", "rock", "rock", "ice", "ice", "ice", "ice"],
+		["ice", "ice", "ice", "ice", "ice", "ice", "ice", "rock"],
+		["ice", "ice", "ice", "ice", "rock", "ice", "ice", "ice"],
+		["ice", "ice", "rock", "ice", "ice", "ice", "ice", "ice"],
+		["ice", "ice", "ice", "ice", "ice", "ice", "ice", "ice"],
+		["ice", "ice", "ice", "ice", "ice", "rock", "exit", "ice"],
+		["ice", "rock", "ice", "ice", "ice", "ice", "ice", "ice"],
+		["rock", "ice", "ice", "ice", "ice", "ice", "ice", "ice"],
+	], 8, 8, "Easy"),
 ];
