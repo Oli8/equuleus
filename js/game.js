@@ -156,12 +156,14 @@ function init(){
 			this.player1 = this.addPlayer();
 			let alien = this.player1.sprite;
 			try {
-				alien.x = this.level.startPos.x * map.tiles_w + (alien.getBounds().width / 2) + this.level.padWidth;
+				alien.x = this.level.startPos.x * map.tiles_w
+					+ (alien.getBounds().width / 2) + this.level.padWidth;
 			} catch(error) {
 				alien.x = this.level.startPos.x * map.tiles_w + 36 + this.level.padWidth;
 			}
 			try {
-				alien.y = this.level.startPos.y * map.tiles_h - (alien.getBounds().height / 2) + this.level.padHeight;
+				alien.y = this.level.startPos.y * map.tiles_h
+					- (alien.getBounds().height / 2) + this.level.padHeight;
 			} catch(error) {
 				alien.y = this.level.startPos.y * map.tiles_h - 48 + this.level.padHeight;
 			}
